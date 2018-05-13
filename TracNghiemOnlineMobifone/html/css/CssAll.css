@@ -1,0 +1,9 @@
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 1024px;
+    }
+
+        .modal-lg {
+            width: 1024px;
+        }
+}
