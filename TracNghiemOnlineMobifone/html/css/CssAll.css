@@ -3,7 +3,29 @@
         max-width: 1024px;
     }
 
-        .modal-lg {
-            width: 1024px;
-        }
+    .modal-lg {
+        width: 1024px;
+    }
+    
+}
+@media (max-width: 767px){
+	.top-left-part {
+	    width: 125px;
+	    /*height: 48px*/
+	}
+	.show-xs{
+		display: inline-block !important;
+	}
+}
+@media (min-width: 768px) {
+	.show-xs{
+		display: none !important;
+	}
+}
+
+
+.form-control:disabled,
+.form-control[readonly] {
+    /*    background-color: white;*/
+    background-color: transparent;
 }
