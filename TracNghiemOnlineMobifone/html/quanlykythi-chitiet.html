@@ -48,7 +48,7 @@
             <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
-                    <a class="logo" href="index.html">
+                    <a href="javascript:void(0)" class="open-close waves-effect waves-light">
                         <b >
                         <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="60px" alt="home" class="dark-logo" /> -->
                         <img src="../plugins/images/LogoMobifone.png" width="100px"  class="show-xs light-logo" />
@@ -59,14 +59,28 @@
                      </span> </a>
                 </div>
                 <!-- /Logo -->
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li>
+                <ul class="nav navbar-top-links navbar-right pull-right active">
+                    <li class="in">
                         <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
-                            <input type="text" placeholder="Tìm kiếm..." class="form-control"> <a href=""><i class="fa fa-search"></i></a> </form>
+                            <input type="text" placeholder="Tìm kiếm..." class="form-control"> <a href="" class="active"><i class="fa fa-search"></i></a> </form>
                     </li>
-                    <li>
-                        <a class="profile-pic" href="#"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Huỳnh Khắc Duy</b></a>
+                    <li class="dropdown ">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true"> <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Huỳnh Khắc Duy</b><span class="caret"></span> </a>
+                        <div class="dropdown-backdrop"></div>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li>
+                                <div class="dw-user-box">
+                                    <div class="u-img"><img src="../plugins/images/users/varun.jpg" alt="user"></div>
+                                    <div class="u-text">
+                                        <h4>Huỳnh Khắc Duy</h4>
+                                        <p class="text-muted">anminh113@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">Xem thông tin</a></div>
+                                </div>
+                            </li>
+                            <li><a href="#"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+                        </ul>
+                        <!-- /.dropdown-user -->
                     </li>
+                    <!-- /.dropdown -->
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -77,33 +91,45 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav slimscrollsidebar">
-                <div class="sidebar-head">
-                    <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
+        <div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+            <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+                <div class="sidebar-nav slimscrollsidebar active" style="overflow-x: visible; overflow-y: hidden; width: auto; height: 100%;">
+                    <div class="sidebar-head">
+                        <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                        <b >
+                        <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="60px" alt="home" class="dark-logo" /> -->
+                        <img src="../plugins/images/LogoMobifone.png" width="200px"  class="show-xs light-logo" />
+                        </b>
+                        <span class="hidden-xs">
+                        <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="48px" alt="home" class="dark-logo" /> -->
+                        <img src="../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                     </span> </a>
+                    </div>
+                    <ul class="nav" id="side-menu">
+                        <li style="padding: 70px 0 0;">
+                            <a href="index.html" class="waves-effect"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Cá Nhân</a>
+                        </li>
+                        <li>
+                            <a href="quanlykythi.html" class="waves-effect"><i class="fa  fa-calendar fa-fw" aria-hidden="true"></i>Quản Lý Kỳ Thi</a>
+                        </li>
+                        <li>
+                            <a href="nganhangcauhoi.html" class="waves-effect "><i class="fa fa-table fa-fw" aria-hidden="true"></i>Ngân Hàng Câu Hỏi</a>
+                        </li>
+                        <li>
+                            <a href="taobodethi.html" class="waves-effect "><i class="fa  fa-pencil fa-fw" aria-hidden="true"></i>Bộ Đề Thi</a>
+                        </li>
+                        <li>
+                            <a href="cauhoinhanvien.html" class="waves-effect"><i class="fa  fa-edit fa-fw" aria-hidden="true"></i>Câu hỏi của nhân viên</a>
+                        </li>
+                    </ul>
+                    <div class="center p-20">
+                    </div>
                 </div>
-                <ul class="nav" id="side-menu">
-                    <li style="padding: 70px 0 0;">
-                        <a href="index.html" class="waves-effect"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Trang Chủ</a>
-                    </li>
-                    <li>
-                        <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Cá Nhân</a>
-                    </li>
-                    <li>
-                        <a href="quanlykythi.html" class="waves-effect active"><i class="fa  fa-calendar fa-fw" aria-hidden="true"></i>Quản Lý Kỳ Thi</a>
-                    </li>
-                    <li>
-                        <a href="nganhangcauhoi.html" class="waves-effect "><i class="fa fa-table fa-fw" aria-hidden="true"></i>Ngân Hàng Câu Hỏi</a>
-                    </li>
-                    <li>
-                        <a href="taobodethi.html" class="waves-effect "><i class="fa  fa-pencil fa-fw" aria-hidden="true"></i>Bộ Đề Thi</a>
-                    </li>
-                    <li>
-                        <a href="cauhoinhanvien.html" class="waves-effect"><i class="fa  fa-edit fa-fw" aria-hidden="true"></i>Câu hỏi của nhân viên</a>
-                    </li>
-                </ul>
-                <div class="center p-20">
-                </div>
+                <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.3); width: 6px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 458.451px;"></div>
+                <div class="slimScrollRail" style="width: 6px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
             </div>
         </div>
         <!-- ============================================================== -->
@@ -130,7 +156,6 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <form class="form-horizontal form-material">
-                               
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="table-responsive">
@@ -181,7 +206,7 @@
                                                     <tr>
                                                         <td>4</td>
                                                         <td data-toggle="modal" data-target="#exampleModal">Giảng viên giảng dạy đúng theo đề cương học phần và thời khóa biểu (thời gian, phòng học) đã công bố</td>
-                                                       <!--  <td>
+                                                        <!--  <td>
                                                             <div class="checkbox checkbox-info">
                                                                 <input type="checkbox" id="checkItem">
                                                                 <label for="checkItem"> </label>
@@ -233,7 +258,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               <!--  <div class="row">
+                                <!--  <div class="row">
                                     <div class="col-lg-12 ml-auto">
                                         <button class=" btn btn-info" style="float: right">&nbsp;&nbsp;Thêm vào bộ đề</button>
                                     </div>
@@ -275,7 +300,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="col-md-12">A</label>
+                                        <label class="col-md-12">A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i></label>
                                         <div class="col-md-12">
                                             <input type="text" id="A" placeholder="123 456 7890" class="form-control form-control-line" readonly> </div>
                                     </div>

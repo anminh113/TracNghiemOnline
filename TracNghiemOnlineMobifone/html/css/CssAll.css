@@ -23,6 +23,14 @@
 	}
 }
 
+.dapandung{
+	color: #FF0047
+}
+@media (min-width: 1170px){
+.hide-sidebar .top-left-part {
+     width: 240px; 
+}
+}
 
 .form-control:disabled,
 .form-control[readonly] {
