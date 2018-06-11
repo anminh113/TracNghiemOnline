@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head> 
+<body class="fix-header">
+<!-- ============================================================== -->
+<!-- Preloader -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+    </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Wrapper -->
+<!-- ============================================================== -->
+<div id="wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header>
+        <% include ../layout/header %>
+    </header>
+    <!-- ============================================================== -->
+    <!-- End Left Sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Page Content -->
+    <!-- ============================================================== -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row bg-title">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <h4 class="page-title">Chủ Đề: Đánh giá chất lượng</h4>
+                </div>
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#">Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="nganhangcauhoi.html">Nhân viên: XXX</a>
+                        </li>
+                        <li class="active">Chủ Đề</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="white-box">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th> Câu Hỏi</th>
+                                        <th colspan="3" data-toggle="modal" data-target="#exampleModal">
+                                            <!-- <button type="button" class="btn btn-info">Thêm Câu Hỏi</button> -->
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>1</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần,
+                                            nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức
+                                            đánh giá học phần.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>2</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị vui lòng đánh dấu vào các nội dung mà giảng viên đã giải thích rõ ràng (có
+                                            thể chọn một hoặc nhiều nội dung)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>3</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị có thể cho biết tỷ lệ hoàn thành số tiết giảng dạy của giảng viên căn cứ
+                                            theo thời khóa biểu đã công bố</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>4</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Giảng viên giảng dạy đúng theo đề cương học phần và thời khóa biểu (thời gian,
+                                            phòng học) đã công bố</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>5</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị được giảng viên thông tin phản hồi và giải thích rõ ràng nội dung
+                                            và kết quả đánh giá (bài kiểm tra, thi giữa/cuối kỳ)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>6</b>
+                                        </td>
+                                        <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>7</b>
+                                        </td>
+                                        <td colspan="2" data-toggle="modal" data-target="#exampleModal">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>8</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>9</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>10</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>11</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>12</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>13</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>14</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>15</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>16</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>17</b>
+                                        </td>
+                                        <td colspan="2">Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung
+                                            cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều
+                                            nội dung):</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+        <footer class="footer text-center"> 2018
+        </footer>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+</div>
+<!--    modal-->
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+            </div>
+            <form class="form-horizontal form-material" action="" method="">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 ml-auto">
+                                <div class="form-group">
+                                    <textarea class="form-control" id="textarea" rows="8">Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần.</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">A</label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="A" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">B</label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="B" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">C</label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="C" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">D</label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="D" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--                        <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>-->
+                    <button type="button" class="btn btn-danger">Xóa Câu Hỏi</button>
+                    <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button>
+                    <button type="submit" id="update" class="btn btn-info">Cập nhật </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--   end modal-->
+<script>
+    function undisableTxt() {
+        document.getElementById("textarea").disabled = true;
+        document.getElementById("A").disabled = true;
+        document.getElementById("B").disabled = true;
+        document.getElementById("C").disabled = true;
+        document.getElementById("D").disabled = true;
+        document.getElementById("update").disabled = true;
+    }
+</script>
+<script>
+    function disableTxt() {
+        document.getElementById("textarea").disabled = false;
+        document.getElementById("A").disabled = false;
+        document.getElementById("B").disabled = false;
+        document.getElementById("C").disabled = false;
+        document.getElementById("D").disabled = false;
+        document.getElementById("update").disabled = false;
+    }
+</script>
+<!-- /#wrapper -->
+<!-- jQuery -->
+<footer>
+    <% include ../layout/footer %>
+</footer>
+</body>
+
+</html>

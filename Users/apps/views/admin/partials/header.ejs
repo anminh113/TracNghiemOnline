@@ -1,0 +1,127 @@
+<!-- ============================================================== -->
+<!-- Preloader -->
+<!-- ============================================================== -->
+<div class="preloader">
+  <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Wrapper -->
+<!-- ============================================================== -->
+<div id="wrapper">
+  <!-- ============================================================== -->
+  <!-- Topbar header - style you can find in pages.scss -->
+  <!-- ============================================================== -->
+  <nav class="navbar navbar-default navbar-static-top m-b-0">
+    <div class="navbar-header">
+      <div class="top-left-part">
+        <!-- Logo -->
+        <a href="trangchu">
+                        <b >
+                        <img src="../plugins/images/LogoMobifone.png" width="100px"  class="show-xs light-logo" />
+                        </b>
+                        <span class="hidden-xs">
+                        <img src="../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                     </span> </a>
+
+      </div>
+      <ul class="nav navbar-top-links navbar-left">
+        <li><a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="fa fa-bars"></i>
+
+        </a></li>
+
+      </ul>
+      <!-- /Logo -->
+      <ul class="nav navbar-top-links navbar-right pull-right active">
+        <!-- <li class="in">
+          <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+            <input type="text" placeholder="Tìm kiếm..." class=" form-control">
+          </form>
+        </li> -->
+        <li class="dropdown ">
+          <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="profile" aria-expanded="true"> <img src="http://placehold.it/320x320/cccccc/000000" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><%= data.ten%></b>&nbsp;&nbsp;<span class="caret"></span> </a>
+          <ul class="dropdown-menu dropdown-user animated flipInY">
+            <li>
+              <div class="dw-user-box">
+                <div class="u-img"><img src="http://placehold.it/320x320/cccccc/000000" alt="user"></div>
+                <div class="u-text">
+
+                  <h4><%= data.ten%></h4>
+                  <p class="text-muted"><%= data.email%></p><a href="profile" class="btn btn-rounded btn-info btn-sm">Xem thông tin</a></div>
+              </div>
+            </li>
+            <li><a href="../../login"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
+          </ul>
+          <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+      </ul>
+    </div>
+    <!-- /.navbar-header -->
+    <!-- /.navbar-top-links -->
+    <!-- /.navbar-static-side -->
+  </nav>
+  <!-- End Top Navigation -->
+  <!-- ============================================================== -->
+  <!-- Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- ============================================================== -->
+  <div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+    <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+      <div class="sidebar-nav slimscrollsidebar active" style="overflow-x: visible; overflow-y: hidden; width: auto; height: 100%;">
+        <div class="sidebar-head">
+          <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                        <b >
+                        <img src="../plugins/images/LogoMobifone.png" width="200px"  class="show-xs light-logo" />
+                        </b>
+                        <span class="hidden-xs">
+                        <img src="../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                     </span> </a>
+
+        </div>
+        <ul class="nav" id="side-menu">
+          <li style="padding: 70px 0 0;">
+            <a href="../../admin/trangchu" class="waves-effect"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Trang Chủ</a>
+          </li>
+          <li>
+            <a href="../../admin/profile" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Cá Nhân</a>
+          </li>
+          <li>
+            <a href="../../admin/capquyen" class="waves-effect"><i class="fa fa-credit-card fa-fw" aria-hidden="true"></i>Cấp Quyền</a>
+          </li>
+          <li>
+            <a href="../../admin/quanlykythi" class="waves-effect"><i class="fa  fa-calendar fa-fw" aria-hidden="true"></i>Quản Lý Kỳ Thi</a>
+          </li>
+          <li>
+            <a href="../../admin/nganhangcauhoichude" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Ngân Hàng Câu Hỏi</a>
+          </li>
+          <li>
+            <a href="../../admin/taobodethi" class="waves-effect"><i class="fa  fa-pencil fa-fw" aria-hidden="true"></i>Chủ Đề Thi</a>
+          </li>
+          <li>
+            <a href="../../admin/cauhoinhanvien" class="waves-effect"><i class="fa  fa-edit fa-fw" aria-hidden="true"></i>Câu hỏi của nhân viên</a>
+          </li>
+          <li>
+            <a href="../../admin/ketquakythi" class="waves-effect"><i class="fa fa-calendar-check-o fa-fw" aria-hidden="true"></i>Kết quả kỳ thi</a>
+          </li>
+        </ul>
+        <div class="center p-20">
+        </div>
+      </div>
+      <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.3); width: 6px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 458.451px;"></div>
+      <div class="slimScrollRail" style="width: 6px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================== -->
+  <!-- End Left Sidebar -->
+  <!-- ============================================================== -->
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('table.search').tableSearch({
+      searchText: '',
+      searchPlaceHolder: 'Tìm Kiếm....'
+    });
+  });
+</script>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Cá Nhân</h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="index">Trang Chủ</a></li>
+              <li class="active">Cá Nhân</li>
+            </ol>
+          </div>
+        </div>
+        <!-- /.row -->
+        <!-- .row -->
+        <div class="row">
+
+          <div class="col-md-4 col-xs-12">
+            <div class="white-box">
+              <div class="user-bg">
+                <!-- <img width="100%" alt="user" src="http://placehold.it/670x438/cccccc/000000"> -->
+                <div class="overlay-box">
+                  <div class="user-content">
+                    <a href="javascript:void(0)">
+                      <!-- <img src="http://placehold.it/320x320/cccccc/000000" class="thumb-lg img-circle" alt="img"> -->
+                    </a>
+                    <h4 class="text-white"><%= data.ten%></h4>
+                    <h5 class="text-white"><%= data.email%></h5> </div>
+                </div>
+              </div>
+              <div class="user-btm-box">
+                <div class="col-md-12 col-sm-4 text-center">
+                  <p class="text-purple"><i class="ti-facebook"></i></p>
+                  <h3><%= data.chuvu%></h3> </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8 col-xs-12">
+            <div class="white-box">
+              <form class="form-horizontal form-material" method="post">
+                <div class="form-group">
+                  <label class="col-md-12" for="hoten">Họ và Tên</label>
+                  <div class="col-md-12">
+                    <input type="text" id="hoten" name="hoten" placeholder="<%= data.ten%>" class="form-control form-control-line" disabled> </div>
+                </div>
+                <div class="form-group">
+                  <label for="ngaysinh" class="col-md-12">Ngày Sinh</label>
+                  <div class="col-md-12">
+                    <input type="text" id="ngaysinh" name="ngaysinh" placeholder="<%= data.ngaysinh%>" class="form-control form-control-line" name="example-email" id="example-email" disabled> </div>
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-md-12">Email</label>
+                  <div class="col-md-12">
+                    <input type="email" id="email" name="email" placeholder="<%= data.email%>" class="form-control form-control-line" name="example-email" id="example-email" disabled> </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-md-12" for="phone">Số Điện Thoại</label>
+                  <div class="col-md-12">
+                    <input type="number" id="phone" name="phone" placeholder="<%= data.sdt%>" class="form-control form-control-line" disabled> </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12" for="phongban">Phòng Ban</label>
+                  <div class="col-md-12">
+                    <input type="text" id="phongban" name="phongban" placeholder="<%= data.phongban%>" class="form-control form-control-line" disabled> </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="accordion" id="changepass">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                      <button class="btn btn-info"  type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Đổi Mật Khẩu
+                      </button>
+                    </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#changepass">
+                          <div class="card-body">
+                            <div class="col-md-12">
+                              <form method="post" enctype="application/x-www-form-urlencoded">
+                                <div class="form-group">
+                                  <label class="col-md-12" for="pass_old">Mật Khẩu Cũ</label>
+                                  <div class="col-md-12">
+                                    <input type="password" id="pass_old1" required name="pass_old1" placeholder="Nhập mật khẩu cũ" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-md-12" for="pass_new1">Mật Khẩu Mới</label>
+                                  <div class="col-md-12">
+                                    <input type="password" id="pass_new1" required name="pass_new1" placeholder="Nhập mật khẩu Mới" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-md-12" for="pass_new2">Xác Nhận Mật Khẩu Mới</label>
+                                  <div class="col-md-12">
+                                    <input type="password" id="pass_new2" required name="pass_new2" placeholder="Nhập lại mật khẩu Mới" class="form-control form-control-line"> </div>
+                                </div>
+                                <button type="submit" class="btn btn-success" onclick="return xacnhan()">Cập Nhật</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    </div>
+  </main>
+  <script>
+    function xacnhan() {
+      var pass_new1 = document.getElementById('pass_new1').value;
+      var pass_new2 = document.getElementById('pass_new2').value;
+      var pass_old1 = document.getElementById('pass_old1').value;
+      var pass_old2 = "<%= data.pass%>";
+      if (pass_new1 != pass_new2) {
+        alert("Không trùng với mật khẩu xác nhận!!!");
+        return false;
+      }
+      if (pass_old1 != pass_old2) {
+        alert("Mật khẩu cũ không đúng!!!");
+        return false;
+      }
+
+    }
+  </script>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>

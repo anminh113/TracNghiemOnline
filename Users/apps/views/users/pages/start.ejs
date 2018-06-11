@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Bắt đầu thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="index.html">Trang Chủ</a>
+                            </li>
+                            <li>
+                                <a href="kythi.html">Kỳ thi</a>
+                            </li>
+                            <li class="active">Bắt đầu thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: bold;">Bắt đầu vào thi</div>
+                                <div class="panel-body thi-content bg-thi">
+                                    <div class="thi-content-start">
+                                        <b>Tên kỳ thi:</b>
+                                        <small>Kỹ năng anh văn</small>
+                                    </div>
+                                    <div>
+                                        <b>Ngày thi:</b>
+                                        <small> 2018-05-05</small>
+                                        <br>
+                                        <b>Tổng thời gian thi:</b>
+                                        <small>120 phút</small>
+                                        <br>
+                                        <b>Số câu hỏi:</b>
+                                        <small>50 câu</small>
+                                        <br>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-info batdauthibtn" onclick="location.href='tienhanhthi'">
+                                            <i class="fa fa-clock-o"> Bắt đầu thi</i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2018 </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+</body>
+
+</html>

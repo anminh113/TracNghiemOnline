@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+
+
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Chủ đề: <%= data.tencd%></h4>
+          </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="index">Trang Chủ</a></li>
+              <li><a href="taobodethi">Chủ Đề Thi</a></li>
+              <li class="active"><%= data.tencd%></li>
+            </ol>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="white-box">
+              <form class="form-horizontal form-material">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="table-responsive">
+                      <table class="search table table-hover" id="table">
+                        <thead>
+                          <tr>
+                            <th>ID</th>
+                            <th> Câu Hỏi</th>
+                            <th class=" text-right">
+                              <div class="checkbox checkbox-info  text-center">
+                                <input type="checkbox" name="checkall" id="checkAll" value="option1">
+                                <label for="checkAll"></label>
+                              </div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="myTable">
+                          <!-- <tr>
+                            <td>1</td>
+                            <td data-toggle="modal" data-target="#exampleModal">Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần.</td>
+                            <td>
+                              <div class="checkbox checkbox-info">
+                                <input type="checkbox" id="checkItem1" name="id" value="1">
+                                <label for="checkItem1"> </label>
+                              </div>
+                            </td>
+                          </tr> -->
+
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12 ml-auto">
+                    <button class=" btn btn-danger" style="float: right">Xóa</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+          </div>
+          <form class="form-horizontal form-material">
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12 ml-auto">
+                    <div class="form-group">
+                      <p>Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                        và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học
+                        phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần.</p>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i></label>
+                      <div class="col-md-12">
+                        <input type="text" id="A" placeholder="123 456 7890" class="form-control form-control-line" readonly> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">B</label>
+                      <div class="col-md-12">
+                        <input type="text" id="B" placeholder="123 456 7890" class="form-control form-control-line" readonly> </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">C</label>
+                      <div class="col-md-12">
+                        <input type="text" id="C" placeholder="123 456 7890" class="form-control form-control-line" readonly> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">D</label>
+                      <div class="col-md-12">
+                        <input type="text" id="D" placeholder="123 456 7890" class="form-control form-control-line" readonly> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+  <script>
+    $(document).ready(function() {
+      // get data json
+      $.getJSON('<%= data.json_data%>', function(data) {
+        var test_data = '';
+        var len = data.length;
+        var count = 1;
+        $.each(data, function(key, value) {
+          test_data += '<tr>';
+          test_data += '<td>' + count++ + '</td>';
+          test_data += '<td data-toggle="modal" data-target="#exampleModal">' + value.ndch + '</td>';
+          test_data += '<td class=" text-right"><div class="checkbox checkbox-info text-center"><input type="checkbox" id="checkItem'+count+'" name="id" value="1"><label for="checkItem'+count+'"> </label></div></td>';
+          test_data += '</tr>';
+        });
+        $('#table').append(test_data);
+
+        // pagination
+        $('#myTable').pagination({
+          pagerSelector: '#myPager',
+          activeColor: 'red',
+          prevText: 'Prev',
+          nextText: 'Next',
+          showPrevNext: true,
+          hidePageNumbers: false,
+          perPage: 15
+        });
+      });
+    });
+  </script>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <script>
+    $("#checkAll").click(function() {
+      $('input:checkbox').not(this).prop('checked', this.checked);
+    });
+  </script>
+</body>
+
+</html>

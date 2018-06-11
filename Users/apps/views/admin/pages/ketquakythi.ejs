@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Kết Quả Kỳ Thi </h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="index">Trang Chủ</a></li>
+              <li class="active">Kết Quả Kỳ Thi</li>
+            </ol>
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="white-box">
+              <div class="table-responsive">
+                <table class="search table table-hover" id="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên kỳ thi</th>
+                      <th>Số lượng câu hỏi</th>
+                      <th>Thời gian</th>
+                      <th>Xem Kết Quả kỳ Thi</th>
+                      <th>Xóa</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+
+                  </tbody>
+                </table>
+                <div class="col-md-12 center text-center">
+                  <ul class="pagination" id="myPager">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page Content -->
+      <!-- ============================================================== -->
+    </div>
+
+  </main>
+  <script>
+    $(document).ready(function() {
+      // get data json
+      $.getJSON('<%= data.json_data%>', function(data) {
+        var test_data = '';
+        var count = 1;
+        $.each(data, function(key, value) {
+          test_data += '<tr>';
+          test_data += '<td>' + count++ + '</td>';
+          test_data += '<td>' + value.title + '</td>';
+          test_data += '<td>' + value.id + '</td>';
+          test_data += '<td>' + value.id + '</td>';
+          test_data += '<td>Chi Tiết</td>';
+          test_data += '<td>Xóa</td>';
+          test_data += '</tr>';
+        });
+        $('#table').append(test_data);
+
+        // pagination
+        $('#myTable').pagination({
+          pagerSelector: '#myPager',
+          activeColor: 'red',
+          prevText: 'Prev',
+          nextText: 'Next',
+          showPrevNext: true,
+          hidePageNumbers: false,
+          perPage: 15
+        });
+      });
+    });
+  </script>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>

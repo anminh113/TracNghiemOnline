@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Ngân Hàng Câu Hỏi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="#">Trang Chủ</a>
+                            </li>
+                            <li class="active">Ngân Hàng Câu Hỏi</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <form method="POST" enctype="application/x-www-form-urlencoded" class="form-horizontal form-material">
+                                <div class="form-group">
+                                    <label class="col-md-12">Thêm chủ đề</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="chude" placeholder="Nhập tên chủ đề" class="form-control form-control-line" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-info" type="submit">&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Chủ đề</th>
+                                            <th>Chủ đề</th>
+                                            <th>Số lượng câu hỏi</th>
+                                            <th>Xem Chi Tiết</th>
+                                            <th>Thay đổi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% danhsach.data.forEach(function(cauhoi){ %>
+                                        <tr>
+                                            <td><%= cauhoi.ID %></td>
+                                            <td><%= cauhoi.CHUDE %> </td>
+                                            <td><%= cauhoi.SOCAU %></td>
+                                            <td>
+                                                <a href="nganhangcauhoi-chude"> <i class="fa  fa-suitcase fa-links"></i> Xem</a>
+                                            </td>
+                                            <td>
+                                            <a onClick="return confirm('Bạn chắc chắn xoá?')" href="../user/nganhangcauhoi/xoa/<%= cauhoi.ID %>"><i class="fa  fa-suitcase fa-bitbucket fa-fw"></i> Xoá</a>
+                                                 &nbsp;
+                                            <a data-toggle="modal" data-target="#<%= cauhoi.ID %>" onClick="" href="../user/nganhangcauhoi/sua/<%= cauhoi.ID %>"><i class="fa  fa-edit fa-fw"></i> Sửa</a>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <!-- Modal -->
+             <% danhsach.data.forEach(function(cauhoi){ %>
+            <div class="modal fade bd-example-modal-md" id="<%= cauhoi.ID %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Chủ đề</h4>
+                </div>
+
+                <form class="form-horizontal form-material"  method="POST" enctype="application/x-www-form-urlencoded" action="/user/nganhangcauhoi/sua">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 ml-auto">
+                                    <div class="form-group">
+                                        <input type="text" name="cd" value="<%= cauhoi.CHUDE %>" class="form-control form-control-line" required>
+                                        <input type="hidden" name="idcd" value="<%= cauhoi.ID %>" class="form-control form-control-line">
+                                        <input type="hidden" name="sc" value="<%= cauhoi.SOCAU %>" class="form-control form-control-line">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-right" data-dismiss="modal">Thoát</button>
+                        
+                        <button type="submit" id="update" class="btn btn-info">Sửa</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <% }); %>
+            <!-- end modal -->
+            <footer class="footer text-center"> 2018 </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+</body>
+
+</html>

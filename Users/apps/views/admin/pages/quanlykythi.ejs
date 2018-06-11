@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<header>
+        <% include ../partials/header %>
+</header>
+<body class="fix-header">
+    <main>
+    	<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Quản Lý Kỳ Thi</h4> </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="index">Trang Chủ</a></li>
+                            <li class="active">Quản Lý Kỳ Thi</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material" method="post">
+                                <!-- <div class="space10">&nbsp;</div> -->
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <label for="chude">Thêm Kỳ Thi</label>
+                                        <input type="text" id="chude" name="chude" placeholder="Nhập tên kỳ thi" class="form-control form-control-line" id="nametest"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập tên kỳ thi')" oninput="setCustomValidity('')">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-12">
+                                        <label for="bode">Chủ Đề Thi</label>
+                                        <select class="form-control" id="bode" name="bode">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-4">
+                                        <label for="stardate">Ngày bắt đầu</label>
+                                        <div class="col-10">
+                                            <input class="form-control" name="stardate" type="date" id="stardate" autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày bắt đầu thi')" oninput="setCustomValidity('')">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="enddate">Ngày kết thúc</label>
+                                        <div class="col-10">
+                                            <input class="form-control" name="enddate" type="date" id="enddate"  autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày kết thúc thi')" oninput="setCustomValidity('')">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="timeline">Thời gian làm bài</label>
+                                        <input type="number"  name="time" min="1" placeholder="Nhập số phút"  class="form-control form-control-line" id="timeline"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập thời gian làm bài')" oninput="setCustomValidity('')">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="col-md-12">&nbsp;</label>
+                                        <button class="btn btn-info">&nbsp;&nbsp;Thêm Kỳ Thi&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên kỳ thi</th>
+                                            <th>Số lượng câu hỏi</th>
+                                            <th>Thời gian</th>
+                                            <th>Nhân Viên Thi</th>
+                                            <th>Chủ Đề Thi</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Deshmukh  </td>
+                                            <td>121</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>12</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>123</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>34</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>80</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>40</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page Content -->
+            <!-- ============================================================== -->
+        </div>
+    </main>
+    <script>
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      if (month < 10) month = "0" + month;
+      if (day < 10) day = "0" + day;
+      var today = year + "-" + month + "-" + day;
+      // document.getElementById("stardate").value = today;
+      document.getElementById("stardate").min = today
+      // document.getElementById("enddate").value = today;
+      document.getElementById("enddate").min = today;
+    </script>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>

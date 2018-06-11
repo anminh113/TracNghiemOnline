@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                        <b>
+                            <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="60px" alt="home" class="dark-logo" /> -->
+                            <img src="../plugins/images/LogoMobifone.png" width="100px" class="show-xs light-logo" />
+                        </b>
+                        <span class="hidden-xs">
+                            <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="48px" alt="home" class="dark-logo" /> -->
+                            <img src="../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                        </span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-right pull-right active">
+                    <li class="in">
+                        <form role="search" class="app-search hidden-sm hidden-xs m-r-10">
+                            <input type="text" placeholder="Tìm kiếm..." class="form-control">
+                            <a href="" class="active">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </form>
+                    </li>
+                    <!-- dropdown tone -->
+                    <li class="dropdown ">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true">
+                            <i class="fa fa-envelope-o">
+                                <span class="poin"> 4 </span>
+                            </i>
+                            <b class="hidden-xs">Thông báo</b>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+
+                            <li>
+                                <div class="drop-title">You have 4 new messages</div>
+                            </li>
+                            <li>
+                                <div class="message-center">
+                                    <a href="#">
+                                        <div class="user-img">
+                                            <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                                            <span class="profile-status online pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5>Pavan kumar</h5>
+                                            <span class="mail-desc">Just see the my admin!</span>
+                                            <span class="time">9:30 AM</span>
+                                        </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="user-img">
+                                            <img src="../plugins/images/users/sonu.jpg" alt="user" class="img-circle">
+                                            <span class="profile-status busy pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5>Sonu Nigam</h5>
+                                            <span class="mail-desc">I've sung a song! See you at</span>
+                                            <span class="time">9:10 AM</span>
+                                        </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="user-img">
+                                            <img src="../plugins/images/users/arijit.jpg" alt="user" class="img-circle">
+                                            <span class="profile-status away pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5>Arijit Sinh</h5>
+                                            <span class="mail-desc">I am a singer!</span>
+                                            <span class="time">9:08 AM</span>
+                                        </div>
+                                    </a>
+                                    <a href="#">
+                                        <div class="user-img">
+                                            <img src="../plugins/images/users/pawandeep.jpg" alt="user" class="img-circle">
+                                            <span class="profile-status offline pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5>Pavan kumar</h5>
+                                            <span class="mail-desc">Just see the my admin!</span>
+                                            <span class="time">9:02 AM</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="text-center" href="javascript:void(0);">
+                                    <strong>See all notifications</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- // -->
+                    <li class="dropdown ">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true">
+                            <img src="../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                            <b class="hidden-xs">Vo Hoai Phong</b>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user animated flipInY">
+                            <li>
+                                <div class="dw-user-box">
+                                    <div class="u-img">
+                                        <img src="../plugins/images/users/varun.jpg" alt="user">
+                                    </div>
+                                    <div class="u-text">
+                                        <h4>Vo Hoai Phong</h4>
+                                        <p class="text-muted">vhp@gmail.com</p>
+                                        <a href="profile" class="btn btn-rounded btn-success btn-sm">Xem thông tin</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-power-off"></i> Đăng xuất</a>
+                            </li>
+                        </ul>
+                        <!-- /.dropdown-user -->
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+            <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+                <div class="sidebar-nav slimscrollsidebar active" style="overflow-x: visible; overflow-y: hidden; width: auto; height: 100%;">
+                    <div class="sidebar-head">
+                        <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                            <b>
+                                <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="60px" alt="home" class="dark-logo" /> -->
+                                <img src="../plugins/images/LogoMobifone.png" width="200px" class="show-xs light-logo" />
+                            </b>
+                            <span class="hidden-xs">
+                                <!-- <img src="../plugins/images/LogoMobifone16x16.jpg" height="48px" alt="home" class="dark-logo" /> -->
+                                <img src="../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                            </span>
+                        </a>
+                    </div>
+                    <ul class="nav" id="side-menu">
+                        <li style="padding: 70px 0 0;">
+                            <a href="index" class="waves-effect">
+                                <i class="fa fa-home fa-fw" aria-hidden="true"></i>Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="profile" class="waves-effect">
+                                <i class="fa fa-user fa-fw" aria-hidden="true"></i>Cá Nhân</a>
+                        </li>
+                        <li>
+                            <a href="kythi" class="waves-effect">
+                                <i class="fa  fa-pencil-square-o fa-fw" aria-hidden="true"></i>Kỳ thi chung</a>
+                        </li>
+                        <li>
+                            <a href="taobodethi" class="waves-effect">
+                                <i class="fa  fa-pencil fa-fw" aria-hidden="true"></i>Tạo Bộ Đề Thi</a>
+                        </li>
+                        <li>
+                            <a href="lichsuthi" class="waves-effect">
+                                <i class="fa  fa-bullhorn fa-fw" aria-hidden="true"></i>Lịch sử thi</a>
+                        </li>
+                        <li>
+                            <a href="kqckthi" class="waves-effect">
+                                <i class="fa fa-mortar-board fa-fw" aria-hidden="true"></i>Kết quả các kỳ thi</a>
+                        </li>
+                        <li>
+                            <a href="#" class="waves-effect">
+                                <i class="fa  fa-life-bouy fa-fw" aria-hidden="true"></i>Hỗ trợ</a>
+                        </li>
+                        <li>
+                            <a href="feedback" class="waves-effect">
+                                <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>Phản hồi</a>
+                        </li>
+                    </ul>
+                    <div class="form-clock">
+                        <form id="clock">
+                            <span> Thời gian còn lại </span>
+                            <br>
+                            <div id="status"></div>
+                        </form>
+                        <!-- <script>
+                            countDown(10, "status");
+                        </script> -->
+                    </div>
+                    <div class="center p-20">
+                    </div>
+                </div>
+                <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.3); width: 6px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 458.451px;"></div>
+                <div class="slimScrollRail" style="width: 6px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div 
+            style="width: 20px; height: 100px; background-color: blueviolet;">A</div>
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Tiến hành thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="index">Trang Chủ</a>
+                            </li>
+                            <li>
+                                <a href="kythi">Kỳ thi</a>
+                            </li>
+                            <li>
+                                <a href="start">Bắt đầu thi</a>
+                            </li>
+                            <li class="active">Tiến hành thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="overlay-box">
+                            <div class="panel panel-info">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: bold;">Thông Tin</div>
+                                <div class="panel-body thi-content">
+                                    <b>Tên kỳ thi:</b>
+                                    <small>Kỹ năng anh văn</small>
+                                    <br>
+                                    <b>Ngày thi:</b>
+                                    <small> 2018-05-05</small>
+                                    <br>
+                                    <b>Tổng thời gian thi:</b>
+                                    <small>120 phút</small>
+                                    <br>
+                                    <b>Số câu hỏi:</b>
+                                    <small>50 câu</small>
+                                    <br>
+                                    <b>Người thi:</b>
+                                    <small>Võ Hoài Phong</small>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+
+                        <div class=" overlay-box">
+                            <div class="panel panel-info">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: bold;">Phần Thi</div>
+                                <div class="space20">&nbsp;</div>
+                                <div class="clearfix"></div>
+                                <div class="panel-body body-qu">
+                                    <div class="container-fluid">
+                                        <div class="content">
+                                            <div class="col-sm-12 container head-an">
+                                                <div class="title-cauhoi">Câu 1:</div>
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div class="noidung-cauhoi">
+                                                    Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được
+                                                    giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội
+                                                    dung học phần, phương pháp giảng dạy và học tập học phần, và cách
+                                                    thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                                                    và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần.
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 container" style="border: 1px solid #eeeeee">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>A</b>. 123456789
+                                                            <input type="radio" name="radio0">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>B</b>. 123456789
+                                                            <input type="radio" name="radio0">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>C</b>. 123456789
+                                                            <input type="radio" name="radio0">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>D</b>. 123456789
+                                                            <input type="radio" name="radio0">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="space20">&nbsp;</div>
+                                        <div class="clearfix"></div>
+                                        <div class="content">
+                                            <div class="col-sm-12 container head-an">
+                                                <div class="title-cauhoi">Câu 2:</div>
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div class="noidung-cauhoi">
+                                                    Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được
+                                                    giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội
+                                                    dung học phần, phương pháp giảng dạy và học tập học phần, và cách
+                                                    thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                                                    và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần.
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 container">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>A</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio1">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>B</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio1">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>C</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio1">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>D</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio1">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="space20">&nbsp;</div>
+                                        <div class="clearfix"></div>
+                                        <div class="content">
+                                            <div class="col-sm-12 container head-an">
+                                                <div class="title-cauhoi">Câu 3:</div>
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div class="noidung-cauhoi">
+                                                    Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được
+                                                    giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội
+                                                    dung học phần, phương pháp giảng dạy và học tập học phần, và cách
+                                                    thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                                                    và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần.
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 container">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>A</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio3">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>B</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio3">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>C</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio3">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>D</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio3">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="space20">&nbsp;</div>
+                                        <div class="clearfix"></div>
+                                        <div class="content">
+                                            <div class="col-sm-12 container head-an">
+                                                <div class="title-cauhoi">Câu 4:</div>
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div class="noidung-cauhoi">
+                                                    Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được
+                                                    giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội
+                                                    dung học phần, phương pháp giảng dạy và học tập học phần, và cách
+                                                    thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                                                    và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần.
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 container">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>A</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio4">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>B</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio4">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>C</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio4">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>D</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio4">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="space20">&nbsp;</div>
+                                        <div class="clearfix"></div>
+                                        <div class="content">
+                                            <div class="col-sm-12 container head-an">
+                                                <div class="title-cauhoi">Câu 5:</div>
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div class="noidung-cauhoi">
+                                                    Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được
+                                                    giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội
+                                                    dung học phần, phương pháp giảng dạy và học tập học phần, và cách
+                                                    thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng
+                                                    và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng
+                                                    dạy và học tập học phần, và cách thức đánh giá học phần.
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 container">
+                                                <div class="row">
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>A</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>B</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>C</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6 col-sm-6 col">
+                                                        <label class="container-ra">
+                                                            <b>D</b>. 123456789
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkmark"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space20">&nbsp;</div>
+                                    <div>
+                                        <ul class="pager">
+                                            <li>
+                                                <a href="#">Previous</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Next</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="panel-ft">
+                                        <button type="button" class="btn btn-primary btn-ft">
+                                            <i class="fa fa-archive"> </i>Lưu bài</button>
+                                        <button type="button" class="btn btn-info btn-ft">
+                                            <i class="fa fa-modx"></i> Nộp bài</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                    <footer class="footer text-center"> 2018 </footer>
+                </div>
+                <!-- /#page-wrapper -->
+            </div>
+            <!-- /#wrapper -->
+            <!-- jQuery -->
+            <footer>
+                <% include ../layout/footer %>
+            </footer>
+</body>
+
+</html>

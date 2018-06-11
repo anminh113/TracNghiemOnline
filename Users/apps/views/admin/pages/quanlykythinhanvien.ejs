@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+
+
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thêm nhân viên vào kỳ thi</h4>
+          </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="trangchu">Trang Chủ</a></li>
+              <li><a href="quanlykythi">Quản lý kỳ thi</a></li>
+              <li class="active">Chủ Đề: XXX</li>
+            </ol>
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="white-box">
+              <form class="form-horizontal form-material">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 ml-auto">
+                    <div class="form-group">
+                      <label for="exampleFormControlSelect1">Phòng Ban</label>
+                      <select class="form-control " id="exampleFormControlSelect1">
+                          <option value="1">Deshmukh Deshmukh </option>
+                          <option value="2">Deshmukh Deshmukh Deshmukh Deshmukh Deshmukh </option>
+                          <option value="3">Deshmukh Deshmukh Deshmukh Deshmukh </option>
+                          <option value="4">Deshmukh Deshmukh Deshmukh </option>
+                          <option value="5">Deshmukh Deshmukh </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="white-box">
+              <form class="form-horizontal form-material" method="post">
+
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="table-responsive">
+                              <table class="table table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th>ID</th>
+                                          <th> Câu Hỏi</th>
+                                          <th>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" name="checkall" id="checkAll" value="option1">
+                                                  <label for="checkAll"></label>
+                                              </div>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr>
+                                          <td>1</td>
+                                          <td >Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần.</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem1" name="id" value="1">
+                                                  <label for="checkItem1"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>2</td>
+                                          <td >Anh/Chị vui lòng đánh dấu vào các nội dung mà giảng viên đã giải thích rõ ràng (có thể chọn một hoặc nhiều nội dung)</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem2" name="id" value="2">
+                                                  <label for="checkItem2"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>3</td>
+                                          <td >Anh/Chị có thể cho biết tỷ lệ hoàn thành số tiết giảng dạy của giảng viên căn cứ theo thời khóa biểu đã công bố</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem3"  name="id" value="3">
+                                                  <label for="checkItem3"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>4</td>
+                                          <td >Giảng viên giảng dạy đúng theo đề cương học phần và thời khóa biểu (thời gian, phòng học) đã công bố</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem4"  name="id" value="4">
+                                                  <label for="checkItem4"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>5</td>
+                                          <td >Anh/Chị được giảng viên thông tin phản hồi và giải thích rõ ràng nội dung và kết quả đánh giá (bài kiểm tra, thi giữa/cuối kỳ)</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem5" name="id" value="5">
+                                                  <label for="checkItem5"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>6</td>
+                                          <td>Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều nội dung):</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem6" name="id" value="6">
+                                                  <label for="checkItem6"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                      <tr>
+                                          <td>7</td>
+                                          <td >Anh/Chị vui lòng đánh dấu vào các nguồn tài liệu mà giảng viên đã giới thiệu/cung cấp cho anh/chị trong quá trình học học phần này (có thể chọn một hoặc nhiều nội dung):</td>
+                                          <td>
+                                              <div class="checkbox checkbox-info">
+                                                  <input type="checkbox" id="checkItem7" name="id" value="7">
+                                                  <label for="checkItem6"> </label>
+                                              </div>
+                                          </td>
+                                      </tr>
+
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 ml-auto">
+                          <button class=" btn btn-info" style="float: right">&nbsp;&nbsp;Thêm vào kỳ thi</button>
+                      </div>
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+
+
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+  <script>
+  $("#checkAll").click(function() {
+      $('input:checkbox').not(this).prop('checked', this.checked);
+  });
+  </script>
+</body>
+
+</html>

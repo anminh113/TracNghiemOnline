@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+
+</head>
+<header>
+  <% include ../partials/header %>
+
+</header>
+
+<body class="fix-header">
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Cấp quyền </h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="#">Cấp quyền</a></li>
+            </ol>
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="white-box">
+              <!-- <div class="box-title">Cấp quyền cho người dùng</div> -->
+
+              <div class="table-responsive">
+                <table class="search table" id="Table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Tên nhân viên</th>
+                      <th>Quyền hạn</th>
+                      <th>Xác nhận</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                  </tbody>
+                </table>
+                <div class="col-md-12 center text-center">
+                  <ul class="pagination" id="myPager">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+  </main>
+  <!--Start loading table -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $.getJSON('<%= data.json_data%>', function(data) {
+        var test_data = '';
+        var len = data.length;
+        $.each(data, function(key, value) {
+          test_data += '<tr>';
+          test_data += '<td>' + value.idnv + '</td>';
+          test_data += '<td>' + value.hoten + '</td>';
+          test_data += '<td><select form="formtext' + value.idnv + '"   name="quyen" style="width:auto">';
+          if (value.quyen == '0') {
+            test_data += '<option value="0" selected>&nbsp;&nbsp; Admin &nbsp;&nbsp;</option>';
+          } else {
+            test_data += '<option value="0" >&nbsp;&nbsp; Admin &nbsp;&nbsp;</option>';
+          }
+          if (value.quyen == '1') {
+            test_data += '<option value="1" selected >&nbsp;&nbsp; User &nbsp;&nbsp;</option>';
+          } else {
+            test_data += '<option value="1" >&nbsp;&nbsp; User &nbsp;&nbsp;</option>';
+          }
+
+          test_data += '</select></td>';
+          test_data += '<td><form id="formtext' + value.idnv + '" method="post" enctype="application/x-www-form-urlencoded"><input name="idnv" value="' + value.idnv +
+            '" hidden><button id="button1" type="submit" class="buttonA colordelete btn btn-outline-warning">Cập nhật</button></form></td>';
+          test_data += '</tr>';
+        });
+        $('#Table').append(test_data);
+
+        // pagination
+        $('#myTable').pagination({
+          pagerSelector: '#myPager',
+          activeColor: 'red',
+          prevText: 'Prev',
+          nextText: 'Next',
+          showPrevNext: true,
+          hidePageNumbers: false,
+          perPage: 15
+        });
+
+      });
+    });
+  </script>
+  <!--End loading table -->
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>

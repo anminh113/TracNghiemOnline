@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<header>
+        <% include ../partials/header %>
+</header>
+<body class="fix-header">
+    <main>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Ngân Hàng Câu Hỏi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="index">Trang Chủ</a></li>
+                            <li class="active">Ngân Hàng Câu Hỏi</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material" method="post">
+                                <div class="form-group">
+                                    <label class="col-md-12" for="bode">Thêm bộ đề</label>
+                                    <div class="col-md-10">
+                                        <input type="text" id="bode" name="bode" placeholder="Nhập tên bộ đề" class="form-control form-control-line">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-info">&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Bộ đề</th>
+                                            <th>Số lượng câu hỏi</th>
+                                            <th>Xem Chi Tiết</th>
+                                            <th>Xóa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh Deshmukh Deshmukh </td>
+                                            <td>121</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>12</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>123</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>34</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>80</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
+                                            <td>40</td>
+                                            <td><a href="nganhangcauhoichude">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+
+
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>
