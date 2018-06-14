@@ -57,6 +57,7 @@ router.post('/', urlencodedParser, function(req, res) {
         console.log('ok');
         res.redirect('/admin/capquyen');
       }else{
+        console.log(res1.body[0].message);
         console.log('eo ok');
         res.redirect('/admin/capquyen');
       }

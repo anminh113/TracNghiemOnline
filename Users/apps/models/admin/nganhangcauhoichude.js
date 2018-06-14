@@ -12,11 +12,13 @@ var urlencodedParser = bodyParser.urlencoded({
 
 var url = config.url;
 
+// get cau hoi
 router.get('/',function(req,res){
   if (req.session.email &&  req.session.quyen == 0){
     res.render('nganhangcauhoichude', {
       data: {
-        json_data: url+'NganHangCauHoiAdmin',
+        json_data: url+'NganHangCauHoi?idnv=%26quyen=0',
+        json_data_modal: url+'LoadCauHoiModal',
         pass: req.session.pass,
         email: req.session.email,
         id:req.session.idnv,
@@ -28,6 +30,7 @@ router.get('/',function(req,res){
   }
 });
 
+// thêm
 router.post('/', urlencodedParser, function(req, res) {
   var idnv = req.session.idnv;
   var ndch = req.body.cauhoi;
@@ -49,7 +52,7 @@ router.post('/', urlencodedParser, function(req, res) {
   console.log(values);
   request({
     method: 'POST',
-    url: url + 'NganHangCauHoiUser',
+    url: url + 'NganHangCauHoi',
     body: values,
     json: true,
     headers: {

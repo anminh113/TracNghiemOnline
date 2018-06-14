@@ -23,6 +23,7 @@
 						return false;
 					}
 				});
+
 			});
 		});
 		tableObj.before(divObj.append(inputObj));

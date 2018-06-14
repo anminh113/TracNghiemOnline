@@ -1,4 +1,4 @@
-$.fn.pageMe = function(opts){
+$.fn.pagination = function(opts){
     var $this = this,
         defaults = {
             activeColor: 'blue',
@@ -25,13 +25,13 @@ $.fn.pageMe = function(opts){
 
     var numItems = children.size();
     var numPages = Math.ceil(numItems/perPage);
-    
+
     $("#total_reg").html(numItems+" Entries In Total");
 
     pager.data("curr",0);
 
     if (settings.showPrevNext){
-        $('<li><a href="#" class="prev_link" title="'+settings.prevText+'"><i class="material-icons">chevron_left</i></a></li>').appendTo(pager);
+        $('<li><a href="#" class="prev_link" title="'+settings.prevText+'"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>').appendTo(pager);
     }
 
     var curr = 0;
@@ -41,7 +41,7 @@ $.fn.pageMe = function(opts){
     }
 
     if (settings.showPrevNext){
-        $('<li><a href="#" class="next_link"  title="'+settings.nextText+'"><i class="material-icons">chevron_right</i></a></li>').appendTo(pager);
+        $('<li><a href="#" class="next_link"  title="'+settings.nextText+'"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>').appendTo(pager);
     }
 
     pager.find('.page_link:first').addClass('active');

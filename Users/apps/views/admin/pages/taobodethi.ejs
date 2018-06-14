@@ -210,19 +210,18 @@
           </div>
         </div>
         <!-- /.container-fluid -->
-
       </div>
       <!-- ============================================================== -->
       <!-- End Page Content -->
       <!-- ============================================================== -->
     </div>
 
-
   </main>
   <script>
     $(document).ready(function() {
       // get data json
-      $.getJSON('<%= data.json_data%>', function(data) {
+      var json_data = decodeURIComponent('<%= data.json_data%>');
+      $.getJSON(json_data, function(data) {
         var test_data = '';
         var len = data.length;
         var count = 1;

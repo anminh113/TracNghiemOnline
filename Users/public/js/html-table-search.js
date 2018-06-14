@@ -8,7 +8,7 @@
 			searchText = (options.searchText)?options.searchText:'',
 			searchPlaceHolder = (options.searchPlaceHolder)?options.searchPlaceHolder:'',
 			divObj = $('<div style="float:right;">'+searchText+'</div><br /><br />'),
-			inputObj = $('<input type="text" class="form-control-line" style="width:280px" placeholder="'+searchPlaceHolder+'" />'),
+			inputObj = $('<input type="text" class="form-control-line" style="width:280px;height: 30px;" placeholder="'+searchPlaceHolder+'" />'),
 			caseSensitive = (options.caseSensitive===true)?true:false,
 			searchFieldVal = '',
 			pattern = '';
@@ -23,6 +23,7 @@
 						return false;
 					}
 				});
+
 			});
 		});
 		tableObj.before(divObj.append(inputObj));

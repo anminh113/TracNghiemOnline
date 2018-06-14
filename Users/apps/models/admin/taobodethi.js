@@ -2,6 +2,7 @@ var express = require('express');
 var session = require('express-session');
 var config = require('config');
 var request = require('request');
+var querystring = require('querystring');
 var router = express.Router();
 var bodyParser = require("body-parser");
 // var oracledb = require("oracledb");
@@ -17,7 +18,7 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('taobodethi', {
       data: {
-        json_data: url + 'ChuDeAdmin',
+        json_data: url + 'ChuDe?idnv=%26quyen=0',
         pass: req.session.pass,
         email: req.session.email,
         id: req.session.idnv,
@@ -30,30 +31,30 @@ router.get('/', function(req, res) {
 });
 
 router.get('/xoa/:idcd', function(req, res) {
-    var idcd = req.params.idcd;
-    var link = url+"ChuDeUser/"
-    request({
-      method: 'DELETE',
-      url: link + idcd,
-      headers: {
-        'User-Agent': 'request'
-      }
-    }, (err, res1, body) => {
-      if (err) {
-        console.log(err);
+  var idcd = req.params.idcd;
+  var link = url + "ChuDe/"
+  request({
+    method: 'DELETE',
+    url: link + idcd,
+    headers: {
+      'User-Agent': 'request'
+    }
+  }, (err, res1, body) => {
+    if (err) {
+      console.log(err);
+    } else {
+
+      if (res1.body[0].result == 'success') {
+        console.log('ok');
+        res.redirect('/admin/taobodethi');
       } else {
 
-        if (res1.body[0].result == 'success') {
-          console.log('ok');
-          res.redirect('/admin/taobodethi');
-        } else {
-
-          console.log('eo ok');
-          res.redirect('/admin/taobodethi');
-        }
+        console.log('eo ok');
+        res.redirect('/admin/taobodethi');
       }
-    });
+    }
   });
+});
 
 // post json data server
 router.post('/', urlencodedParser, function(req, res) {
@@ -65,10 +66,10 @@ router.post('/', urlencodedParser, function(req, res) {
     "tencd": chude
   }];
   var values = text[0];
-  // console.log(values);
+
   request({
     method: 'POST',
-    url: url + 'ChuDeUser',
+    url: url + 'ChuDe',
     body: values,
     json: true,
     headers: {
@@ -100,7 +101,7 @@ router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
   }
   // Configure the request
   var options = {
-    url: url + 'ChuDeAdmin?id=' + idcd + '',
+    url: url + 'ChuDe?idcd=' + idcd + '',
     method: 'GET',
     headers: headers,
     qs: {
@@ -111,17 +112,21 @@ router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
   // Start the request
   request(options, function(error, res1, body) {
     if (error) {
-      res.redirect('/login');
+      res.redirect('/admin/404');
     } else if (!error || res1.statusCode == 200) {
       var json = JSON.parse(body);
       if (req.session.email && req.session.quyen == 0) {
-        // console.log(json);
         res.render('taobodethichitiet', {
           data: {
-            json_data: url + 'NganHangCauHoiAdmin',
+            json_data: url + 'LoadCauHoi?idcd=' + idcd + '%26quyen=0',
+            json_data_modal:url + 'LoadCauHoiModal',
             tencd: json.tencd,
             idcd: json.idcd,
-            idnv: json.idnv
+            idnv: json.idnv,
+            pass: req.session.pass,
+            email: req.session.email,
+            id: req.session.idnv,
+            ten: req.session.hoten
           }
         });
       } else {
@@ -142,7 +147,7 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
   }
   // Configure the request
   var options = {
-    url: url + 'NganHangCauHoiAdmin?id=' + idcd + '',
+    url: url + 'NganHangCauHoi?id=' + idcd + '',
     method: 'GET',
     headers: headers,
     qs: {
@@ -153,15 +158,21 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
   // Start the request
   request(options, function(error, res1, body) {
     if (error) {
-      res.redirect('/login');
+      res.redirect('/admin/404');
     } else if (!error || res1.statusCode == 200) {
       var json = JSON.parse(body);
       if (req.session.email && req.session.quyen == 0) {
         // console.log(json);
         res.render('taobodethicauhoi', {
           data: {
-            json_data: url + 'NganHangCauHoiAdmin?id=' + idcd,
-            tencd: req.body.tencd
+            json_data: url + 'LoadCauHoi?idcd=' + idcd,
+            json_data_modal:url + 'LoadCauHoiModal',
+            tencd: req.body.tencd,
+            idcd: idcd,
+            pass: req.session.pass,
+            email: req.session.email,
+            id: req.session.idnv,
+            ten: req.session.hoten
           }
         });
       } else {

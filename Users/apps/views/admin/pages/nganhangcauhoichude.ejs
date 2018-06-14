@@ -8,7 +8,9 @@
   <% include ../partials/header %>
 </header>
 
+
 <body class="fix-header">
+
   <main>
     <div id="page-wrapper">
       <div class="container-fluid">
@@ -31,7 +33,7 @@
                 <table class="search table table-hover" id="table">
                   <thead>
                     <tr>
-                      <th>ID</th>
+                      <th>STT</th>
                       <th> Câu Hỏi</th>
                       <th colspan="3" data-toggle="modal" class="right text-right" data-target="#themcauhoi">
                         <button type="button" class=" btn btn-info">Thêm Câu Hỏi</button>
@@ -41,7 +43,7 @@
                   <tbody id="myTable">
                     <!-- <tr>
                       <td><b>1</b></td>
-                      <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#exampleModal">Anh/Chị được </td>
+                      <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#modal1">Anh/Chị được </td>
                     </tr> -->
 
                   </tbody>
@@ -59,7 +61,7 @@
 
     </div>
     <!-- star mode -->
-    <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -73,8 +75,8 @@
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-lg-12 ml-auto">
-                    <div class="form-group">
-                      <textarea class="form-control" id="textarea" rows="8">Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần. Anh/Chị được giảng viên giải thích rõ ràng và đầy đủ về mục tiêu học phần, nội dung học phần, phương pháp giảng dạy và học tập học phần, và cách thức đánh giá học phần.</textarea>
+                    <div class="form-group" id="cauhoi">
+                      <textarea class="form-control" id="textarea" rows="8"></textarea>
                     </div>
                   </div>
                 </div>
@@ -82,15 +84,15 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="col-md-12">A &nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i></label>
-                      <div class="col-md-12">
+                      <label class="col-md-12" id="daa">A</label>
+                      <div class="col-md-12" id="nda">
                         <input type="text" id="A" placeholder="123 456 7890" class="form-control form-control-line"> </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label for="example-email" class="col-md-12">B</label>
-                      <div class="col-md-12">
+                      <label class="col-md-12" id="dab">B</label>
+                      <div class="col-md-12" id="ndb">
                         <input type="text" id="B" placeholder="123 456 7890" class="form-control form-control-line"> </div>
                     </div>
                   </div>
@@ -99,15 +101,15 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="col-md-12">C</label>
-                      <div class="col-md-12">
+                      <label class="col-md-12" id="dac">C</label>
+                      <div class="col-md-12" id="ndc">
                         <input type="text" id="C" placeholder="123 456 7890" class="form-control form-control-line"> </div>
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="col-md-12">D</label>
-                      <div class="col-md-12">
+                      <label class="col-md-12" id="dad">D</label>
+                      <div class="col-md-12" id="ndd">
                         <input type="text" id="D" placeholder="123 456 7890" class="form-control form-control-line"> </div>
                     </div>
                   </div>
@@ -189,13 +191,45 @@
               <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
               <!-- <button type="button" class="btn btn-danger">Xóa Câu Hỏi</button> -->
               <!-- <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button> -->
-              <button type="submit" id="update" class="btn btn-info">Lưu câu hỏi </button>
+              <button type="submit" class="btn btn-info">Lưu câu hỏi </button>
             </div>
           </form>
         </div>
       </div>
     </div>
     <!--   end modal-->
+
+  </main>
+
+    <script>
+      $(document).ready(function() {
+        // get data json
+        var json_data = decodeURIComponent('<%= data.json_data%>');
+        $.getJSON(json_data, function(data) {
+          var test_data = '';
+          var len = data.length;
+          var count = 1;
+          $.each(data, function(key, value) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td onclick="undisableTxt();" colspan="2"  data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1">' + value.ndch + '</td>';
+            test_data += '</tr>';
+          });
+          $('#table').append(test_data);
+
+          // pagination
+          $('#myTable').pagination({
+            pagerSelector: '#myPager',
+            activeColor: 'red',
+            prevText: 'Prev',
+            nextText: 'Next',
+            showPrevNext: true,
+            hidePageNumbers: false,
+            perPage: 15
+          });
+        });
+      });
+    </script>
     <script>
       function undisableTxt() {
         document.getElementById("textarea").disabled = true;
@@ -204,9 +238,8 @@
         document.getElementById("C").disabled = true;
         document.getElementById("D").disabled = true;
         document.getElementById("update").disabled = true;
-      }
-    </script>
-    <script>
+      };
+
       function disableTxt() {
         document.getElementById("textarea").disabled = false;
         document.getElementById("A").disabled = false;
@@ -214,41 +247,95 @@
         document.getElementById("C").disabled = false;
         document.getElementById("D").disabled = false;
         document.getElementById("update").disabled = false;
-      }
+      };
     </script>
-  </main>
-  <script>
-    $(document).ready(function() {
-      // get data json
-      $.getJSON('<%= data.json_data%>', function(data) {
-        var test_data = '';
-        var len = data.length;
-        var count = 1;
-        $.each(data, function(key, value) {
-          test_data += '<tr>';
-          test_data += '<td>' + count++ + '</td>';
-          test_data += '<td colspan="2">' + value.ndch + '</td>';
-          test_data += '</tr>';
-        });
-        $('#table').append(test_data);
 
-        // pagination
-        $('#myTable').pagination({
-          pagerSelector: '#myPager',
-          activeColor: 'red',
-          prevText: 'Prev',
-          nextText: 'Next',
-          showPrevNext: true,
-          hidePageNumbers: false,
-          perPage: 15
+    <!-- post -->
+    <script>
+      // get data in modal
+      $(document).ready(function() {
+        var json_data = decodeURIComponent('<%= data.json_data_modal%>');
+        $('#modal1').on('show.bs.modal', function(e) {
+          var personName = $(e.relatedTarget).data('modal-name');
+          $.post(json_data, {idch: personName},
+            function(data, status) {
+              $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" id="textarea" rows="8">' + data.ndch + '</textarea>');
+              $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" id="A" placeholder="' + data.nda + '" class="form-control form-control-line"> </div>');
+              $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" id="B" placeholder="' + data.ndb + '" class="form-control form-control-line" > </div>');
+              $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" id="C" placeholder="' + data.ndc + '" class="form-control form-control-line" > </div>');
+              $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" id="D" placeholder="' + data.ndd + '" class="form-control form-control-line" > </div>');
+              if (data.da == '1') {
+                $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" checked> <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+              } else if (data.da == '2') {
+                $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" checked> <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+              } else if (data.da == '3') {
+                $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" checked> <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+              } else if (data.da == '4') {
+                $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" checked> <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+                $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+              }
+            });
         });
       });
-    });
-  </script>
+    </script>
+
+    <!-- get -->
+    <!-- <script>
+      // get data in modal
+      $(document).ready(function() {
+        var json_data = decodeURIComponent('<%= data.json_data%>');
+        $('#modal1').on('show.bs.modal', function(e) {
+          var personName = $(e.relatedTarget).data('modal-name');
+          var jqxhr = $.getJSON(json_data + "&idch=" + personName, function(json) {
+            // $('#modal1 .modal-content .modal-header .modal-title').html(json[0].idch);
+            $('#modal1 .modal-content .modal-body .row #cauhoi').html(json[0].ndch);
+            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text"  placeholder="' + json[0].nda + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text"  placeholder="' + json[0].ndb + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text"  placeholder="' + json[0].ndc + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text"  placeholder="' + json[0].ndd + '" class="form-control form-control-line" readonly> </div>');
+            if (json[0].da == '1') {
+              $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '2') {
+              $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '3') {
+              $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '4') {
+              $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+            }
+
+          });
+        });
+      });
+    </script> -->
 
   <footer>
     <% include ../partials/footer %>
-  </footer>x
+  </footer>
+
+
 
 </body>
 
