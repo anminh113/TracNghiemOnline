@@ -57,7 +57,7 @@ router.post('/login', urlencodedParser, function(req, res, next) {
         sessData.idnv = json.idnv;
         sessData.quyen = json.quyen;
         sessData.hoten = json.hoten;
-        sessData.phongban = json.phongban;
+        sessData.phongban = json.tenpb;
         sessData.ngaysinh = json.ngaysinh;
         sessData.chucvu = json.chucvu;
         sessData.sdt = json.sdt;
@@ -69,7 +69,7 @@ router.post('/login', urlencodedParser, function(req, res, next) {
         sessData.idnv = json.idnv;
         sessData.quyen = json.quyen;
         sessData.hoten = json.hoten;
-        sessData.phongban = json.phongban;
+        sessData.phongban = json.tenpb;
         sessData.ngaysinh = json.ngaysinh;
         sessData.chucvu = json.chucvu;
         sessData.pass = json.pass;

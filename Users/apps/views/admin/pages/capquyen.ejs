@@ -19,6 +19,7 @@
             <h4 class="page-title">Cấp quyền </h4> </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
+              <li><a href="../../admin/trangchu">Trang Chủ</a></li>
               <li><a href="#">Cấp quyền</a></li>
             </ol>
           </div>
@@ -78,7 +79,7 @@
           }
 
           test_data += '</select></td>';
-          test_data += '<td><form id="formtext' + value.idnv + '" method="post" enctype="application/x-www-form-urlencoded"><input name="idnv" value="' + value.idnv +
+          test_data += '<td><form id="formtext' + value.idnv + '" onSubmit="return confirmAction()" method="post" enctype="application/x-www-form-urlencoded"><input name="idnv" value="' + value.idnv +
             '" hidden><button id="button1" type="submit" class="buttonA colordelete btn btn-outline-warning">Cập nhật</button></form></td>';
           test_data += '</tr>';
         });

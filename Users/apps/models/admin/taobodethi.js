@@ -180,7 +180,6 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
       }
     }
   })
-
 });
 
 module.exports = router;

@@ -15,7 +15,7 @@
                         <h4 class="page-title">Quản Lý Kỳ Thi</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="index">Trang Chủ</a></li>
+                            <li><a href="../../admin/trangchu">Trang Chủ</a></li>
                             <li class="active">Quản Lý Kỳ Thi</li>
                         </ol>
                     </div>
@@ -24,23 +24,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" method="post">
+                            <form class="form-horizontal form-material" onSubmit="return confirmAction()" method="post" enctype="application/x-www-form-urlencoded">
                                 <!-- <div class="space10">&nbsp;</div> -->
                                 <div class="form-group">
                                     <div class="col-lg-12">
-                                        <label for="chude">Thêm Kỳ Thi</label>
-                                        <input type="text" id="chude" name="chude" placeholder="Nhập tên kỳ thi" class="form-control form-control-line" id="nametest"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập tên kỳ thi')" oninput="setCustomValidity('')">
+                                        <label for="kythi">Thêm Kỳ Thi</label>
+                                        <input type="text" id="kythi" name="kythi" placeholder="Nhập tên kỳ thi" class="form-control form-control-line" id="nametest"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập tên kỳ thi')" oninput="setCustomValidity('')">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-12">
-                                        <label for="bode">Chủ Đề Thi</label>
-                                        <select class="form-control" id="bode" name="bode">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <label for="chude">Chủ Đề Thi</label>
+                                        <select class="form-control" id="chude" name="chude" oninvalid="this.setCustomValidity('Chưa chọn chủ đề thi')" oninput="setCustomValidity('')">
+                                            <option>-- Chọn chủ đề thi --</option>
                                         </select>
                                     </div>
                                 </div>
@@ -48,22 +44,22 @@
                                     <div class="col-lg-4">
                                         <label for="stardate">Ngày bắt đầu</label>
                                         <div class="col-10">
-                                            <input class="form-control" name="stardate" type="date" id="stardate" autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày bắt đầu thi')" oninput="setCustomValidity('')">
+                                            <input class="form-control" id="stardate"  name="stardate" type="datetime-local"  autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày bắt đầu thi')" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="enddate">Ngày kết thúc</label>
                                         <div class="col-10">
-                                            <input class="form-control" name="enddate" type="date" id="enddate"  autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày kết thúc thi')" oninput="setCustomValidity('')">
+                                            <input class="form-control" id="enddate" name="enddate" type="datetime-local"  autofocus required oninvalid="this.setCustomValidity('Chưa chọn ngày kết thúc thi')" oninput="setCustomValidity('')">
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <label for="timeline">Thời gian làm bài</label>
-                                        <input type="number"  name="time" min="1" placeholder="Nhập số phút"  class="form-control form-control-line" id="timeline"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập thời gian làm bài')" oninput="setCustomValidity('')">
+                                        <input type="number" name="time" min="1" placeholder="Nhập số phút"  class="form-control form-control-line" id="timeline"  autofocus required oninvalid="this.setCustomValidity('Chưa nhập thời gian làm bài')" oninput="setCustomValidity('')">
                                     </div>
                                     <div class="col-md-12">
                                         <label class="col-md-12">&nbsp;</label>
-                                        <button class="btn btn-info">&nbsp;&nbsp;Thêm Kỳ Thi&nbsp;&nbsp;</button>
+                                        <button type="submit" class="btn btn-info">&nbsp;&nbsp;Thêm Kỳ Thi&nbsp;&nbsp;</button>
                                     </div>
                                 </div>
                             </form>
@@ -74,20 +70,21 @@
                     <div class="col-md-12">
                         <div class="white-box">
                             <div class="table-responsive">
-                                <table class="table table-hover">
+                                <table class="search table table-hover" id="table">
                                     <thead>
                                         <tr>
                                             <th>STT</th>
                                             <th>Tên kỳ thi</th>
-                                            <th>Số lượng câu hỏi</th>
+                                            <th>Số câu hỏi</th>
+                                            <th>Chủ đề</th>
                                             <th>Thời gian</th>
-                                            <th>Nhân Viên Thi</th>
-                                            <th>Chủ Đề Thi</th>
+                                            <th>Nhân viên thi</th>
+                                            <th>Xem chi tiết</th>
                                             <th>Xóa</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="myTable">
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>Deshmukh  </td>
                                             <td>121</td>
@@ -95,54 +92,14 @@
                                             <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
                                             <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
                                             <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
-                                            <td>12</td>
-                                            <td>10:10</td>
-                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
-                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
-                                            <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
-                                            <td>123</td>
-                                            <td>10:10</td>
-                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
-                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
-                                            <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
-                                            <td>34</td>
-                                            <td>10:10</td>
-                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
-                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
-                                            <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
-                                            <td>80</td>
-                                            <td>10:10</td>
-                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
-                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
-                                            <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Deshmukh Deshmukh Deshmukh Deshmukh</td>
-                                            <td>40</td>
-                                            <td>10:10</td>
-                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
-                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
-                                            <td><a href="#" class="colordelete">Xóa</a></td>
-                                        </tr>
+                                        </tr> -->
+
                                     </tbody>
                                 </table>
+                                <div class="col-md-12 center text-center">
+                                  <ul class="pagination" id="myPager">
+                                  </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -155,6 +112,67 @@
         </div>
     </main>
     <script>
+      $(document).ready(function() {
+        // get data json
+        $.getJSON('<%= data.json_data_kythi%>', function(data) {
+          var test_data = '';
+          var count = 1;
+          $.each(data, function(key, value) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td>' + value.tenkt + '</td>';
+            test_data += '<td>' + value.socau + '</td>';
+            test_data += '<td>' + value.tencd + '</td>';
+            test_data += '<td>' + value.tg + ' phút</td>';
+            test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/quanlykythi/quanlykythi_nhanvien"><input name="idcd" value="' + value.idcd +
+              '" hidden><input name="idkt" value="' + value.idkt +
+              '" hidden><input name="tenkt" value="' + value.tenkt +
+              '" hidden><button type="submit" class="buttonA ">Thêm nhân viên</button></form></td>';
+            test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/quanlykythi/quanlykythi_xemchitiet"><input name="idcd" value="' + value.idcd +
+              '" hidden><input name="tenkt" value="' + value.tenkt +
+              '" hidden><input name="idkt" value="' + value.idkt +
+              '" hidden><button type="submit" class="buttonA ">Xem chi tiết</button></form></td>';
+            test_data += '<td><a href="../admin/quanlykythi/xoa/'+ value.idkt +'" onclick="return confirmAction()" class="colordelete">Xóa</a></td>';
+            test_data += '</tr>';
+          });
+          $('#table').append(test_data);
+
+          // pagination
+          $('#myTable').pagination({
+            pagerSelector: '#myPager',
+            activeColor: 'red',
+            prevText: 'Prev',
+            nextText: 'Next',
+            showPrevNext: true,
+            hidePageNumbers: false,
+            perPage: 15
+          });
+        });
+      });
+    </script>
+
+    <script>
+      var json_data_chude = decodeURIComponent('<%= data.json_data_chude%>');
+      $.getJSON(json_data_chude, function(data) {
+        var html = '';
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+          html += '<option value="'+data[i].idcd+'">' + data[i].tencd + '</option>';
+          // html += '<option hidden value="' + data[i].idnv + '" ></option>';
+        }
+        $('#chude').append(html);
+      });
+    </script>
+
+
+
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+    <script>
       var date = new Date();
       var day = date.getDate();
       var month = date.getMonth() + 1;
@@ -162,15 +180,11 @@
       if (month < 10) month = "0" + month;
       if (day < 10) day = "0" + day;
       var today = year + "-" + month + "-" + day;
+      document.getElementById("stardate").min = today+'T08:30';
       // document.getElementById("stardate").value = today;
-      document.getElementById("stardate").min = today
       // document.getElementById("enddate").value = today;
-      document.getElementById("enddate").min = today;
+      document.getElementById("enddate").min = today+'T08:30';
     </script>
-
-    <footer>
-        <% include ../partials/footer %>
-    </footer>
 
 </body>
 </html>

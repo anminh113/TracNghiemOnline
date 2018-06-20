@@ -63,8 +63,6 @@ router.post('/', urlencodedParser, function(req, res) {
     if (err) {
       res.redirect('/admin/404');
     } else {
-      console.log(JSON.stringify(obj));
-      console.log(res1.body);
       res.redirect('/admin/taobodethi');
 
 

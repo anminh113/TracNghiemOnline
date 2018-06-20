@@ -20,7 +20,7 @@
             <h4 class="page-title">Chủ đề thi</h4> </div>
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
-              <li><a href="index">Trang Chủ</a></li>
+              <li><a href="../../admin/trangchu">Trang Chủ</a></li>
               <li class="active">Chủ đề thi</li>
             </ol>
           </div>
@@ -29,14 +29,14 @@
         <div class="row">
           <div class="col-md-12">
             <div class="white-box">
-              <form class="form-horizontal form-material" method="post" enctype="application/x-www-form-urlencoded">
+              <form class="form-horizontal form-material" method="post" enctype="application/x-www-form-urlencoded" onSubmit="return confirmAction()">
                 <div class="form-group">
                   <label class="col-md-12">Thêm Chủ Đề Thi</label>
                   <div class="col-md-10">
                     <input type="text" name="chude" required placeholder="Nhập tên chủ đề thi" class="form-control form-control-line">
                   </div>
                   <div class="col-sm-2">
-                    <button class="btn btn-info">&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
+                    <button class="btn btn-info" >&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
                   </div>
                 </div>
               </form>
@@ -70,6 +70,7 @@
             </div>
           </div>
         </div>
+
         <div class="modal fade bd-example-modal-lg" id="kythi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -217,6 +218,7 @@
     </div>
 
   </main>
+
   <script>
     $(document).ready(function() {
       // get data json
@@ -235,7 +237,7 @@
           test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/taobodethi/taobodethi_xemchitiet"><input name="idcd" value="' + value.idcd +
             '" hidden><input name="tencd" value="' + value.tencd +
             '" hidden><button type="submit" class="buttonA btn btn-outline-warning">Xem chi tiết</button></form></td>';
-          test_data += '<td><a href="../admin/taobodethi/xoa/'+ value.idcd +'" class="colordelete">Xóa</a></td>';
+          test_data += '<td><a href="../admin/taobodethi/xoa/' + value.idcd + '" onclick="return confirmAction()" class="colordelete">Xóa</a></td>';
           test_data += '</tr>';
         });
         $('#table').append(test_data);
