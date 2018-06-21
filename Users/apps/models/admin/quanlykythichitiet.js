@@ -18,6 +18,7 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('quanlykythichitiet', {
       data: {
+        message: req.flash('success'),
         pass: req.session.pass,
         email: req.session.email,
         id: req.session.idnv,
@@ -64,8 +65,7 @@ res.redirect('/admin/quanlykythi');
     if (err) {
       res.redirect('/admin/404');
     } else {
-      console.log(JSON.stringify(obj));
-      console.log(res1.body);
+      req.flash('success', '0');
       res.redirect('/admin/quanlykythi');
     }
   });

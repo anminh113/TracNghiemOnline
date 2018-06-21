@@ -18,6 +18,8 @@ router.get('/', function(req, res) {
   if (req.session.email &&  req.session.quyen == 0){
     res.render('trangchu', {
       data: {
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
         pass: req.session.pass,
         email: req.session.email,
         id:req.session.idnv,

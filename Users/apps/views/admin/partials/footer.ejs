@@ -1,9 +1,46 @@
 <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+<% if(data.message == '0'){ %>
+  <button class="form-control" id="test" onclick="myAlertTop_success()" style="display: none;"><%= data.message %></button>
+<% } else if(data.message == '1') {%>
+<button class="form-control" id="test" onclick="myAlertTop_warning()" style="display: none;"><%= data.message %></button>
+<% } %>
+  </div>
+  <script>
+  var test1 = '<%= data.message %>';
+  if (test1 != '') {
+      setTimeout(function(){ document.getElementById('test').click(); }, 100);
+  }
+  </script>
+<div class="myAlert-top alert alert-success" id="success">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Thành Công!</strong> <%= data.message1%>
+</div>
+
+<div class="myAlert-top alert alert-warning" id="warning">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <strong>Thất bại!</strong> <%= data.message1%>
+</div>
 <SCRIPT LANGUAGE="JavaScript">
   function confirmAction() {
     return confirm("Bạn có chắc sẽ thực hiện yêu cầu này?")
   }
 </SCRIPT>
+<script>
+  function myAlertTop_success() {
+    $("#success").show();
+    setTimeout(function() {
+      $("#success").hide();
+    }, 4000);
+  }
+</script>
+<script>
+  function myAlertTop_warning() {
+    $("#warning").show();
+    setTimeout(function() {
+      $("#warning").hide();
+    }, 4000);
+  }
+</script>
 
 <script src="../js/jquery.min.js"></script>
 
@@ -27,7 +64,7 @@
 <!-- Sparkline chart JavaScript -->
 <script src="../plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
 <!-- Custom Theme JavaScript -->
-<%# <script src="../js/Chart.min.js"></script> %>
+
   <script src="../js/custom.min.js"></script>
   <script src="../js/dashboard1.js"></script>
   <script src="../plugins/bower_components/toast-master/js/jquery.toast.js"></script>

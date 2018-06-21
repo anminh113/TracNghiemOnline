@@ -11,18 +11,20 @@ var urlencodedParser = bodyParser.urlencoded({
 
 router.use(bodyParser.json());
 var url = config.url;
-router.get('/',function(req,res){
-  if (req.session.email &&  req.session.quyen == 0){
+router.get('/', function(req, res) {
+  if (req.session.email && req.session.quyen == 0) {
     res.render('cauhoinhanvien', {
       data: {
-        json_data:url+'NganHangCauHoi',
-        json_data_nhanvien:url+'NhanVien?quyen=1',
-        json_data_cauhoi_nhanvien:url+'NhanVien?quyen=1',
-        json_data_modal:url+'LoadCauHoiModal',
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
+        json_data: url + 'NganHangCauHoi',
+        json_data_nhanvien: url + 'NhanVien?quyen=1',
+        json_data_cauhoi_nhanvien: url + 'NhanVien?quyen=1',
+        json_data_modal: url + 'LoadCauHoiModal',
         pass: req.session.pass,
         email: req.session.email,
-        id:req.session.idnv,
-        ten:req.session.hoten
+        id: req.session.idnv,
+        ten: req.session.hoten
       }
     });
   } else {
@@ -50,7 +52,6 @@ router.post('/', urlencodedParser, function(req, res) {
     "da": da
   }];
   var values = text[0];
-  // console.log(values);
   request({
     method: 'POST',
     url: url + 'NganHangCauHoi',
@@ -66,9 +67,13 @@ router.post('/', urlencodedParser, function(req, res) {
 
       if (res1.body[0].result == 'success') {
         console.log('ok');
+        req.flash('success', '0');
+
         res.redirect('/admin/cauhoinhanvien');
       } else if (res1.body[0].result == 'failure') {
         console.log('eo ok');
+        req.flash('failuer',res1.body[0].message);
+        req.flash('success', '1');
         res.redirect('/admin/cauhoinhanvien');
       }
     }

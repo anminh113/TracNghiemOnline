@@ -3,18 +3,24 @@ var config = require("config");
 var bodyParser = require("body-parser");
 var express = require("express");
 var session = require('express-session');
-var flash = require('express-flash');
+var flash = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var app = express();
+app.use(cookieParser('secret'));
 
 app.use(session({
       secret: 'somerandonstuffs'
 }));
 
 
+app.use(flash());
 
 app.use("/", express.static(__dirname + "/public"));
 //bodyParser
 app.use(bodyParser.json());
+
+
 
 app.set('views', [
   __dirname + "/apps/views/admin/pages/",

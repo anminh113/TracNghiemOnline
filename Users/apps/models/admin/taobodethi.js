@@ -18,6 +18,8 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('taobodethi', {
       data: {
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
         json_data: url + 'ChuDe?idnv=%26quyen=0',
         pass: req.session.pass,
         email: req.session.email,
@@ -46,10 +48,12 @@ router.get('/xoa/:idcd', function(req, res) {
 
       if (res1.body[0].result == 'success') {
         console.log('ok');
+        req.flash('success', '0');
         res.redirect('/admin/taobodethi');
       } else {
-
+        req.flash('success', '1');
         console.log('eo ok');
+        req.flash('failuer', JSON.parse(res1.body)[0].message);
         res.redirect('/admin/taobodethi');
       }
     }
@@ -87,6 +91,7 @@ router.post('/', urlencodedParser, function(req, res) {
       } else {
 
         console.log('eo ok');
+        req.flash('failuer', res1.body[0].message);
         res.redirect('/admin/taobodethi');
       }
     }
@@ -118,7 +123,9 @@ router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
       if (req.session.email && req.session.quyen == 0) {
         res.render('taobodethichitiet', {
           data: {
-            json_data: url + 'LoadCauHoi?idcd=' + idcd + '%26quyen=0',
+            message: req.flash('success'),
+            message1: req.flash('failuer'),
+            json_data: url + 'LoadCauHoi?idcd=' + idcd + '%26quyen=0%26idnv=',
             json_data_modal:url + 'LoadCauHoiModal',
             tencd: json.tencd,
             idcd: json.idcd,
@@ -165,6 +172,8 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
         // console.log(json);
         res.render('taobodethicauhoi', {
           data: {
+            message: req.flash('success'),
+            message1: req.flash('failuer'),
             json_data: url + 'LoadCauHoi?idcd=' + idcd,
             json_data_modal:url + 'LoadCauHoiModal',
             tencd: req.body.tencd,

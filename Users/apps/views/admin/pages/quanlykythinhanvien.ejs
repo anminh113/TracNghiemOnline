@@ -101,7 +101,7 @@
     $.getJSON(json_data_phongban, function(data) {
       var html = '';
       for (var i = 0; i < data.length; i++) {
-        html += '<option value="' + json_data_phongban + '?idpb=' + data[i].idpb + '">' + data[i].tenpb + '</option>';
+        html += '<option value="' + json_data_phongban + '?idpb=' + data[i].idpb + '&idkt=<%= data.idkt%>">' + data[i].tenpb + '</option>';
       }
       $('#phongban').append(html);
     });
@@ -147,7 +147,7 @@
   <SCRIPT LANGUAGE="JavaScript">
     function count() {
       var count = $('.checkbox input:checkbox:checked').length ;
-      return confirm("Bạn có chắc thêm "+count+" câu hỏi này ?")
+      return confirm("Bạn có chắc thêm "+count+" nhân viên ?")
     }
   </SCRIPT>
   <footer>

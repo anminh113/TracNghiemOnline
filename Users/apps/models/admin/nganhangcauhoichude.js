@@ -17,6 +17,8 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('nganhangcauhoichude', {
       data: {
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
         json_data: url + 'NganHangCauHoi?idnv=%26quyen=0',
         json_data_modal: url + 'LoadCauHoiModal',
         pass: req.session.pass,
@@ -64,9 +66,13 @@ router.post('/', urlencodedParser, function(req, res) {
     } else {
       if (res1.body[0].result == 'success') {
         console.log('ok');
+        req.flash('success', '0');
         res.redirect('/admin/nganhangcauhoichude');
       } else if (res1.body[0].result == 'failuer') {
         console.log('eo ok');
+        req.flash('success', '1');
+
+        req.flash('failuer', JSON.parse(res1.body)[0].message);
         res.redirect('/admin/nganhangcauhoichude');
       }
 
@@ -75,7 +81,7 @@ router.post('/', urlencodedParser, function(req, res) {
 });
 
 
-// update
+// update and delete
 router.post('/capnhat', urlencodedParser, function(req, res) {
   var inputValue = req.body.capnhat;
 
@@ -92,12 +98,15 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log(JSON.parse(res1.body)[0].result);
         if (JSON.parse(res1.body)[0].result == 'success') {
           console.log('ok');
+          req.flash('success', '0');
           res.redirect('/admin/nganhangcauhoichude');
         } else {
           console.log('eo ok');
+          req.flash('success', '1');
+          req.flash('failuer', JSON.parse(res1.body)[0].message);
+          console.log(JSON.parse(res1.body)[0].message);
           res.redirect('/admin/nganhangcauhoichude');
         }
       }
@@ -136,10 +145,13 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
       } else {
         if (res1.body[0].result == 'success') {
           console.log('ok');
+          req.flash('success', '0');
           res.redirect('/admin/nganhangcauhoichude');
         } else {
           console.log(res1.body[0].result =='failuer');
           console.log('eo ok');
+          req.flash('failuer', res1.body[0].message);
+          req.flash('success', '1');
           res.redirect('/admin/nganhangcauhoichude');
         }
 

@@ -5,10 +5,12 @@
   <svg class="circular" viewBox="25 25 50 50">
         <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
 </div>
+
 <!-- ============================================================== -->
 <!-- Wrapper -->
 <!-- ============================================================== -->
 <div id="wrapper">
+
   <!-- ============================================================== -->
   <!-- Topbar header - style you can find in pages.scss -->
   <!-- ============================================================== -->
@@ -47,7 +49,9 @@
                 <div class="u-text">
 
                   <h4><%= data.ten%></h4>
-                  <p class="text-muted"><%= data.email%></p><a href="profile" class="btn btn-rounded btn-info btn-sm">Xem thông tin</a></div>
+                  <p class="text-muted">
+                    <%= data.email%>
+                  </p><a href="profile" class="btn btn-rounded btn-info btn-sm">Xem thông tin</a></div>
               </div>
             </li>
             <li><a href="../../login"><i class="fa fa-power-off"></i> Đăng xuất</a></li>
@@ -117,6 +121,10 @@
   <!-- End Left Sidebar -->
   <!-- ============================================================== -->
 </div>
+
+<!-- Show alert -->
+
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('table.search').tableSearch({

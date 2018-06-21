@@ -19,6 +19,8 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('quanlykythi', {
       data: {
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
         json_data_chude: url + 'ChuDe?idnv=%26quyen=0',
         json_data_kythi: url + 'KyThi',
         pass: req.session.pass,
@@ -48,9 +50,12 @@ router.get('/xoa/:idkt', function(req, res) {
       console.log(JSON.parse(res1.body));
       if (JSON.parse(res1.body)[0].result == 'success') {
         console.log('ok');
+        req.flash('success', '0');
         res.redirect('/admin/quanlykythi');
       } else {
         console.log('eo ok');
+        req.flash('success', '1');
+        req.flash('failuer', JSON.parse(res1.body)[0].message);
         res.redirect('/admin/quanlykythi');
       }
     }
@@ -86,10 +91,12 @@ router.post('/', urlencodedParser, function(req, res) {
       res.redirect('/admin/404');
     } else {
       if (res1.body[0].result == 'success') {
-        console.log(res1.body);
+        req.flash('success', '0');
         res.redirect('/admin/quanlykythi');
       } else if (res1.body[0].result == 'failure') {
         console.log('eo ok');
+        req.flash('success', '1');
+        req.flash('failuer', res1.body[0].message);
         res.redirect('/admin/quanlykythi');
       }
     }

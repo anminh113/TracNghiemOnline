@@ -3,6 +3,8 @@
 
 <head>
   <% include ../partials/head %>
+
+
 </head>
 <header>
   <% include ../partials/header %>
@@ -131,11 +133,13 @@
       var pass_new2 = document.getElementById('pass_new2').value;
       var pass_old1 = document.getElementById('pass_old1').value;
       var pass_old2 = "<%= data.pass%>";
+      var passhash1 = md5(pass_old1);
+
       if (pass_new1 != pass_new2) {
         alert("Không trùng với mật khẩu xác nhận!!!");
         return false;
       }
-      if (pass_old1 != pass_old2) {
+      if (passhash1 != pass_old2) {
         alert("Mật khẩu cũ không đúng!!!");
         return false;
       }
@@ -145,6 +149,7 @@
   <footer>
     <% include ../partials/footer %>
   </footer>
+  <script src="../js/md5.min.js"></script>
 
 </body>
 

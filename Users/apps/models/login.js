@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var db = require('../common/database');
 var bodyParser = require('body-parser');
 var config = require('config');
+var crypto = require('crypto');
 var urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
@@ -30,6 +31,7 @@ var quyen;
 router.post('/login', urlencodedParser, function(req, res, next) {
   let em = req.body.email.trim();
   let pw = req.body.pass.trim();
+  var data =  crypto.createHash('md5').update(pw).digest("hex");
   // Set the headers
   var headers = {
     'User-Agent': 'Super Agent/0.0.1',
@@ -51,7 +53,7 @@ router.post('/login', urlencodedParser, function(req, res, next) {
       res.redirect('/admin/404');
     } else if (!error || res1.statusCode == 200) {
       var json = JSON.parse(body);
-      if (em == json.email && pw == json.pass && json.quyen == 0) {
+      if (em == json.email && data == json.pass && json.quyen == 0) {
         sessData = req.session;
         sessData.email = json.email;
         sessData.idnv = json.idnv;
@@ -63,7 +65,7 @@ router.post('/login', urlencodedParser, function(req, res, next) {
         sessData.sdt = json.sdt;
         sessData.pass = json.pass;
         res.redirect('/admin/trangchu');
-      } else if (em == json.email && pw == json.pass && json.quyen == 1) {
+      } else if (em == json.email && data == json.pass && json.quyen == 1) {
         sessData = req.session;
         sessData.email = json.email;
         sessData.idnv = json.idnv;

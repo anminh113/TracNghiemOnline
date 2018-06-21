@@ -7,6 +7,7 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('config');
+
 var urlencodedParser = bodyParser.urlencoded({
   extended: true
 });
@@ -19,11 +20,13 @@ router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('capquyen', {
       data: {
-        json_data: url+'CapQuyen',
+        message: req.flash('success'),
+        message1: req.flash('failuer'),
+        json_data: url + 'CapQuyen',
         pass: req.session.pass,
         email: req.session.email,
-        id:req.session.idnv,
-        ten:req.session.hoten
+        id: req.session.idnv,
+        ten: req.session.hoten
       }
     });
   } else {
@@ -42,23 +45,26 @@ router.post('/', urlencodedParser, function(req, res) {
   var values = text[0];
   // console.log(text);
   request({
-    method: 'PUT',
-    url: url+'CapQuyen',
-    body: values,
-    json: true,
-    headers: {
-      'User-Agent': 'request'
-    }
-  }, (err, res1, body) => {
-    if(err){
-      console.log(err);
-    }else{
-      if(res1.body[0].result == 'success'){
-        console.log('ok');
+      method: 'PUT',
+      url: url + 'CapQuyen',
+      body: values,
+      json: true,
+      headers: {
+        'User-Agent': 'request'
+      }
+    }, (err, res1, body) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (res1.body[0].result == 'success') {
+        req.flash('success', '0');
         res.redirect('/admin/capquyen');
-      }else{
-        console.log(res1.body[0].message);
+
+      } else {
+        console.log(res1.body);
         console.log('eo ok');
+        req.flash('failuer', res1.body[0].message);
+        req.flash('success', '1');
         res.redirect('/admin/capquyen');
       }
 

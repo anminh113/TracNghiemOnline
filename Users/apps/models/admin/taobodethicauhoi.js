@@ -18,6 +18,7 @@ router.get('/',function(req,res){
   if (req.session.email &&  req.session.quyen == 0){
     res.render('taobodethicauhoi', {
       data: {
+        message: req.flash('success'),
         pass: req.session.pass,
         email: req.session.email,
         id:req.session.idnv,
@@ -59,8 +60,9 @@ router.post('/', urlencodedParser, function(req, res) {
     if (err) {
       res.redirect('/admin/404');
     } else {
-      console.log(JSON.stringify(obj));
-      console.log(res1.body);
+      req.flash('success', '0');
+      // res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+      // res.redirect('back');
       res.redirect('/admin/taobodethi');
     }
   });

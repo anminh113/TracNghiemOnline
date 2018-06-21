@@ -121,7 +121,7 @@
             test_data += '<tr>';
             test_data += '<td>' + count++ + '</td>';
             test_data += '<td>' + value.tenkt + '</td>';
-            test_data += '<td>' + value.socau + '</td>';
+            test_data += '<td>' + value.socauhoi + '</td>';
             test_data += '<td>' + value.tencd + '</td>';
             test_data += '<td>' + value.tg + ' phút</td>';
             test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/quanlykythi/quanlykythi_nhanvien"><input name="idcd" value="' + value.idcd +
@@ -180,10 +180,10 @@
       if (month < 10) month = "0" + month;
       if (day < 10) day = "0" + day;
       var today = year + "-" + month + "-" + day;
-      document.getElementById("stardate").min = today+'T08:30';
+      document.getElementById("stardate").min = today+'T00:00';
       // document.getElementById("stardate").value = today;
       // document.getElementById("enddate").value = today;
-      document.getElementById("enddate").min = today+'T08:30';
+      document.getElementById("enddate").min = today+'T00:00';
     </script>
 
 </body>
