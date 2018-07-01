@@ -36,6 +36,7 @@ router.get('/', function(req, res) {
 
 // post json data server
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email &&  req.session.quyen == 0){
   var quyen = req.body.quyen;
   var idnv = req.body.idnv;
   var text = [{
@@ -43,7 +44,6 @@ router.post('/', urlencodedParser, function(req, res) {
     "quyen": quyen
   }];
   var values = text[0];
-  // console.log(text);
   request({
       method: 'PUT',
       url: url + 'CapQuyen',
@@ -54,22 +54,21 @@ router.post('/', urlencodedParser, function(req, res) {
       }
     }, (err, res1, body) => {
       if (err) {
-        console.log(err);
+          res.redirect('/admin/404');
       } else {
         if (res1.body[0].result == 'success') {
         req.flash('success', '0');
         res.redirect('/admin/capquyen');
-
       } else {
-        console.log(res1.body);
-        console.log('eo ok');
         req.flash('failuer', res1.body[0].message);
         req.flash('success', '1');
-        res.redirect('/admin/capquyen');
+        res.redirect('back');
       }
-
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 

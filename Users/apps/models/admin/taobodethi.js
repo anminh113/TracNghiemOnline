@@ -13,7 +13,6 @@ var urlencodedParser = bodyParser.urlencoded({
 router.use(bodyParser.json());
 var url = config.url;
 
-
 router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('taobodethi', {
@@ -33,6 +32,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/xoa/:idcd', function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idcd = req.params.idcd;
   var link = url + "ChuDe/"
   request({
@@ -43,10 +43,10 @@ router.get('/xoa/:idcd', function(req, res) {
     }
   }, (err, res1, body) => {
     if (err) {
-      console.log(err);
+      res.redirect('/admin/404');
     } else {
 
-      if (res1.body[0].result == 'success') {
+      if (JSON.parse(res1.body)[0].result == 'success') {
         console.log('ok');
         req.flash('success', '0');
         res.redirect('/admin/taobodethi');
@@ -58,10 +58,14 @@ router.get('/xoa/:idcd', function(req, res) {
       }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 // post json data server
 router.post('/', urlencodedParser, function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idnv = req.session.idnv;
   var chude = req.body.chude;
 
@@ -82,11 +86,12 @@ router.post('/', urlencodedParser, function(req, res) {
   }, (err, res1, body) => {
     // console.log(res1);
     if (err) {
-      console.log(err);
+      res.redirect('/admin/404');
     } else {
 
       if (res1.body[0].result == 'success') {
         console.log('ok');
+        req.flash('success', '0');
         res.redirect('/admin/taobodethi');
       } else {
 
@@ -96,9 +101,13 @@ router.post('/', urlencodedParser, function(req, res) {
       }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idcd = req.body.idcd;
   var headers = {
     'User-Agent': 'Super Agent/0.0.1',
@@ -126,7 +135,7 @@ router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
             message: req.flash('success'),
             message1: req.flash('failuer'),
             json_data: url + 'LoadCauHoi?idcd=' + idcd + '%26quyen=0%26idnv=',
-            json_data_modal:url + 'LoadCauHoiModal',
+            json_data_modal: url + 'LoadCauHoiModal',
             tencd: json.tencd,
             idcd: json.idcd,
             idnv: json.idnv,
@@ -141,11 +150,14 @@ router.post('/taobodethi_themcauhoi', urlencodedParser, function(req, res) {
       }
     }
   })
-
+} else {
+  res.redirect('/login');
+}
 
 });
 
 router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idcd = req.body.idcd;
   // var tencd = req.body.tencd;
   var headers = {
@@ -175,7 +187,7 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
             message: req.flash('success'),
             message1: req.flash('failuer'),
             json_data: url + 'LoadCauHoi?idcd=' + idcd,
-            json_data_modal:url + 'LoadCauHoiModal',
+            json_data_modal: url + 'LoadCauHoiModal',
             tencd: req.body.tencd,
             idcd: idcd,
             pass: req.session.pass,
@@ -189,6 +201,9 @@ router.post('/taobodethi_xemchitiet', urlencodedParser, function(req, res) {
       }
     }
   })
+} else {
+  res.redirect('/login');
+}
 });
 
 module.exports = router;

@@ -5,7 +5,6 @@ var request = require('request');
 var querystring = require('querystring');
 var router = express.Router();
 var bodyParser = require("body-parser");
-// var oracledb = require("oracledb");
 var urlencodedParser = bodyParser.urlencoded({
   extended: false
 });
@@ -19,6 +18,7 @@ router.get('/', function(req, res) {
     res.render('taobodethichitiet', {
       data: {
         message: req.flash('success'),
+        message1: req.flash('failuer'),
         json_data: url + 'NganHangCauHoiAdmin',
         pass: req.session.pass,
         email: req.session.email,
@@ -33,6 +33,7 @@ router.get('/', function(req, res) {
 
 
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email &&  req.session.quyen == 0){
   var idcd = req.body.idcd;
   var idch = req.body.idch;
 
@@ -64,12 +65,20 @@ router.post('/', urlencodedParser, function(req, res) {
     if (err) {
       res.redirect('/admin/404');
     } else {
-      req.flash('success', '0');
-      res.redirect('/admin/taobodethi');
-
-
+      if (res1.body[0].result == 'success') {
+        req.flash('success', '0');
+        res.redirect('/admin/taobodethi');
+      } else if (res1.body[0].result == 'failure') {
+        console.log('eo ok');
+        req.flash('success', '1');
+        req.flash('failuer', res1.body[0].message);
+        res.redirect('/admin/taobodethi');
+      }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 

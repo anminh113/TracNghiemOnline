@@ -1,8 +1,8 @@
 .myAlert-top {
-  position:absolute ;
+  position:absolute;
   z-index: 999;
   top: 7%;
-  right: 0;
+  right: 2px;
   width: 30%;
 }
 
@@ -93,17 +93,14 @@ body {
   background-color: transparent;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
   position: absolute;
-  right: 9000px;
+  display: none;
 }
-
-/*Radio box*/
 
 input[type="radio"]+.label-text:before {
   content: "\f10c";
   font-family: "FontAwesome";
-  /* speak: none; */
   width: 20px;
   height: 20px;
   font-style: normal;
@@ -130,39 +127,9 @@ input[type="radio"]:disabled+.label-text {
 input[type="radio"]:disabled+.label-text:before {
   content: "\f111";
   color: #ccc;
-}
+} */
 
-/*Radio Toggle*/
 
-.toggle input[type="radio"]+.label-text:before {
-  content: "\f204";
-  font-family: "FontAwesome";
-  /* speak: none; */
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  width: 1em;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.toggle input[type="radio"]:checked+.label-text:before {
-  content: "\f205";
-  color: #16a085;
-  animation: effect 250ms ease-in;
-}
-
-.toggle input[type="radio"]:disabled+.label-text {
-  color: #aaa;
-}
-
-.toggle input[type="radio"]:disabled+.label-text:before {
-  content: "\f204";
-  color: #ccc;
-}
 
 @keyframes effect {
   0% {
@@ -182,7 +149,25 @@ input[type="radio"]:disabled+.label-text:before {
 .buttonA.active, .buttonA:active {
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0);
 }
-
+.buttonA{
+  border: none;
+  color: #1E1BAC
+}
 .buttonA.hover, .buttonA:hover {
   background-color: #F7FAFC
+}
+.checkbox label::before{
+  -webkit-transition: .3s ease-in-out;
+background-color: #fff;
+border-radius: 1px;
+border: 1px solid rgba(120, 130, 140, 0.65);
+content: "";
+display: inline-block;
+height: 17px;
+left: 0;
+margin-left: -20px;
+position: absolute;
+transition: .3s ease-in-out;
+width: 17px;
+outline: 0!important;
 }

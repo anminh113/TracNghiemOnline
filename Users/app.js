@@ -13,14 +13,11 @@ app.use(session({
       secret: 'somerandonstuffs'
 }));
 
-
 app.use(flash());
 
 app.use("/", express.static(__dirname + "/public"));
 //bodyParser
 app.use(bodyParser.json());
-
-
 
 app.set('views', [
   __dirname + "/apps/views/admin/pages/",
@@ -28,10 +25,6 @@ app.set('views', [
   __dirname + "/apps/views/"
 ]);
 app.set("view engine", "ejs");
-
-
-
-
 
 var controllers = require(__dirname + "/apps/controllers/users");
 app.use(controllers);
@@ -46,5 +39,5 @@ var host = config.get("server.host");
 var port = config.get("server.port");
 
 app.listen(port,host, function(){
-    console.log("Server is runing on port", port);
+    console.log("Server is runing on port", host, port );
 });

@@ -8,5 +8,5 @@
         "password": "cty9_tracnghiem_2018",
         "connectString": "10.151.120.243/utility"
     },
-    "url" : "http://10.10.2.47:45455/api/"
+    "url" : "http://192.168.1.11:45455/api/"
 }

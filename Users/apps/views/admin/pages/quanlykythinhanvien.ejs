@@ -36,7 +36,7 @@
                   <div class="col-lg-12 col-md-12 ml-auto">
                     <div class="form-group">
                       <label for="exampleFormControlSelect1">Phòng Ban</label>
-                      <select class="form-control " id="phongban">
+                      <select class="form-control " id="phongban" autofocus>
                           <option>Chọn phòng ban</option>
                       </select>
                     </div>
@@ -72,10 +72,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <div class="col-md-12 center text-center">
-                        <ul class="pagination" id="myPager">
-                        </ul>
-                      </div>
+
                     </div>
                   </div>
                   <input hidden name="idkt" value="<%= data.idkt%>">
@@ -130,24 +127,33 @@
           // pagination
           $('.pagination li ').hide();
           $('.pagination li a').hide();
+          $('.pagination-container').hide();
           // $('.pagination li a i').hide();
-          $('#myTable').pagination({
+          $('#myTable').paginathing({
             pagerSelector: '#myPager',
-            activeColor: 'red',
-            prevText: 'Prev',
-            nextText: 'Next',
+            activeColor: 'Blue',
+            prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            insertAfter: '#table',
             showPrevNext: true,
+            limitPagination: 3,
             hidePageNumbers: false,
-            perPage: 15
+            perPage: 10
           });
         });
       });
     });
   </script>
+
   <SCRIPT LANGUAGE="JavaScript">
     function count() {
       var count = $('.checkbox input:checkbox:checked').length ;
-      return confirm("Bạn có chắc thêm "+count+" nhân viên ?")
+      if(count >0 ){
+        return confirm("Bạn có chắc thêm "+count+" nhân viên ?");
+      }else{
+         alert("Chưa chọn nhân viên");
+         return false;
+      }
     }
   </SCRIPT>
   <footer>

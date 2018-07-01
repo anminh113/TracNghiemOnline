@@ -34,6 +34,7 @@ router.get('/', function(req, res) {
 
 // thêm
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email && req.session.quyen == 0) {
   var idnv = req.session.idnv;
   var ndch = req.body.cauhoi;
   var nda = req.body.dapana;
@@ -62,7 +63,7 @@ router.post('/', urlencodedParser, function(req, res) {
     }
   }, (err, res1, body) => {
     if (err) {
-      console.log(err);
+        res.redirect('/admin/404');
     } else {
       if (res1.body[0].result == 'success') {
         console.log('ok');
@@ -71,18 +72,21 @@ router.post('/', urlencodedParser, function(req, res) {
       } else if (res1.body[0].result == 'failuer') {
         console.log('eo ok');
         req.flash('success', '1');
-
         req.flash('failuer', JSON.parse(res1.body)[0].message);
         res.redirect('/admin/nganhangcauhoichude');
       }
 
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 
 // update and delete
 router.post('/capnhat', urlencodedParser, function(req, res) {
+  if (req.session.email && req.session.quyen == 0) {
   var inputValue = req.body.capnhat;
 
   if (inputValue == "delete") {
@@ -96,7 +100,7 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
       }
     }, (err, res1, body) => {
       if (err) {
-        console.log(err);
+          res.redirect('/admin/404');
       } else {
         if (JSON.parse(res1.body)[0].result == 'success') {
           console.log('ok');
@@ -106,7 +110,6 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
           console.log('eo ok');
           req.flash('success', '1');
           req.flash('failuer', JSON.parse(res1.body)[0].message);
-          console.log(JSON.parse(res1.body)[0].message);
           res.redirect('/admin/nganhangcauhoichude');
         }
       }
@@ -141,7 +144,7 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
       }
     }, (err, res1, body) => {
       if (err) {
-        console.log(err);
+          res.redirect('/admin/404');
       } else {
         if (res1.body[0].result == 'success') {
           console.log('ok');
@@ -158,7 +161,9 @@ router.post('/capnhat', urlencodedParser, function(req, res) {
       }
     });
   };
-
+} else {
+  res.redirect('/login');
+}
 
 });
 

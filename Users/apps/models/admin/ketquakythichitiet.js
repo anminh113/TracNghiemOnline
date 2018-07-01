@@ -1,10 +1,13 @@
 var express = require('express');
 var session = require('express-session');
 var config = require('config');
+var request = require('request');
+var querystring = require('querystring');
 var router = express.Router();
 var bodyParser = require("body-parser");
-// var oracledb = require("oracledb");
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({
+  extended: false
+});
 
 router.use(bodyParser.json());
 var url = config.url;

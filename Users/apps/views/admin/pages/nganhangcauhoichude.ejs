@@ -19,8 +19,7 @@
           <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
               <li><a href="../../admin/trangchu">Trang Chủ</a></li>
-              <li><a href="../../admin/nganhangcauhoichude">Ngân Hàng Câu Hỏi</a></li>
-              <li class="active">Chủ Đề</li>
+              <li class="active">Ngân Hàng Câu Hỏi</li>
             </ol>
           </div>
         </div>
@@ -46,10 +45,7 @@
 
                   </tbody>
                 </table>
-                <div class="col-md-12 center text-center">
-                  <ul class="pagination" id="myPager">
-                  </ul>
-                </div>
+
               </div>
             </div>
           </div>
@@ -58,6 +54,7 @@
       <!-- /.container-fluid -->
 
     </div>
+
     <!-- star mode -->
     <div class="modal fade bd-example-modal-lg" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -117,9 +114,9 @@
             <div class="modal-footer">
               <div id="idch">
               </div>
-              <button type="submit" name="capnhat" value="delete" id="detele" class="btn btn-danger">Xóa Câu Hỏi</button>
+              <button type="submit" name="capnhat" value="delete" class="btn btn-danger">Xóa Câu Hỏi</button>
               <!-- <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button> -->
-              <button type="submit" name="capnhat" value="update" id="update" class="btn btn-info">Cập nhật </button>
+              <button type="submit" name="capnhat" value="update" class="btn btn-info">Cập nhật </button>
               <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
 
             </div>
@@ -151,9 +148,8 @@
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group">
-                      <label class="col-md-12" >A &nbsp;&nbsp;
-                            <input type="radio" name="dapandung"  value="1" > <span class="label-text"></span>
-                      </label>
+                      <label class="col-md-12">A &nbsp;&nbsp;
+                          <input type="radio" name="dapandung" value="1"  > <span class="label-text"></span></label>
                       <div class="col-md-12">
                         <input type="text" id="A" name="dapana" required placeholder="Nhập đáp án câu A..." class="form-control form-control-line"> </div>
                     </div>
@@ -161,7 +157,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="col-md-12">B &nbsp;&nbsp;
-                          <input type="radio" name="dapandung" value="2" > <span class="label-text"></span></label>
+                          <input type="radio" name="dapandung" value="2"  required> <span class="label-text"></span></label>
                       <div class="col-md-12">
                         <input type="text" id="B" name="dapanb" required placeholder="Nhập đáp án câu B..." class="form-control form-control-line"> </div>
                     </div>
@@ -172,7 +168,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="col-md-12">C &nbsp;&nbsp;
-                            <input type="radio" name="dapandung" value="3" > <span class="label-text"></span></label>
+                            <input type="radio" name="dapandung" value="3"  > <span class="label-text"></span></label>
                       <div class="col-md-12">
                         <input type="text" id="C" name="dapanc" required placeholder="Nhập đáp án câu C..." class="form-control form-control-line"> </div>
                     </div>
@@ -192,7 +188,7 @@
               <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
               <!-- <button type="button" class="btn btn-danger">Xóa Câu Hỏi</button> -->
               <!-- <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button> -->
-              <button type="submit" class="btn btn-info">Lưu câu hỏi </button>
+              <button type="submit" id="save" class="btn btn-info">Lưu câu hỏi </button>
             </div>
           </form>
         </div>
@@ -200,6 +196,7 @@
     </div>
     <!--   end modal-->
   </main>
+
 
   <!-- load data in table -->
   <script>
@@ -213,20 +210,22 @@
         $.each(data, function(key, value) {
           test_data += '<tr>';
           test_data += '<td>' + count++ + '</td>';
-          test_data += '<td  colspan="2"  data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1">' + value.ndch + '</td>';
+          test_data += '<td  colspan="2" data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1">' + value.ndch + '</td>';
           test_data += '</tr>';
         });
         $('#table').append(test_data);
 
         // pagination
-        $('#myTable').pagination({
+        $('#myTable').paginathing({
           pagerSelector: '#myPager',
-          activeColor: 'red',
-          prevText: 'Prev',
-          nextText: 'Next',
+          activeColor: 'Blue',
+          prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+          nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+          insertAfter: '#table',
           showPrevNext: true,
+          limitPagination: 5,
           hidePageNumbers: false,
-          perPage: 15
+          perPage: 10
         });
       });
     });
@@ -321,27 +320,6 @@
   <footer>
     <% include ../partials/footer %>
   </footer>
-  <script>
-    function undisableTxt() {
-
-      document.getElementById("cauhoi").disabled = true;
-      document.getElementById("a").disabled = true;
-      document.getElementById("b").disabled = true;
-      document.getElementById("c").disabled = true;
-      document.getElementById("d").disabled = true;
-      document.getElementById("update").disabled = true;
-    };
-
-    function disableTxt() {
-
-      document.getElementById("cauhoi").disabled = false;
-      document.getElementById("a").disabled = false;
-      document.getElementById("b").disabled = false;
-      document.getElementById("c").disabled = false;
-      document.getElementById("d").disabled = false;
-      document.getElementById("update").disabled = false;
-    };
-  </script>
 
 
 </body>

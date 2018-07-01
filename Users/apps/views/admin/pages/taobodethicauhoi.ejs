@@ -60,10 +60,7 @@
 
                         </tbody>
                       </table>
-                      <div class="col-md-12 center text-center">
-                        <ul class="pagination" id="myPager">
-                        </ul>
-                      </div>
+
                     </div>
                   </div>
                   <input hidden name="idcd" value="<%= data.idcd%>">
@@ -165,11 +162,11 @@
             idch: personName
           },
           function(data, status) {
-            $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" id="textarea" rows="8">' + data.ndch + '</textarea>');
-            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" id="A" placeholder="' + data.nda + '" class="form-control form-control-line"> </div>');
-            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" id="B" placeholder="' + data.ndb + '" class="form-control form-control-line" > </div>');
-            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" id="C" placeholder="' + data.ndc + '" class="form-control form-control-line" > </div>');
-            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" id="D" placeholder="' + data.ndd + '" class="form-control form-control-line" > </div>');
+            $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" id="textarea" rows="8" readonly>' + data.ndch + '</textarea>');
+            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" id="A" placeholder="' + data.nda + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" id="B" placeholder="' + data.ndb + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" id="C" placeholder="' + data.ndc + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" id="D" placeholder="' + data.ndd + '" class="form-control form-control-line" readonly> </div>');
             if (data.da == '1') {
               $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
               $('#modal1 .modal-content .modal-body .row #dab').html('B');
@@ -216,14 +213,16 @@
 
 
         // pagination
-        $('#myTable').pagination({
+        $('#myTable').paginathing({
           pagerSelector: '#myPager',
-          activeColor: 'red',
-          prevText: 'Prev',
-          nextText: 'Next',
+          activeColor: 'Blue',
+          prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+          nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+          insertAfter: '#table',
           showPrevNext: true,
+          limitPagination: 5,
           hidePageNumbers: false,
-          perPage: 15
+          perPage: 10
         });
 
 
@@ -233,7 +232,12 @@
   <SCRIPT LANGUAGE="JavaScript">
     function count() {
       var count = $('.checkbox input:checkbox:checked').length ;
+      if(count>0){
       return confirm("Bạn có chắc xóa "+count+" câu hỏi này ?")
+    }else{
+       alert("Chưa chọn câu hỏi");
+       return false;
+    }
     }
   </SCRIPT>
   <footer>

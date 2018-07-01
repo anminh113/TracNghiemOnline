@@ -4,9 +4,35 @@
 <head>
   <% include ../partials/head %>
 
+  <script>
+    function count1() {
+      var loaded = false;
+      window.onload = function() {
+           loaded = true;
+       };
+      setTimeout(function() {
+           if(!loaded) {
+             alert('asdasd');
+             return  window.stop();
+
+           }
+      },1000);
+      // $(document).ready(function() {
+      //   var e = $.Event('keydown', {
+      //     keyCode: 27
+      //   });
+      //   if (e.keyCode == 27) {
+      //     alert('Esc Pressed');
+      //     return false;
+      //   }
+      //   $(document).trigger(e);
+      // });
+    }
+  </script>
 </head>
 <header>
   <% include ../partials/header %>
+
 
 </header>
 
@@ -29,13 +55,16 @@
         <div class="row">
           <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="white-box">
+            <div id="test123">
+                <%= data.message2%>
+            </div>
               <!-- <div class="box-title">Cấp quyền cho người dùng</div> -->
-
+              <!-- <input type="button" id="esc" onclick="count1()" value="Esc like button"> -->
               <div class="table-responsive">
                 <table class="search table" id="Table">
                   <thead>
                     <tr>
-                      <th>STT</th>
+                      <th>ID</th>
                       <th>Tên nhân viên</th>
                       <th>Quyền hạn</th>
                       <th>Xác nhận</th>
@@ -44,18 +73,22 @@
                   <tbody id="myTable">
                   </tbody>
                 </table>
-                <div class="col-md-12 center text-center">
-                  <ul class="pagination" id="myPager">
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-
   </main>
+
+
+  <SCRIPT LANGUAGE="JavaScript">
+    function count() {
+      setTimeout(function() {
+        document.getElementById('esc').click();
+      }, 2000);
+    }
+  </SCRIPT>
+
 
 
   <!--Start loading table -->
@@ -64,11 +97,12 @@
       $.getJSON('<%= data.json_data%>', function(data) {
         var test_data = '';
         var len = data.length;
+        var test1 = 1;
         $.each(data, function(key, value) {
           test_data += '<tr>';
           test_data += '<td>' + value.idnv + '</td>';
           test_data += '<td>' + value.hoten + '</td>';
-          test_data += '<td><select form="formtext' + value.idnv + '"   name="quyen" style="width:auto">';
+          test_data += '<td><select form="formtext' + value.idnv + '" id="test' + test1++ + '"  name="quyen" style="width:auto">';
           if (value.quyen == '0') {
             test_data += '<option value="0" selected>&nbsp;&nbsp; Admin &nbsp;&nbsp;</option>';
           } else {
@@ -79,23 +113,26 @@
           } else {
             test_data += '<option value="1" >&nbsp;&nbsp; User &nbsp;&nbsp;</option>';
           }
-
           test_data += '</select></td>';
-          test_data += '<td><form id="formtext' + value.idnv + '" onSubmit="return confirmAction()" method="post" enctype="application/x-www-form-urlencoded"><input name="idnv" value="' + value.idnv +
-            '" hidden><button id="button1" type="submit" class="buttonA colordelete btn btn-outline-warning">Cập nhật</button></form></td>';
+          test_data += '<td><form onclick="return confirmAction()" id="formtext' + value.idnv + '"  method="post" enctype="application/x-www-form-urlencoded"><input name="idnv" value="' + value.idnv +
+            '" hidden><button id="button1"  class="buttonA colordelete btn btn-outline-warning">Cập nhật</button></form></td>';
           test_data += '</tr>';
         });
         $('#Table').append(test_data);
 
+
+
         // pagination
-        $('#myTable').pagination({
+        $('#myTable').paginathing({
           pagerSelector: '#myPager',
-          activeColor: 'red',
-          prevText: 'Prev',
-          nextText: 'Next',
+          activeColor: 'Blue',
+          prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+          nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+          insertAfter: '#Table',
           showPrevNext: true,
+          limitPagination: 3,
           hidePageNumbers: false,
-          perPage: 15
+          perPage: 10
         });
 
       });

@@ -1,98 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <% include ../partials/head %>
+    <% include ../partials/head %>
 </head>
 <header>
-  <% include ../partials/header %>
+        <% include ../partials/header %>
 </header>
-
 <body class="fix-header">
-  <main>
-    <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="row bg-title">
-          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Kết Quả Kỳ Thi </h4> </div>
-          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-              <li><a href="../../admin/trangchu">Trang Chủ</a></li>
-              <li class="active">Kết Quả Kỳ Thi</li>
-            </ol>
-          </div>
-          <!-- /.col-lg-12 -->
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="white-box">
-              <div class="table-responsive">
-                <table class="search table table-hover" id="table">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Tên kỳ thi</th>
-                      <th>Số lượng câu hỏi</th>
-                      <th>Thời gian</th>
-                      <th>Xem Kết Quả kỳ Thi</th>
-                      <th>Xóa</th>
-                    </tr>
-                  </thead>
-                  <tbody id="myTable">
-
-                  </tbody>
-                </table>
-                <div class="col-md-12 center text-center">
-                  <ul class="pagination" id="myPager">
-                  </ul>
+    <main>
+    	<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Kết quả kỳ thi</h4> </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="../../admin/trangchu">Trang Chủ</a></li>
+                            <li class="active">Kết quả kỳ thi</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="search table table-hover" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên kỳ thi</th>
+                                            <th>Số câu hỏi</th>
+                                            <th>Thời gian</th>
+                                            <th>Điểm trung bình</th>
+                                            <th>Xem chi tiết</th>
+                                            <!-- <th>Xóa</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+                                        <!-- <tr>
+                                            <td>1</td>
+                                            <td>Deshmukh</td>
+                                            <td>121</td>
+                                            <td>10:10</td>
+                                            <td><a href="quanlykythinhanvien">Xem Chi Tiết</a></td>
+                                            <td><a href="quanlykythichitiet">Xem Chi Tiết</a></td>
+                                            <td><a href="#" class="colordelete">Xóa</a></td>
+                                        </tr> -->
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
+            <!-- ============================================================== -->
+            <!-- End Page Content -->
+            <!-- ============================================================== -->
         </div>
-      </div>
-      <!-- ============================================================== -->
-      <!-- End Page Content -->
-      <!-- ============================================================== -->
-    </div>
+    </main>
+    <script>
+      $(document).ready(function() {
+        // get data json
+        $.getJSON('<%= data.json_data_kythi%>', function(data) {
+          var test_data = '';
+          var count = 1;
+          $.each(data, function(key, value) {
+            if(value.stat == 0 ){
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td>' + value.tenkt + '</td>';
+            test_data += '<td>' + value.socauhoi + '</td>';
+            test_data += '<td>' + value.tg + ' phút</td>';
+            if (value.diemtb != 'NaN') {
+              if (parseFloat(value.diemtb) >= 8) {
+                test_data += '<td><span class="text-info">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) >= 5) {
+                test_data += '<td><span class="text-success">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) == 0) {
+                test_data += '<td><span class="text-danger">0</span></td>';
+              } else {
+                test_data += '<td><span class="text-warning">' + value.diemtb + '</span></td>';
+              }
+            } else {
+              test_data += '<td><span class="text-danger">0</span></td>';
+            }
+            test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/ketquakythi/ketquakythi_ketqua"><input name="idkt" value="' + value.idkt +
+              '" hidden><input name="tenkt" value="' + value.tenkt +
+              '" hidden><button type="submit" class="buttonA">Thêm chi tiết</button></form></td>';
+            test_data += '</tr>';
+              }
+          });
+          $('#table').append(test_data);
 
-  </main>
-  <script>
-    $(document).ready(function() {
-      // get data json
-      $.getJSON('<%= data.json_data%>', function(data) {
-        var test_data = '';
-        var count = 1;
-        $.each(data, function(key, value) {
-          test_data += '<tr>';
-          test_data += '<td>' + count++ + '</td>';
-          test_data += '<td>' + value.title + '</td>';
-          test_data += '<td>' + value.id + '</td>';
-          test_data += '<td>' + value.id + '</td>';
-          test_data += '<td>Chi Tiết</td>';
-          test_data += '<td>Xóa</td>';
-          test_data += '</tr>';
-        });
-        $('#table').append(test_data);
-
-        // pagination
-        $('#myTable').pagination({
-          pagerSelector: '#myPager',
-          activeColor: 'red',
-          prevText: 'Prev',
-          nextText: 'Next',
-          showPrevNext: true,
-          hidePageNumbers: false,
-          perPage: 15
+          // pagination
+          $('#myTable').paginathing({
+            pagerSelector: '#myPager',
+            activeColor: 'Blue',
+            prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            insertAfter: '#table',
+            showPrevNext: true,
+            limitPagination: 5,
+            hidePageNumbers: false,
+            perPage: 10
+          });
         });
       });
-    });
-  </script>
+    </script>
 
-  <footer>
-    <% include ../partials/footer %>
-  </footer>
+    <script>
+      var json_data_chude = decodeURIComponent('<%= data.json_data_chude%>');
+      $.getJSON(json_data_chude, function(data) {
+        var html = '';
+        var len = data.length;
+        for (var i = 0; i < len; i++) {
+          html += '<option value="'+data[i].idcd+'">' + data[i].tencd + '</option>';
+        }
+        $('#chude').append(html);
+      });
+    </script>
+
+
+
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+    <script>
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+      if (month < 10) month = "0" + month;
+      if (day < 10) day = "0" + day;
+      var today = year + "-" + month + "-" + day;
+      document.getElementById("stardate").min = today+'T00:00';
+      // document.getElementById("stardate").value = today;
+      // document.getElementById("enddate").value = today;
+      document.getElementById("enddate").min = today+'T00:00';
+    </script>
 
 </body>
-
 </html>

@@ -35,6 +35,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/xoa/:idkt', function(req, res) {
+if (req.session.email && req.session.quyen == 0) {
   var idkt = req.params.idkt;
   var link = url + "KyThi/"
   request({
@@ -47,7 +48,6 @@ router.get('/xoa/:idkt', function(req, res) {
     if (err) {
       res.redirect('/admin/404');
     } else {
-      console.log(JSON.parse(res1.body));
       if (JSON.parse(res1.body)[0].result == 'success') {
         console.log('ok');
         req.flash('success', '0');
@@ -60,9 +60,13 @@ router.get('/xoa/:idkt', function(req, res) {
       }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email && req.session.quyen == 0) {
   var kythi = req.body.kythi;
   var chude = req.body.chude;
   var stardate = req.body.stardate;
@@ -71,13 +75,13 @@ router.post('/', urlencodedParser, function(req, res) {
   var text = [{
     "tenkt": kythi,
     "idcd": chude,
-    "sdate": moment(stardate).format('DD-MMM-YYYY HH:MM:SS'),
-    "edate": moment(enddate).format('DD-MMM-YYYY HH:MM:SS'),
+    "sdate": moment(stardate).format('DD-MMM-YYYY HH:mm:ss'),
+    "edate": moment(enddate).format('DD-MMM-YYYY HH:mm:ss'),
     "tg": time
   }];
   var values = text[0];
 
-  // console.log(values);
+  console.log(values);
   request({
     method: 'POST',
     url: url + 'KyThi',
@@ -95,15 +99,20 @@ router.post('/', urlencodedParser, function(req, res) {
         res.redirect('/admin/quanlykythi');
       } else if (res1.body[0].result == 'failure') {
         console.log('eo ok');
+        console.log(res1.body);
         req.flash('success', '1');
         req.flash('failuer', res1.body[0].message);
         res.redirect('/admin/quanlykythi');
       }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 router.post('/quanlykythi_nhanvien', urlencodedParser, function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idkt = req.body.idkt;
   var headers = {
     'User-Agent': 'Super Agent/0.0.1',
@@ -145,11 +154,13 @@ router.post('/quanlykythi_nhanvien', urlencodedParser, function(req, res) {
       }
     }
   })
-
-
+} else {
+  res.redirect('/login');
+}
 });
 
 router.post('/quanlykythi_xemchitiet', urlencodedParser, function(req, res) {
+    if (req.session.email && req.session.quyen == 0) {
   var idcd = req.body.idcd;
   var idkt = req.body.idkt;
   // var tencd = req.body.tencd;
@@ -180,6 +191,8 @@ router.post('/quanlykythi_xemchitiet', urlencodedParser, function(req, res) {
             json_data: url + 'LoadCauHoi?idcd=' + idcd,
             json_data_modal:url + 'LoadCauHoiModal',
             json_data_kythi:url + 'QLNhanVienThi?idkt='+idkt,
+            sdate: req.body.sdate,
+            edate: req.body.edate,
             tenkt: req.body.tenkt,
             idkt:req.body.idkt,
             idcd: idcd,
@@ -194,6 +207,9 @@ router.post('/quanlykythi_xemchitiet', urlencodedParser, function(req, res) {
       }
     }
   })
+} else {
+  res.redirect('/login');
+}
 });
 
 module.exports = router;

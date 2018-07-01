@@ -74,6 +74,7 @@ router.post('/login', urlencodedParser, function(req, res, next) {
         sessData.phongban = json.tenpb;
         sessData.ngaysinh = json.ngaysinh;
         sessData.chucvu = json.chucvu;
+        sessData.sdt = json.sdt;
         sessData.pass = json.pass;
         res.redirect('/user/home');
       } else {

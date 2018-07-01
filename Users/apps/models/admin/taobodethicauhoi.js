@@ -12,13 +12,12 @@ var urlencodedParser = bodyParser.urlencoded({
 router.use(bodyParser.json());
 var url = config.url;
 
-
-
 router.get('/',function(req,res){
   if (req.session.email &&  req.session.quyen == 0){
     res.render('taobodethicauhoi', {
       data: {
         message: req.flash('success'),
+        message1: req.flash('failuer'),
         pass: req.session.pass,
         email: req.session.email,
         id:req.session.idnv,
@@ -32,6 +31,7 @@ router.get('/',function(req,res){
 
 
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email &&  req.session.quyen == 0){
   var idcd = req.body.idcd;
   var idch = req.body.idch;
   var obj = [];
@@ -60,12 +60,20 @@ router.post('/', urlencodedParser, function(req, res) {
     if (err) {
       res.redirect('/admin/404');
     } else {
-      req.flash('success', '0');
-      // res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-      // res.redirect('back');
-      res.redirect('/admin/taobodethi');
+      if (res1.body[0].result == 'success') {
+        req.flash('success', '0');
+        res.redirect('/admin/taobodethi');
+      } else if (res1.body[0].result == 'failure') {
+        console.log('eo ok');
+        req.flash('success', '1');
+        req.flash('failuer', res1.body[0].message);
+        res.redirect('/admin/taobodethi');
+      }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 

@@ -33,12 +33,10 @@ router.get('/',function(req,res){
     }
   }
   request(options, function(error, res1, body){
-    if(res1.body.length ==0){
-      res.redirect('/login');
+    if(error){
+      res.redirect('/admin/404');
     }else if (!error || res1.statusCode == 200) {
       var json = JSON.parse(body);
-    }
-      console.log(json.pass);
         res.render('profile', {
           data: {
             message: req.flash('success'),
@@ -53,6 +51,7 @@ router.get('/',function(req,res){
             sdt:req.session.sdt
           }
         });
+    }
   })
 } else {
   res.redirect('/login');
@@ -63,6 +62,7 @@ router.get('/',function(req,res){
 
 // post json data server
 router.post('/', urlencodedParser, function(req, res) {
+  if (req.session.email &&  req.session.quyen == 0){
   var idnv = req.session.idnv;
   var pass_new1 = req.body.pass_new1;
   var data2 =  crypto.createHash('md5').update(pass_new1).digest("hex");
@@ -82,7 +82,7 @@ router.post('/', urlencodedParser, function(req, res) {
     }
   }, (err, res1, body) => {
     if(err){
-      console.log(err);
+        res.redirect('/admin/404');
     }else{
       if(res1.body[0].result == 'success'){
         console.log('ok');
@@ -96,6 +96,9 @@ router.post('/', urlencodedParser, function(req, res) {
       }
     }
   });
+} else {
+  res.redirect('/login');
+}
 });
 
 
