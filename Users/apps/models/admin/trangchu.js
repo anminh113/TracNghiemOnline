@@ -19,7 +19,6 @@ router.get('/', function(req, res) {
     res.render('trangchu', {
       data: {
         json_data_kythi: url + 'KyThi',
-        url:url,
         message: req.flash('success'),
         message1: req.flash('failuer'),
         pass: req.session.pass,

@@ -18,7 +18,6 @@ var url = config.url;
 
 var JsonAPI = "https://jsonplaceholder.typicode.com/todos";
 
-
 router.get('/', function(req, res) {
   if (req.session.email && req.session.quyen == 0) {
     res.render('ketquakythi', {
@@ -30,7 +29,25 @@ router.get('/', function(req, res) {
         pass: req.session.pass,
         email: req.session.email,
         id: req.session.idnv,
-        ten: req.session.hoten
+        ten: req.session.hoten,
+        score:'10'
+      }
+    });
+  } else {
+    res.redirect('/login');
+  }
+});
+router.get('/:id', function(req, res) {
+  if (req.session.email && req.session.quyen == 0) {
+    res.render('ketquakythi', {
+      data: {
+        json_data_chude: url + 'ChuDe?idnv=%26quyen=0',
+        json_data_kythi: url + 'KyThi',
+        pass: req.session.pass,
+        email: req.session.email,
+        id: req.session.idnv,
+        ten: req.session.hoten,
+        score: req.params.id
       }
     });
   } else {
