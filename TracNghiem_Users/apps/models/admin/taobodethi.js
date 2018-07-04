@@ -5,7 +5,6 @@ var request = require('request');
 var querystring = require('querystring');
 var router = express.Router();
 var bodyParser = require("body-parser");
-// var oracledb = require("oracledb");
 var urlencodedParser = bodyParser.urlencoded({
   extended: false
 });
