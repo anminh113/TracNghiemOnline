@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Kết quả các kỳ thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang chủ</a>
+                            </li>
+                            <li class="active">Kết quả thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="table-responsive">
+                                    <table id="kqckthius_data" class="table table-striped table-hover table-bordered display">
+                                        <thead>
+                                            <tr>
+                                                <th> STT</th>
+                                                <th> Tên kỳ thi</th>
+                                                <th> Ngày bắt đầu</th>
+                                                <th> Ngày kết thúc</th>
+                                                <th> Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-weight: 500;">
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row
+            </div>
+           
+            <!-- .container-fluid -->
+                <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <footer>
+            <% include ../layout/footer %>
+        </footer>
+        <!-- Load Json -->
+        <script>
+            $(document).ready(function () {
+                var json_data = '<%= data.json_data%>';
+                $.getJSON(json_data, function (data) {
+                    var kqckthius_data = '';
+                    var count = 1;
+                    $.each(data, function (key, value) {
+                        kqckthius_data += '<tr>';
+                        kqckthius_data += '<td style="text-align: center">' + count++ + '</td>';
+                        kqckthius_data += '<td>' + value.tenkt + '</td>';
+                        kqckthius_data += '<td>' + value.sdate + '</td>';
+                        kqckthius_data += '<td>' + value.edate + '</td>';
+                        kqckthius_data += '<td style="text-align: center"><form method="post" enctype="application/x-www-form-urlencoded" action="/user/kqckthius/kqckthius-chitiet"><input name="idkt" value="' + value.idkt +
+                            '" hidden><input name="tenkt" value="' + value.tenkt +'" hidden><button type="submit" class="btn btn-info">Xem chi tiết</button></form></td>';
+                        kqckthius_data += '</tr>';
+                    });
+                    $('#kqckthius_data').append(kqckthius_data);
+                    $('#kqckthius_data').DataTable({
+                        "language": {
+                            "url": "../language_vn_json/Vietnamese.json"
+                        },
+                        "pagingType": "full_numbers",
+                        pageLength: 10,
+                        lengthMenu: ['10', '20', '50']
+                    });
+                });
+            }); 
+        </script>
+        <!-- End load Json -->
+        <!-- Load Json Thông báo -->
+        <script>
+                $(document).ready(function () {
+                    var json_data_tb = '<%= data.json_datatb%>';
+                    $.getJSON(json_data_tb, function (data) {
+                        var tone_data = '';
+                        var s = 0;
+                        $.each(data, function (key, value) {
+                            if (value.stat != 0) {
+                                if ((value.sta == 1 && value.stat == 1)) {
+                                    tone_data += `
+                                <div>
+                                    <a href="../../user/kythius">
+                                        <div class="user-img">
+                                            <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                            <span class="profile-status online pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5 style="color:#7ace4c">Đang mở</h5>
+                                            <span class="mail-desc">`+ value.tenkt + `</span>
+                                            <span class="time">Hết hạn `+ value.edate + `</span>
+                                        </div>
+                                    </a>
+                                <div>
+                                `;
+                                ++s;
+                                }else if (value.stat == 2) {
+                                tone_data += `
+                                <a href="../../user/kythius">
+                                    <div class="user-img">
+                                        <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5 style="color:#fb4">Sắp mở</h5>
+                                        <span class="mail-desc">`+ value.tenkt + `</span>
+                                        <span class="time">Bắt đầu `+ value.sdate + `</span>
+                                    </div>
+                                </a>
+                                `;
+                                ++s;                            
+                                }
+                            }
+                        });
+                        $('#tone_data').append(tone_data);
+                        $('#sltb').append(s);
+                    });
+                }); 
+            </script>
+            <!-- End load Json -->
+</body>
+
+</html>

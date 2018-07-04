@@ -1,0 +1,150 @@
+<nav class="navbar navbar-default navbar-static-top m-b-0">
+    <div class="navbar-header">
+        <div class="top-left-part">
+            <!-- Logo -->
+            <a href="../../user/home">
+                <b>
+                    <img src="../../plugins/images/LogoMobifone.png" width="100px" class="show-xs light-logo" />
+                </b>
+                <span class="hidden-xs">
+                    <img src="../../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                </span>
+            </a>
+        </div>
+        <!-- /Logo -->
+        <ul class="nav navbar-top-links navbar-left">
+            <li>
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right pull-right active">
+            <!-- dropdown tone -->
+            <li class="dropdown ">
+                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true">
+                    <i class="fa fa-bell"><span class="badge badge-danger" id="sltb" style="right: 0px; top: 12px"></span></i>
+
+                    <div class="notify">
+                        
+                        <!-- <span class="heartbit"></span>
+                        <span class="point"></span> -->
+                    </div>
+
+                </a>
+                <ul class="dropdown-menu dropdown-user animated flipInY">
+                    <li>
+                        <div class="drop-title" style="text-align: center">Thông Báo Kỳ Thi</div>
+                    </li>
+                    <li>
+                        <div class="message-center" id="tone_data" style="overflow-y: auto; height: 180px;">
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="drop-title">
+
+                        </div>
+                    </li>
+                    <li>
+                        <a href="../../user/kythius" class="text-center" href="javascript:void(0);">
+                            <strong>Xem kỳ thi</strong>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- // -->
+            <li class="dropdown ">
+                <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true">
+                    <img src="../../plugins/images/users/account.png" alt="user-img" width="36" class="img-circle">
+                    <b class="hidden-xs">
+                        <%= data.hoten%>
+                    </b>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-user animated flipInY">
+                    <li>
+                        <div class="dw-user-box">
+                            <div class="u-img">
+                                <img src="../../plugins/images/users/account.png" alt="user">
+                            </div>
+                            <div class="u-text">
+                                <h4>
+                                    <%= data.hoten%>
+                                </h4>
+                                <p class="text-muted">
+                                    <%= data.email%>
+                                </p>
+                                <a href="../../user/profileus" class="btn btn-rounded btn-success btn-sm">Xem thông tin</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="../../login">
+                            <i class="fa fa-power-off"></i> Đăng xuất</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+    </div>
+    <!-- /.navbar-header -->
+</nav>
+
+<div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+    <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+        <div class="sidebar-nav slimscrollsidebar active" style="overflow-x: visible; overflow-y: hidden; width: auto; height: 100%;">
+            <div class="sidebar-head">
+                <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                    <b>
+                        <img src="../../plugins/images/LogoMobifone.png" width="200px" class="show-xs light-logo" />
+                    </b>
+                    <span class="hidden-xs">
+                        <img src="../../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                    </span>
+                </a>
+            </div>
+            <ul class="nav" id="side-menu">
+                <li style="padding: 70px 0 0;">
+                    <a href="../../user/home" class="waves-effect">
+                        <i class="fa fa-home fa-fw" aria-hidden="true"></i>Trang Chủ</a>
+                </li>
+                <li>
+                    <a href="../../user/kythius" class="waves-effect">
+                        <i class="fa  fa-pencil-square-o fa-fw" aria-hidden="true"></i>Danh Sách Kỳ Thi</a>
+                </li>
+                <li>
+                    <a href="../../user/kqckthius" class="waves-effect">
+                        <i class="fa fa-mortar-board fa-fw" aria-hidden="true"></i>Kết Quả Các Kỳ Thi</a>
+                </li>
+                <li>
+                    <a href="../../user/lichsuthius" class="waves-effect">
+                        <i class="fa   fa-paste fa-fw" aria-hidden="true"></i>Lịch Sử Các Kỳ Thi</a>
+                </li>
+                <hr style="text-align: center; width: 80%;border: 1px solid #d3c9c9">
+                <li>
+                    <a href="../../user/profileus" class="waves-effect">
+                        <i class="fa fa-user fa-fw" aria-hidden="true"></i>Cá Nhân</a>
+                </li>
+                <li>
+                    <a href="../../user/taochudethius" class="waves-effect">
+                        <i class="fa  fa-pencil fa-fw" aria-hidden="true"></i>Chủ Đề</a>
+                </li>
+                <li>
+                    <a href="../../user/nganhangcauhoius" class="waves-effect">
+                        <i class="fa  fa-suitcase fa-fw" aria-hidden="true"></i>Ngân Hàng Câu Hỏi</a>
+                </li>
+                <li>
+                    <a href="../../user/feedback" class="waves-effect">
+                        <i class="fa fa-comments-o fa-fw" aria-hidden="true"></i>Phản Hồi</a>
+                </li>
+            </ul>
+            <div class="center p-20">
+            </div>
+        </div>
+        <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.3); width: 6px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 458.451px;"></div>
+        <div class="slimScrollRail" style="width: 6px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+    </div>
+</div>

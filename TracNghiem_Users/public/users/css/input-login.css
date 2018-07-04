@@ -1,0 +1,69 @@
+.inputtext:before {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  left: -5000px;
+  height: 100%;
+  width: 15000px;
+  z-index: -1;
+  background: inherit;
+}
+
+.inputtext span {
+  position: relative;
+  display: inline-block;
+  margin: 20px 10px;
+}
+
+.basic-slide {
+  display: inline-block;
+  width: 350px;
+  padding: 10px 0 10px 35px;
+  font-family: "Open Sans", sans;
+  font-weight: 400;
+  color: #00529F;
+  background: #efefef;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
+  text-indent: 70px;
+  transition: all .3s ease-in-out;
+}
+
+.basic-slide::-webkit-input-placeholder {
+  color: #efefef;
+  text-indent: 0;
+  font-weight: 300;
+}
+.basic-slide + label {
+  display: inline-block;
+  position: absolute;
+  width: 28%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  padding: 10px 15px;
+  text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
+  background: #00529F;
+  transition: all .3s ease-in-out;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.basic-slide:focus,
+.basic-slide:active {
+  color: #000;
+  text-indent: 0;
+  background: #fff;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.basic-slide:focus::-webkit-input-placeholder,
+.basic-slide:active::-webkit-input-placeholder {
+  color: #aaa;
+}
+.basic-slide:focus + label,
+.basic-slide:active + label {
+  transform: translateX(-100%);
+}

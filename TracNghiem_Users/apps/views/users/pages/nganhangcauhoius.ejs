@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Ngân Hàng Câu Hỏi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang Chủ</a>
+                            </li>
+                            <li class="active">Ngân Hàng Câu Hỏi</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="row">
+                                    <div class="table-responsive" cellspacing="0" width="100%">
+                                        <table id="cauhoi_data" class="table table-striped table-hover table-bordered display">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center">STT</th>
+                                                    <th> Câu Hỏi</th>
+                                                    <th colspan="3">
+                                                        <button data-toggle="modal" data-target="#themcauhoi" type="button" class="btn btn-info" style="float: right;">Thêm Câu Hỏi</button>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-weight: 500;">
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People</footer>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!--    modal-->
+    <% include ../modal/nganhangcauhoius %>
+
+
+        <% include ../modal/themcauhoius %>
+
+            <!--   end modal-->
+            <script>
+                function undisableTxt() {
+                    document.getElementById("textarea").disabled = true;
+                    document.getElementById("A").disabled = true;
+                    document.getElementById("B").disabled = true;
+                    document.getElementById("C").disabled = true;
+                    document.getElementById("D").disabled = true;
+                    // document.getElementById("update").disabled = true;
+                }
+            </script>
+            <script>
+                function disableTxt() {
+                    document.getElementById("textarea").disabled = false;
+                    document.getElementById("A").disabled = false;
+                    document.getElementById("B").disabled = false;
+                    document.getElementById("C").disabled = false;
+                    document.getElementById("D").disabled = false;
+                    document.getElementById("update").disabled = false;
+                }
+            </script>
+            <!-- /#wrapper -->
+            <!-- jQuery -->
+            <footer>
+                <% include ../layout/footer %>
+            </footer>
+</body>
+<script>
+    $(document).ready(function () {
+        var json_data = decodeURIComponent('<%= data.json_data%>');
+        $.getJSON(json_data, function (data) {
+            var cauhoi_data = '';
+            var count = 0;
+            $.each(data, function (key, value) {
+                cauhoi_data += '<tr>';
+                cauhoi_data += '<td style="text-align: center">' + count++ + '</td>';
+                cauhoi_data += '<td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1" ">' + value.ndch + '</td>';
+                cauhoi_data += '</tr>';
+            });
+            $('#cauhoi_data').append(cauhoi_data);
+            $('#cauhoi_data').DataTable({
+                "language": {
+                    "url": "../language_vn_json/Vietnamese.json"
+                },
+                "pagingType": "full_numbers",
+                pageLength: 20,
+                lengthMenu: ['10', '20', '50']
+            });
+        });
+    }); 
+</script>
+<!-- Alert -->
+<% if(data.message == '0'){ %>
+    <script>
+        iziToast.success({
+            title: 'Thêm câu hỏi',
+            message: 'Thành công',
+            position: 'bottomRight'
+        });
+    </script>
+    <% }else if(data.message == '1'){ %>
+    <script>
+        iziToast.error({
+            title: 'Thêm câu hỏi',
+            message: 'Thất bại',
+            position: 'bottomRight'
+        });
+    </script>
+<% } %>
+
+<% if(data.message_delete == '0'){ %>
+    <script>
+        iziToast.success({
+            title: 'Xoá câu hỏi',
+            message: 'Thành công',
+            position: 'bottomRight'
+        });
+    </script>
+<% }else if(data.message_delete == '1'){ %>
+    <script>
+        iziToast.error({
+            title: 'Xoá câu hỏi',
+            message: 'Thất bại',
+            position: 'bottomRight'
+        });
+    </script>
+<% } %>
+
+<% if(data.message_update == '0'){ %>
+    <script>
+        iziToast.success({
+            title: 'Cập nhật câu hỏi',
+            message: 'Thành công',
+            position: 'bottomRight'
+        });
+    </script>
+    <% }else if(data.message_update == '1'){ %>
+        <script>
+            iziToast.error({
+                title: 'Cập nhật câu hỏi',
+                message: 'Thất bại',
+                position: 'bottomRight'
+            });
+        </script>
+<% } %>
+                        <!-- Data Modal -->
+                        <script>
+                            // get data in modal
+                            $(document).ready(function () {
+                                var json_data = decodeURIComponent('<%= data.json_data_modal%>');
+                                $('#modal1').on('show.bs.modal', function (e) {
+                                    var personName = $(e.relatedTarget).data('modal-name');
+                                    $.post(json_data, { idch: personName },
+                                        function (data, status) {
+                                            $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" name="cauhoi" id="textarea" rows="8" autocomplete="off" required>' + data.ndch + '</textarea>');
+                                            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" id="A" name="nda" placeholder="' + data.nda + '" value="' + data.nda + ' " class="form-control form-control-line" autocomplete="off" required></div>');
+                                            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" id="B" name="ndb" placeholder="' + data.ndb + '" value="' + data.ndb + ' " class="form-control form-control-line" autocomplete="off" required></div>');
+                                            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" id="C" name="ndc" placeholder="' + data.ndc + '" value="' + data.ndc + ' " class="form-control form-control-line" autocomplete="off" required></div>');
+                                            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" id="D" name="ndd" placeholder="' + data.ndd + '" value="' + data.ndd + ' " class="form-control form-control-line" autocomplete="off" required></div>');
+                                            $('#modal1 .modal-content .modal-footer #idch').html('<input hidden  name="idch" value="' + data.idch + '" >');
+                                            if (data.da == '1') {
+                                                $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<input type="radio" name="dapandung" value="1" checked><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<input type="radio" name="dapandung" value="2"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<input type="radio" name="dapandung" value="3"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<input type="radio" name="dapandung" value="4"><span class="label-text"></span>');
+                                            } else if (data.da == '2') {
+                                                $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<input type="radio" name="dapandung" value="2" checked><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<input type="radio" name="dapandung" value="1"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<input type="radio" name="dapandung" value="3"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<input type="radio" name="dapandung" value="4"><span class="label-text"></span>');
+                                            } else if (data.da == '3') {
+                                                $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<input type="radio" name="dapandung" value="3" checked><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<input type="radio" name="dapandung" value="2"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<input type="radio" name="dapandung" value="1"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<input type="radio" name="dapandung" value="4"><span class="label-text"></span>');
+                                            } else if (data.da == '4') {
+                                                $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<input type="radio" name="dapandung" value="4" checked><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<input type="radio" name="dapandung" value="2"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<input type="radio" name="dapandung" value="3"><span class="label-text"></span>');
+                                                $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<input type="radio" name="dapandung" value="1"><span class="label-text"></span>');
+                                            }
+                                        });
+                                });
+                            });
+                        </script>
+    <!-- Load Json Thông báo -->
+    <script>
+            $(document).ready(function () {
+                var json_data_tb = '<%= data.json_datatb%>';
+                $.getJSON(json_data_tb, function (data) {
+                    var tone_data = '';
+                    var s = 0;
+                    $.each(data, function (key, value) {
+                        if (value.stat != 0) {
+                            if ((value.sta == 1 && value.stat == 1)) {
+                                tone_data += `
+                            <div>
+                                <a href="../../user/kythius">
+                                    <div class="user-img">
+                                        <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                        <span class="profile-status online pull-right"></span>
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5 style="color:#7ace4c">Đang mở</h5>
+                                        <span class="mail-desc">`+ value.tenkt + `</span>
+                                        <span class="time">Hết hạn `+ value.edate + `</span>
+                                    </div>
+                                </a>
+                            <div>
+                            `;
+                            ++s;
+                            }else if (value.stat == 2) {
+                            tone_data += `
+                            <a href="../../user/kythius">
+                                <div class="user-img">
+                                    <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 style="color:#fb4">Sắp mở</h5>
+                                    <span class="mail-desc">`+ value.tenkt + `</span>
+                                    <span class="time">Bắt đầu `+ value.sdate + `</span>
+                                </div>
+                            </a>
+                            `;
+                            ++s;                            
+                            }
+                        }
+                    });
+                    $('#tone_data').append(tone_data);
+                    $('#sltb').append(s);
+                });
+            }); 
+        </script>
+        <!-- End load Json -->
+
+</html>

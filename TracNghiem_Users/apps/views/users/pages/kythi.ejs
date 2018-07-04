@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Danh sách các kỳ thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="#">Danh sách kỳ thi</a>
+                            </li>
+                            <!-- <li class="active"></li> -->
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table " id="myTable" id="myTable2">
+                                    <thead>
+                                        <tr>
+                                            <th onclick="sortTable(0)"> ID
+                                                <span class="fa fa-caret-up"></span>
+                                            </th>
+                                            <th> Tên kỳ thi</th>
+                                            <th> Ngày bắt đầu</th>
+                                            <th> Ngày kết thúc</th>
+                                            <th> Trạng thái</th>
+                                            <th>Tham gia thi</th>
+                                            <th> Thao tác</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>1</b>
+                                            </td>
+                                            <td> Trắc nghiệm kỹ năng anh văn</td>
+                                            <td>2017-01-09</td>
+                                            <td>2018-03-09</td>
+                                            <td>
+                                                <div class="badge badge-success">Đang mở</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success">Đã thi</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#chitietkythi">Chi tiết</a>
+                                                <a href="batdauthi" class="btn btn-sm btn-primary">Vào thi</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>2</b>
+                                            </td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td>2017-01-09</td>
+                                            <td>2018-03-09</td>
+                                            <td>
+                                                <div class="badge badge-success">Đang mở</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Chưa thi</span>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <a href="#" type="button" class="btn btn-sm btn-info">Chi tiết</a>
+                                                    <a href="profile" class="btn btn-sm btn-primary">Vào thi</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>3</b>
+                                            </td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td>2017-01-09</td>
+                                            <td>2018-03-09</td>
+                                            <td>
+                                                <div class="badge badge-danger">Kết thúc</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Chưa thi</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" type="button" class="btn btn-sm btn-info">Chi tiết</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td>2017-01-09</td>
+                                            <td>2018-03-09</td>
+                                            <td>
+                                                <div class="badge badge-success">Đang mở</div>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-warning">Chưa thi</span>
+                                            </td>
+                                            <td>
+                                                <a href="#" type="button" class="btn btn-sm btn-info">Chi tiết</a>
+                                                <a href="#" class="btn btn-sm btn-primary">Vào thi</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2018 </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-xs" id="chitietkythi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xs" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Chi tiết kỳ thi</h4>
+                </div>
+                <form class="form-horizontal form-material" action="" method="">
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-12 ml-auto">
+                                    <div class="form-group">
+                                        <h5>Tên kỳ thi:</h5>
+                                        <p></p>
+                                        <h5>Ngày bắt đầu:</h5>
+                                        <p></p>
+                                        <h5>Ngày kết thúc:</h5>
+                                        <p></p>
+                                        <h5>Số lượng câu hỏi:</h5>
+                                        <p></p>
+                                        <h5>Thời gian thi:</h5>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Lịch sử các kỳ thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang chủ</a>
+                            </li>
+                            <li class="active">Lịch sử thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="table-responsive">
+                                    <table id="lsthi_data" class="table table-striped table-hover table-bordered display">
+                                        <thead>
+                                            <tr>
+                                                <th> STT</th>
+                                                <th> Tên kỳ thi</th>
+                                                <th> Ngày bắt đầu</th>
+                                                <th> Ngày kết thúc</th>
+                                                <th> Thời gian</th>
+                                                <th> Tham gia thi </th>
+                                                <th> Tỉ lệ câu đúng</th>
+                                                <th> Điểm</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-weight: 500;">
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row
+            </div>
+           
+            <!-- .container-fluid -->
+                <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+            </div>
+            <!-- /#page-wrapper -->
+        </div>
+
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <footer>
+            <% include ../layout/footer %>
+        </footer>
+        <!-- Load Json -->
+        <script>
+            $(document).ready(function () {
+                var json_data = '<%= data.json_data%>';
+                $.getJSON(json_data, function (data) {
+                    var lsthi_data = '';
+                    var count = 1;
+                    $.each(data, function (key, value) {
+                        lsthi_data += '<tr>';
+                        lsthi_data += '<td style="text-align: center">' + count++ + '</td>';
+                        lsthi_data += '<td>' + value.tenkt + '</td>';
+                        lsthi_data += '<td>' + value.sdate + '</td>';
+                        lsthi_data += '<td>' + value.edate + '</td>';
+                        lsthi_data += '<td style="text-align: center">' + value.tg +" Phút" + '</td>';
+                        lsthi_data += '<td style="text-align: center">' + convertHMS(value.tght) + '</td>';
+                        lsthi_data += '<td style="text-align: center">'+ value.scd +'/'+ value.tsc +'</td>';
+                        if(value.diem == 0.00){
+                            lsthi_data += '<td style="text-align: center; color:red;font-weight:700">' + value.diem + '</td>'
+                        }else if(value.diem < 5.00){
+                            lsthi_data += '<td style="text-align: center; color:#e8d906;font-weight:700">' + value.diem + '</td>'
+                        }else if(value.diem > 5.00){
+                            lsthi_data += '<td style="text-align: center; color:#26e520;font-weight:700">' + value.diem + '</td>'
+                        }
+                        
+                        lsthi_data += '</tr>';
+                    });
+                    $('#lsthi_data').append(lsthi_data);
+                    $('#lsthi_data').DataTable({
+                        "language": {
+                            "url": "../language_vn_json/Vietnamese.json"
+                        },
+                        "pagingType": "full_numbers",
+                        pageLength: 10,
+                        lengthMenu: ['10', '20', '50']
+                    });
+                });
+            }); 
+        </script>
+        <!-- End load Json -->
+        <!-- Convert tg thi -->
+        <script>
+                function convertHMS(value) {
+                  var sec_num = parseInt(value, 10);
+                  var hours   = Math.floor(sec_num / 3600); // giờ
+                  var minutes = Math.floor((sec_num - (hours * 3600)) / 60); //  phút
+                  var seconds = sec_num - (hours * 3600) - (minutes * 60); //  giây
+                  if (hours   < 10) {hours   = "0"+hours;}
+                  if (minutes < 10) {minutes = "0"+minutes;}
+                  if (seconds < 10) {seconds = "0"+seconds;}
+                  return hours+':'+minutes+':'+seconds;
+                }
+                </script>
+        <!-- Load Json Thông báo -->
+        <script>
+                $(document).ready(function () {
+                    var json_data_tb = '<%= data.json_datatb%>';
+                    $.getJSON(json_data_tb, function (data) {
+                        var tone_data = '';
+                        var s = 0;
+                        $.each(data, function (key, value) {
+                            if (value.stat != 0) {
+                                if ((value.sta == 1 && value.stat == 1)) {
+                                    tone_data += `
+                                <div>
+                                    <a href="../../user/kythius">
+                                        <div class="user-img">
+                                            <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                            <span class="profile-status online pull-right"></span>
+                                        </div>
+                                        <div class="mail-contnet">
+                                            <h5 style="color:#7ace4c">Đang mở</h5>
+                                            <span class="mail-desc">`+ value.tenkt + `</span>
+                                            <span class="time">Hết hạn `+ value.edate + `</span>
+                                        </div>
+                                    </a>
+                                <div>
+                                `;
+                                ++s;
+                                }else if (value.stat == 2) {
+                                tone_data += `
+                                <a href="../../user/kythius">
+                                    <div class="user-img">
+                                        <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5 style="color:#fb4">Sắp mở</h5>
+                                        <span class="mail-desc">`+ value.tenkt + `</span>
+                                        <span class="time">Bắt đầu `+ value.sdate + `</span>
+                                    </div>
+                                </a>
+                                `;
+                                ++s;                            
+                                }
+                            }
+                        });
+                        $('#tone_data').append(tone_data);
+                        $('#sltb').append(s);
+                    });
+                }); 
+            </script>
+            <!-- End load Json -->
+</body>
+
+</html>

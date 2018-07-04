@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Kết quả thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="#">Trang Chủ</a>
+                            </li>
+                            <li class="active">Kết quả thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="table-responsive">
+                                <table class="table" id="myTable">
+                                    <thead>
+                                        <tr>
+                                            <th onclick="sortTable(0)">ID <span class="fa fa-caret-up"></span></th>
+                                            <th> Tên kỳ thi</th>
+                                            <th> Ngày bắt đầu</th>
+                                            <th> Ngày kết thúc</th>
+                                            <th> Kết quả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <b>1</b>
+                                            </td>
+                                            <td> Trắc nghiệm kỹ năng anh văn</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#"> Xem chi tiết</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>2</b>
+                                            </td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#">Xem chi tiết</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <b>3</b>
+                                            </td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#">Xem chi tiết</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Trắc nghiệm anh văn</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a href="#">Xem chi tiết</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+</body>
+
+</html>

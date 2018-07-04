@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title"></h4>
+          </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="../../admin/trangchu">Trang Chủ</a></li>
+              <li class="active">Ngân Hàng Câu Hỏi</li>
+            </ol>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="white-box">
+              <div class="table-responsive">
+                <table class="search table table-hover" id="table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th> Câu Hỏi</th>
+                      <th colspan="3" data-toggle="modal" class="right text-right" data-target="#themcauhoi">
+                        <button type="button" class=" btn btn-info">Thêm Câu Hỏi</button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                    <!-- <tr>
+                      <td><b>1</b></td>
+                      <td colspan="2" onclick="undisableTxt()" data-toggle="modal" data-target="#modal1">Anh/Chị được </td>
+                    </tr> -->
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+
+    <!-- star mode -->
+    <div class="modal fade bd-example-modal-lg" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+          </div>
+          <form class="form-horizontal form-material" onSubmit="return confirmAction()" action="../admin/nganhangcauhoichude/capnhat" method="post" enctype="application/x-www-form-urlencoded">
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12 ml-auto">
+                    <div class="form-group" id="cauhoi">
+                      <textarea class="form-control" id="textarea" rows="8"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group" id="a">
+                      <label class="col-md-12" id="daa">A</label>
+                      <div class="col-md-12" id="nda">
+                        <input type="text" name="nda" id="A" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="b">
+                      <label class="col-md-12" id="dab">B</label>
+                      <div class="col-md-12" id="ndb">
+                        <input type="text" name="ndb" id="B" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group" id="c">
+                      <label class="col-md-12" id="dac">C</label>
+                      <div class="col-md-12" id="ndc">
+                        <input type="text" name="ndc" id="C" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group" id="d">
+                      <label class="col-md-12" id="dad">D</label>
+                      <div class="col-md-12" id="ndd">
+                        <input type="text" name="ndd" id="D" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div id="idch">
+              </div>
+              <button type="submit" name="capnhat" value="delete" class="btn btn-danger">Xóa Câu Hỏi</button>
+              <!-- <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button> -->
+              <button type="submit" name="capnhat" value="update" class="btn btn-info">Cập nhật </button>
+              <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="themcauhoi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+            <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+          </div>
+          <form class="form-horizontal form-material" onSubmit="return confirmAction()" method="post">
+            <div class="modal-body">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12 ml-auto">
+                    <div class="form-group">
+                      <textarea class="form-control" rows="8" name="cauhoi" placeholder="Nhập câu hỏi..." required></textarea>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">A &nbsp;&nbsp;
+                          <input type="radio" name="dapandung" value="1"  > <span class="label-text"></span></label>
+                      <div class="col-md-12">
+                        <input type="text" id="A" name="dapana" required placeholder="Nhập đáp án câu A..." class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">B &nbsp;&nbsp;
+                          <input type="radio" name="dapandung" value="2"  required> <span class="label-text"></span></label>
+                      <div class="col-md-12">
+                        <input type="text" id="B" name="dapanb" required placeholder="Nhập đáp án câu B..." class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">C &nbsp;&nbsp;
+                            <input type="radio" name="dapandung" value="3"  > <span class="label-text"></span></label>
+                      <div class="col-md-12">
+                        <input type="text" id="C" name="dapanc" required placeholder="Nhập đáp án câu C..." class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="col-md-12">D &nbsp;&nbsp;
+                            <input type="radio" name="dapandung"  value="4" > <span class="label-text"></span></label>
+                      <div class="col-md-12">
+                        <input type="text" id="D" name="dapand" required placeholder="Nhập đáp án câu D..." class="form-control form-control-line"> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Thoát</button>
+              <!-- <button type="button" class="btn btn-danger">Xóa Câu Hỏi</button> -->
+              <!-- <button type="button" class="btn btn-warning" onclick="disableTxt()">Sửa Câu Hỏi</button> -->
+              <button type="submit" id="save" class="btn btn-info">Lưu câu hỏi </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--   end modal-->
+  </main>
+
+
+  <!-- load data in table -->
+  <script>
+    $(document).ready(function() {
+      // get data json
+      var json_data = decodeURIComponent('<%= data.json_data%>');
+      $.getJSON(json_data, function(data) {
+        var test_data = '';
+        var len = data.length;
+        var count = 1;
+        $.each(data, function(key, value) {
+          test_data += '<tr>';
+          test_data += '<td>' + count++ + '</td>';
+          test_data += '<td  colspan="2" data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1">' + value.ndch + '</td>';
+          test_data += '</tr>';
+        });
+        $('#table').append(test_data);
+
+        // pagination
+        $('#myTable').paginathing({
+          pagerSelector: '#myPager',
+          activeColor: 'Blue',
+          prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+          nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+          insertAfter: '#table',
+          showPrevNext: true,
+          limitPagination: 5,
+          hidePageNumbers: false,
+          perPage: 10
+        });
+      });
+    });
+  </script>
+
+
+  <!-- post -->
+  <script>
+    // get data in modal
+    $(document).ready(function() {
+      var json_data = decodeURIComponent('<%= data.json_data_modal%>');
+      $('#modal1').on('show.bs.modal', function(e) {
+        var personName = $(e.relatedTarget).data('modal-name');
+        $.post(json_data, {
+            idch: personName
+          },
+          function(data, status) {
+            $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" name="cauhoi" id="textarea" rows="8" required>' + data.ndch + '</textarea>');
+            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" name="nda" id="A" value="' + data.nda + '" placeholder="' + data.nda + '" class="form-control form-control-line" required> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" name="ndb" id="B" value="' + data.ndb + '" placeholder="' + data.ndb + '" class="form-control form-control-line" required> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" name="ndc" id="C" value="' + data.ndc + '" placeholder="' + data.ndc + '" class="form-control form-control-line" required> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" name="ndd" id="D" value="' + data.ndd + '" placeholder="' + data.ndd + '" class="form-control form-control-line" required> </div>');
+            $('#modal1 .modal-content .modal-footer #idch').html('<input hidden  name="idch" value="' + data.idch + '" >');
+
+            if (data.da == '1') {
+              $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" checked> <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+            } else if (data.da == '2') {
+              $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" checked> <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+            } else if (data.da == '3') {
+              $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" checked> <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" > <span class="label-text"></span>');
+            } else if (data.da == '4') {
+              $('#modal1 .modal-content .modal-body .row #dad').html('D &nbsp;&nbsp;<input type="radio" name="dapandung" value="4" checked> <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B &nbsp;&nbsp;<input type="radio" name="dapandung" value="2" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C &nbsp;&nbsp;<input type="radio" name="dapandung" value="3" > <span class="label-text"></span>');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A &nbsp;&nbsp;<input type="radio" name="dapandung" value="1" > <span class="label-text"></span>');
+            }
+          });
+      });
+    });
+  </script>
+
+  <!-- get -->
+  <!-- <script>
+      // get data in modal
+      $(document).ready(function() {
+        var json_data = decodeURIComponent('<%= data.json_data%>');
+        $('#modal1').on('show.bs.modal', function(e) {
+          var personName = $(e.relatedTarget).data('modal-name');
+          var jqxhr = $.getJSON(json_data + "&idch=" + personName, function(json) {
+            // $('#modal1 .modal-content .modal-header .modal-title').html(json[0].idch);
+            $('#modal1 .modal-content .modal-body .row #cauhoi').html(json[0].ndch);
+            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text"  placeholder="' + json[0].nda + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text"  placeholder="' + json[0].ndb + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text"  placeholder="' + json[0].ndc + '" class="form-control form-control-line" readonly> </div>');
+            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text"  placeholder="' + json[0].ndd + '" class="form-control form-control-line" readonly> </div>');
+            if (json[0].da == '1') {
+              $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '2') {
+              $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '3') {
+              $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+              $('#modal1 .modal-content .modal-body .row #dad').html('D');
+            } else if (json[0].da == '4') {
+              $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+              $('#modal1 .modal-content .modal-body .row #dab').html('B');
+              $('#modal1 .modal-content .modal-body .row #dac').html('C');
+              $('#modal1 .modal-content .modal-body .row #daa').html('A');
+            }
+
+          });
+        });
+      });
+    </script> -->
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+
+</body>
+
+</html>

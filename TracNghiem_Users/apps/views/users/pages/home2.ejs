@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Trang Chủ</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home-2">Trang Chủ</a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="overlay-box">
+                            <div class="panel panel-info">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: bold;">Mobifone</div>
+                                <div class="panel-body about">
+                                    <ul class="nav nav-tabs" style="font-weight: 550">
+                                        <li>
+                                            <a href="home">Giới thiệu</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="home2">Hợp tác Mobifone</a>
+                                        </li>
+                                    </ul>
+                                    <div class="space20">&nbsp;</div>
+                                    <p></p>
+                                    <div class="space20">&nbsp;</div>
+                                    <div class="container-fluid content-home noidungab">
+                                        <i class="fa fa-cube" aria-hidden="true"></i> Các lĩnh vực Tổng công ty viễn thông MobiFone đang quan tâm:
+                                        <ul>
+                                            <li>Lĩnh vực M2M/IoT</li>
+                                            <li>Lĩnh vực OTT TV</li>
+                                            <li>Lĩnh vực thanh toán điện tử</li>
+                                            <li>Lĩnh vực quảng cáo trên di động</li>
+                                            <li>Lĩnh vực tài chính bảo hiểm</li>
+                                            <li>Lĩnh vực trò chơi trên di động</li>
+                                        </ul>
+                                        <div class="space20">&nbsp;</div>
+                                        <i class="fa fa-cube" aria-hidden="true"></i> Nguyên tắc hợp tác:
+                                        <ul>
+                                            <li>MobiFone khuyến khích hợp tác cung cấp các dịch vụ chưa được cung cấp trên mạng
+                                                MobiFone.
+                                            </li>
+                                            <li>Đối với các dịch vụ đã được cung cấp trên mạng MobiFone, đối tác cần làm rõ sự
+                                                vượt trội của dịch vụ mới so với dịch vụ đã được cung cấp.</li>
+                                        </ul>
+                                        <div class="space20">&nbsp;</div>
+                                        <i class="fa fa-cube" aria-hidden="true"></i> Yêu cầu với đối tác của MobiFone:
+                                        <ul>
+                                            <li>Giấy phép kinh doanh</li>
+                                            <li>Năng lực tài chính</li>
+                                            <li>Bản quyền nội dung số, bản quyền giải pháp</li>
+                                            <li>Kinh nghiệm cung cấp nội dung số</li>
+                                            <li>Kiến trúc hệ thống và mô hình kết nối kĩ thuật</li>
+                                        </ul>
+                                        <hr class="style_hr">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+    <!-- Load Json Thông báo -->
+    <script>
+        $(document).ready(function () {
+            var json_data_tb = '<%= data.json_datatb%>';
+            $.getJSON(json_data_tb, function (data) {
+                var tone_data = '';
+                var s = 0;
+                $.each(data, function (key, value) {
+                    if (value.stat != 0) {
+                        if ((value.sta == 1 && value.stat == 1)) {
+                            tone_data += `
+                            <div>
+                                <a href="../../user/kythius">
+                                    <div class="user-img">
+                                        <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                        <span class="profile-status online pull-right"></span>
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5 style="color:#7ace4c">Đang mở</h5>
+                                        <span class="mail-desc">`+ value.tenkt + `</span>
+                                        <span class="time">Hết hạn `+ value.edate + `</span>
+                                    </div>
+                                </a>
+                            <div>
+                            `;
+                            ++s;
+                        } else if (value.stat == 2) {
+                            tone_data += `
+                            <a href="../../user/kythius">
+                                <div class="user-img">
+                                    <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 style="color:#fb4">Sắp mở</h5>
+                                    <span class="mail-desc">`+ value.tenkt + `</span>
+                                    <span class="time">Bắt đầu `+ value.sdate + `</span>
+                                </div>
+                            </a>
+                            `;
+                            ++s;
+                        }
+                    }
+                });
+                $('#tone_data').append(tone_data);
+                $('#sltb').append(s);
+            });
+        }); 
+    </script>
+    <!-- End load Json -->
+</body>
+
+</html>

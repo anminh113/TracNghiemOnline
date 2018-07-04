@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+        <link rel="stylesheet" href="../../css/btntop.css">
+
+</head>
+
+<body class="fix-header" onkeydown="return (event.keyCode == 154)" onload="time()">
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <div class="top-left-part">
+                    <!-- Logo -->
+                    <a>
+                        <b>
+                            <img src="../../plugins/images/LogoMobifone.png" width="100px" class="show-xs light-logo" />
+                        </b>
+                        <span class="hidden-xs">
+                            <img src="../../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                        </span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+                <ul class="nav navbar-top-links navbar-left">
+                    <li>
+                        <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right active">
+                    <li class="dropdown ">
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="true">
+                            <img src="../../plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle">
+                            <b class="hidden-xs">
+                                <%= data.hoten%>
+                            </b>
+                            <!-- <span class="caret"></span> -->
+                        </a>
+                    </li>
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+            <!-- /.navbar-header -->
+            <!-- /.navbar-top-links -->
+            <!-- /.navbar-static-side -->
+        </nav>
+
+        <div class="navbar-default sidebar" role="navigation" style="overflow: visible;">
+            <div class="slimScrollDiv" style="position: relative; overflow: visible; width: auto; height: 100%;">
+                <div class="sidebar-nav slimscrollsidebar active" style="overflow-x: visible; overflow-y: hidden; width: auto; height: 100%;">
+                    <div class="sidebar-head">
+                        <a href="javascript:void(0)" class="open-close waves-effect waves-light">
+                            <b>
+                                <img src="../../plugins/images/LogoMobifone.png" width="200px" class="show-xs light-logo" />
+                            </b>
+                            <span class="hidden-xs">
+                                <img src="../../plugins/images/LogoMobiFone.png" width="200px" alt="home" class="light-logo" />
+                            </span>
+                        </a>
+                    </div>
+                    <ul class="nav" id="side-menu">
+                        <li style="padding: 70px 0 0;">
+                            <a style="text-align: center;font-size: 18px;color:#0136A9">
+                                <b class="info-lb">THÔNG TIN</b>
+                                <hr class="style_hr">
+                            </a>
+                            <a class="waves-effect">
+                                <b class="info-lb">TÊN CHỦ ĐỀ:</b>
+                                <br>
+                                <small class="info">
+                                    <%= data.tencd%>
+                                </small>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect">
+                                <b class="info-lb">THỜI GIAN:</b>
+                                <br>
+                                <small class="info">
+                                    <%= data.thoigianlt%> phút
+                                </small>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect">
+                                <b class="info-lb">SỐ CÂU HỎI:</b>
+                                <br>
+                                <small class="info">
+                                    <%= data.socauhoi%> câu
+                                </small>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="waves-effect">
+                                <b class="info-lb">NGƯỜI LUYỆN TẬP:</b>
+                                <br>
+                                <small class="info">
+                                    <%= data.hoten%>
+                                </small>
+                                <hr class="style_hr">
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="form-clock">
+                        <form id="clock" style="font-weight: bold;">
+                            <i class="fa fa-bullhorn fa-fw"></i>
+                            <span> Thời gian hiện tại </span>
+                            <br>
+                            <p>
+                                <div style="color:#b1a9a9" id="clocks"></div>
+                            </p>
+
+                        </form>
+                        <script>
+                            var myVariable = true;
+                            sessionStorage['myvariable'] = myVariable;
+                            myVariable = sessionStorage['myvariable'];
+                        </script>
+                    </div>
+                    <!-- <div id="bien" style="width: 80%;height: auto; padding: 8px;margin:0 auto;" ></div> -->
+                    <div class="center p-20">
+                    </div>
+                </div>
+                <div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.3); width: 6px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 458.451px;"></div>
+                <div class="slimScrollRail" style="width: 6px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Luyện thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a>Trang Chủ</a>
+                            </li>
+                            <li>
+                                <a>Chủ đề</a>
+                            </li>
+                            <li class="active">Tiến hành luyện thi</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class=" overlay-box">
+                            <div class="panel panel-info">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: bold;">Phần Thi</div>
+                                <div class="space20">&nbsp;</div>
+                                <div class="clearfix"></div>
+                                <div class="panel-body body-qu">
+                                    <form method="POST" enctype="application/x-www-form-urlencoded" action="/user/tuluyentap">
+                                        <div class="container-fluid">
+                                            <div class="content">
+                                                <table id="tuluyentap_data" class="table-responsive" style="margin:15px auto" cellspacing="0" width="100%">
+                                                    <tbody id="myTable" style="color: black; opacity: 0.7">
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-md-12 center text-center">
+                                                    <ul class="pagination" id="myPager">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="space20">&nbsp;</div>
+                                            <div class="clearfix"></div>
+                                            <div style="margin-top: 30px">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="space20">&nbsp;</div>
+                                        <div class="panel-ft">
+                                            <input hidden name="idcd" value="<%= data.idcd%>">
+                                            <input hidden name="tencd" value="<%= data.tencd%>">
+                                            <input hidden name="socauhoi" value="<%= data.socauhoi%>">
+                                            <button id="finish" type="submit" class="btn btn-info btn-ft nb_btn">
+                                                <i class="fa fa-modx"></i> Nộp bài</button>
+                                            <label id="demo" class="nbc">
+                                                <i class="fa fa-bullhorn fa-fw"></i>
+                                                <span style="font-weight: bold;" name="thoigian" id="countdown" class="timer"></span>
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                    <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+                </div>
+                <!-- /#page-wrapper -->
+            </div>
+            <script language="JavaScript">
+                function confirmAction_nb() {
+                    var txt;
+                    var r = confirm("Press a button!");
+                    if (r == true) {
+                        txt = "You pressed OK!";
+                    } else {
+                        return false;
+                    }
+                }
+            </script>
+            <!-- /#wrapper -->
+            <!-- jQuery -->
+            <footer>
+                <% include ../layout/footer %>
+                    <script src="../../js/btntop.js"></script>
+            </footer>
+            <!-- Time-->
+            <script>
+                var phut = '<%= data.thoigianlt%>';
+                var upgradeTime = phut * 60;
+                var seconds = upgradeTime;
+                var check = '<%= data.check%>';
+
+                function timer() {
+                    var days = Math.floor(seconds / 24 / 60 / 60);
+                    var hoursLeft = Math.floor((seconds) - (days * 86400));
+                    var hours = Math.floor(hoursLeft / 3600);
+                    var minutesLeft = Math.floor((hoursLeft) - (hours * 3600));
+                    var minutes = Math.floor(minutesLeft / 60);
+                    var remainingSeconds = seconds % 60;
+                    if (remainingSeconds < 10) {
+                        remainingSeconds = "0" + remainingSeconds;
+                    }
+                    document.getElementById('countdown').innerHTML = hours + ":" + minutes + ":" + remainingSeconds;
+
+                    if (seconds == 0) {
+
+                        clearInterval(countdownTimer);
+                        document.getElementById('countdown').innerHTML = "Completed";
+                        if (check == 0) {
+                            setTimeout(function () {
+                                swal({
+                                    title: "Thông báo!",
+                                    text: "Hết thời gian luyện tập",
+                                    imageUrl: "../../plugins/images/clock.png",
+                                    confirmButtonText: "OK"
+                                },
+                                    function (isConfirm) {
+                                        if (isConfirm) {
+                                            document.getElementById("finish").click();
+                                        }
+                                    });
+                            }, 100);
+                        }
+                    } else {
+                        seconds--;
+                    }
+
+
+                }
+                var countdownTimer = setInterval('timer()', 1000);
+            </script>
+            <!-- End Time -->
+            <script>
+                $(document).ready(function () {
+                    var json_data = decodeURIComponent('<%= data.json_data%>');
+                    var tuluyentap_data = '';
+                    // var matran_cauhoi = '';
+                    $.getJSON(json_data, function (data) {
+                        var count = 1;
+                        var choose = 1;
+                        // var socauhoi=1;
+                        $.each(data, function (key, value) {
+                            tuluyentap_data += '<tr>';
+                            tuluyentap_data += '<td>';
+                            tuluyentap_data +=
+                                `
+                                <div class="row">
+                                            <div class="row">
+                                                <div class="col-sm-12 container head-an col">
+                                                    <div class="title-cauhoi">Câu `+ count++ + `</div>
+                                                    <div class="space10">&nbsp;</div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="noidung-cauhoi" style="font-weight:700">
+                                                    ` + value.ndch + `            
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 container col" style=" border-top-left-radius:0px; border-top-right-radius:0px;">
+                                                <div class="space10">&nbsp;</div>
+                                                <div class="row">
+                                                    <form  class="toeic_pages" id="`+ choose + `">
+                                                        <div class="row">    
+                                                            <div class="col-6 col-sm-6">
+                                                                <label class="container-ra">
+                                                                    <b style="font-weight:700">A.</b> `+ value.nda + `
+                                                                    <input type="radio"  class="rdCheck" name="radio" value="1">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-6 col-sm-6">
+                                                                <label class="container-ra">
+                                                                    <b style="font-weight:700">B.</b> `+ value.ndb + `
+                                                                    <input type="radio" name="radio" value="2">
+                                                                    <span class="checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">    
+                                                            <div>&nbsp;</div>
+                                                        </div>
+                                                    <div class="row">
+                                                        <div class="col-6 col-sm-6">
+                                                            <label class="container-ra">
+                                                                <b style="font-weight:700">C.</b> `+ value.ndc + `
+                                                                <input type="radio" name="radio" value="3">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-6 col-sm-6">
+                                                            <label class="container-ra">
+                                                                <b style="font-weight:700">D.</b> `+ value.ndd + `
+                                                                <input type="radio" name="radio" value="4">
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-6 col-sm-6" hidden>
+                                                            <label class="container-ra">
+                                                                <input type="radio" name="radio" value="0" checked>
+                                                                <span class="checkmark"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>    
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            </div>   
+                                                <div class="space20">&nbsp;</div>
+                                                <div class="clearfix"></div>
+                                                <div style="margin-top: 30px">
+                                                <p></p>
+                                                </div>                                        
+                                        <div id="test"></div>
+                                        <input name="choose" value="`+ choose++ + `" hidden>
+                                        <input name="idch" value="`+ value.idch + `" hidden>
+                                        </td>
+                                        </tr> 
+                                        `;
+                            tuluyentap_data += '</td>';
+                            tuluyentap_data += '</tr>';
+                        });
+                        // $.each(data, function (key, value) {
+                        //     matran_cauhoi  +=`<div style="width:30px; height:30px; border:1px solid #a2a2a2; margin: 2px; float:left; text-align:center">`+ socauhoi++ +`</div>`;
+                        // });
+
+                        $('#tuluyentap_data').append(tuluyentap_data);
+
+                        // $('#bien').append(matran_cauhoi);
+                        $('#myTable').pagination({
+                            pagerSelector: '#myPager',
+                            activeColor: 'red',
+                            prevText: 'Prev',
+                            nextText: 'Next',
+                            showPrevNext: true,
+                            hidePageNumbers: false,
+                            perPage: 10
+                        });
+                        $(document).ready(function () {
+                            $("#finish").click(function () {
+                                var r = confirm("Bạn đã chắc chắn nộp bài?");
+                                if (r == true) {
+                                    var answersList = [];
+                                var answer;
+                                $(".toeic_pages").each(function () {
+                                    var questionId = $(this).attr("id");
+                                    answer = $("input[name='radio']:checked", $(this)).val();
+
+                                    answersList.push({
+                                        answer: answer
+                                    });
+                                });
+                                answersList1 = JSON.stringify(answersList)
+                                $("#test").append("<input name='test' value='" + answersList1 + "' hidden>");
+                                console.log(answersList1);
+                                } else {
+                                    return false;
+                                }
+                                
+
+                            });
+                        });
+                    });
+                });  
+            </script>
+            <% if(data && data.result == 'success'){ %>
+                <script>
+                    setTimeout(function () {
+                        swal({
+                            title: "Thông báo!",
+                            text: "<%= data.diem%>Điểm (<%= data.dad%>)",
+                            imageUrl: "../../plugins/images/total.png",
+                            confirmButtonText: "OK"
+                        },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    close();
+                                }
+                            });
+                    }, 100);
+                </script>
+                <% } %>
+                    <script src="../../js/clock.js"></script>
+</body>
+
+</html>

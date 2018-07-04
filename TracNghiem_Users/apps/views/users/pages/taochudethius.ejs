@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Chủ đề thi</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang Chủ</a>
+                            </li>
+                            <li class="active">Chủ đề thi</li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <form method="POST" class="form-horizontal form-material" enctype="application/x-www-form-urlencoded">
+                                <div class="form-group">
+                                    <label class="col-md-12">Thêm chủ đề thi</label>
+                                    <div class="col-md-10">
+                                        <input type="text" name="chude" placeholder="Nhập tên chủ đề thi" class="form-control form-control-line" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" class="btn btn-info">&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material">
+                                <div class="table-responsive" style="margin:15px auto" cellspacing="0" width="100%">
+                                    <table id="chude_data" class="search table table-striped table-bordered table-hover display">
+                                        <thead>
+                                            <tr>
+                                                <!-- <th>ID</th> -->
+                                                <th>STT</th>
+                                                <th>Tên chủ đề</th>
+                                                <th>Số câu hỏi</th>
+                                                <th>Thêm câu hỏi</th>
+                                                <th>Xem chi tiết</th>
+                                                <th>Tự luyện tập</th>
+                                                <th>Thay đổi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-weight: 500; text-align: center">
+
+
+                                        </tbody>
+                                    </table>
+                                    <!-- <div class="col-md-12 center text-center">
+                                    <ul class="pagination" id="myPager">
+                                    </ul>
+                                </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            var json_data = decodeURIComponent('<%= data.json_data%>');
+            $.getJSON(json_data, function (data) {
+                var chude_data = '';
+                var count = 1;
+                $.each(data, function (key, value) {
+                    chude_data += '<tr>';
+                    chude_data += '<td>' + count++ + '</td>';
+                    chude_data += '<td>' + value.tencd + '</td>';
+                    chude_data += '<td>' + value.socauhoi + '</td>';
+                    chude_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/user/taochudethius/taochudethi-themcauhoi"><input name="idcd" value="' + value.idcd +
+                        '" hidden><button type="submit" class="btn btn-info">Thêm câu hỏi</button></form></td>';
+                    chude_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/user/taochudethius/taochudethi-chitiet"><input name="idcd" value="' + value.idcd +
+                        '" hidden><input name="tencd" value="' + value.tencd +
+                        '" hidden><button type="submit" class="btn btn-info">Xem chi tiết</button></form></td>';
+                    if (value.socauhoi == 0) {
+                        chude_data += '<td><button class="btn btn-warning" disabled>Tự luyện tập</button></td>';
+                    } else {
+                        chude_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/user/taochudethius/start-tuluyentap"><input name="idcd" value="' + value.idcd +
+                            '" hidden><input name="tencd" value="' + value.tencd + '" hidden><input name="socauhoi" value="' + value.socauhoi + '" hidden><button type="submit" class="btn btn-info">Tự luyện tập</button></form></td>';
+                    }
+                    chude_data += '<td><a class="btn btn-danger" onclick="return confirmAction()" href="../user/taochudethius/xoa/' + value.idcd + '"><i class="fa  fa-suitcase fa-bitbucket fa-fw"></i>Xoá</a></td>';
+                    chude_data += '</tr>';
+                });
+                $('#chude_data').append(chude_data);
+                $('#chude_data').DataTable({
+                    "language": {
+                        "url": "../language_vn_json/Vietnamese.json"
+                    },
+                    "pagingType": "full_numbers",
+                    pageLength: 10,
+                    lengthMenu: ['10', '50', '100'],
+                    select: true
+                });
+                // $('#myTable').pagination({
+                //     pagerSelector: '#myPager',
+                //     activeColor: 'red',
+                //     prevText: 'Prev',
+                //     nextText: 'Next',
+                //     showPrevNext: true,
+                //     hidePageNumbers: false,
+                //     perPage: 1
+                // });
+            });
+        });  
+    </script>
+    <!-- <script>
+        function archiveFunction() {
+            event.preventDefault();
+            var form = event.target.form;
+            swal({
+                title: "Bạn đã chắc chắn?",
+                text: "Bạn không thể phục hồi lại được.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Vâng, xoá đi!",
+                cancelButtonText: "Không",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                        location.href = "../user/taochudethius";
+                    } else {
+                        swal("Đã huỷ", "Thông tin của bạn vẫn còn", "error");
+                    }
+                });
+        }
+    </script> -->
+    <!-- <script type="text/javascript">
+        $(document).ready(function () {
+            $('table.search').tableSearch({
+                searchText: '',
+                searchPlaceHolder: 'Tìm Kiếm....'
+            });
+        });
+    </script> -->
+    <!-- Alert -->
+    <% if(data.message == '0'){ %>
+        <script>
+            iziToast.success({
+                title: 'Thêm chủ đề',
+                message: 'Thành công',
+                position: 'bottomRight'
+            });
+        </script>
+        <% }else if(data.message == '1'){ %>
+            <script>
+                iziToast.error({
+                    title: 'Thêm chủ đề',
+                    message: 'Thất bại',
+                    position: 'bottomRight'
+                });
+            </script>
+            <% } %>
+                <% if(data.message_delete == '0'){ %>
+                    <script>
+                        iziToast.success({
+                            title: 'Xoá chủ đề',
+                            message: 'Thành công',
+                            position: 'bottomRight'
+                        });
+                    </script>
+                    <% }else if(data.message_delete == '1'){ %>
+                        <script>
+                            iziToast.error({
+                                title: 'Xoá chủ đề',
+                                message: 'Thất bại',
+                                position: 'bottomRight'
+                            });
+                        </script>
+                        <% } %>
+                            <!-- Alert them cau hoi chu de -->
+                            <% if(data.message_addchcd == '0'){ %>
+                                <script>
+                                    iziToast.success({
+                                        title: 'Thêm câu hỏi vào chủ đề',
+                                        message: 'Thành công',
+                                        position: 'bottomRight'
+                                    });
+                                </script>
+                                <% }else if(data.message_addchcd == '1'){ %>
+                                    <script>
+                                        iziToast.error({
+                                            title: 'Thêm câu hỏi vào chủ đề',
+                                            message: 'Thất bại',
+                                            position: 'bottomRight'
+                                        });
+                                    </script>
+                                    <% } %>
+                                        <!-- end them cau hoi chu de -->
+                                        <!-- -->
+                                        <!-- Alert xoa cau hoi của chi tiet chu de -->
+                                        <% if(data.message_delchcd == '0'){ %>
+                                            <script>
+                                                iziToast.success({
+                                                    title: 'Xoá câu hỏi khỏi chủ đề',
+                                                    message: 'Thành công',
+                                                    position: 'bottomRight'
+                                                });
+                                            </script>
+                                            <% }else if(data.message_delchcd == '1'){ %>
+                                                <script>
+                                                    iziToast.error({
+                                                        title: 'Xoá câu hỏi khỏi chủ đề',
+                                                        message: 'Thất bại',
+                                                        position: 'bottomRight'
+                                                    });
+                                                </script>
+                                                <% } %>
+                                                    <!-- end xoa cau hoi chi tiet chu de -->
+                                                    <% if(data.message_addchcd_err == '0'){ %>
+                                                        <script>
+                                                            iziToast.error({
+                                                                title: 'Chưa chọn câu hỏi để thêm',
+                                                                message: 'Thất bại',
+                                                                position: 'bottomRight'
+                                                            });
+                                                        </script>
+                                                        <% }%>
+                                                            <!-- - -->
+                                                            <% if(data.message_delchcd_err == '0'){ %>
+                                                                <script>
+                                                                    iziToast.error({
+                                                                        title: 'Chưa chọn câu hỏi để xoá',
+                                                                        message: 'Thất bại',
+                                                                        position: 'bottomRight'
+                                                                    });
+                                                                </script>
+                                                                <% }%>
+<!-- Load Json Thông báo -->
+<script>
+        $(document).ready(function () {
+            var json_data_tb = '<%= data.json_datatb%>';
+            $.getJSON(json_data_tb, function (data) {
+                var tone_data = '';
+                var s = 0;
+                $.each(data, function (key, value) {
+                    if (value.stat != 0) {
+                        if ((value.sta == 1 && value.stat == 1)) {
+                            tone_data += `
+                        <div>
+                            <a href="../../user/kythius">
+                                <div class="user-img">
+                                    <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                    <span class="profile-status online pull-right"></span>
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 style="color:#7ace4c">Đang mở</h5>
+                                    <span class="mail-desc">`+ value.tenkt + `</span>
+                                    <span class="time">Hết hạn `+ value.edate + `</span>
+                                </div>
+                            </a>
+                        <div>
+                        `;
+                        ++s;
+                        }else if (value.stat == 2) {
+                        tone_data += `
+                        <a href="../../user/kythius">
+                            <div class="user-img">
+                                <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                            </div>
+                            <div class="mail-contnet">
+                                <h5 style="color:#fb4">Sắp mở</h5>
+                                <span class="mail-desc">`+ value.tenkt + `</span>
+                                <span class="time">Bắt đầu `+ value.sdate + `</span>
+                            </div>
+                        </a>
+                        `;
+                        ++s;                            
+                        }
+                    }
+                });
+                $('#tone_data').append(tone_data);
+                $('#sltb').append(s);
+            });
+        }); 
+    </script>
+    <!-- End load Json -->
+</body>
+
+</html>

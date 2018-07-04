@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<header>
+        <% include ../partials/header %>
+</header>
+<body class="fix-header">
+    <main>
+    	<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Kết quả kỳ thi</h4> </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="../../admin/trangchu">Trang Chủ</a></li>
+                            <li><a href="../../admin/ketquakythi">Kết quả kỳ thi</a></li>
+
+                            <li class="active">Kì Thi: <%= data.tenkt%></li>
+                        </ol>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                          <p class="text-muted">Ngày bắt đầu: <%= data.sdate%> &nbsp;&nbsp;&nbsp;&nbsp;Ngày kết thúc: <%= data.edate%></p>
+
+                            <div class="table-responsive">
+                                <table class="search table table-hover" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên nhân viên</th>
+                                            <th>Phòng ban</th>
+                                            <th>Thời gian hoàn thành</th>
+                                            <th>Số câu hoàn thành</th>
+
+                                            <th>Điểm số</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable">
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <p class="text-muted">Nhân viên không tham gia thi</p>
+                            <div class="table-responsive">
+                                <table class="search1 table table-hover" id="table1">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Tên nhân viên</th>
+                                            <th>Phòng ban</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="myTable1">
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page Content -->
+            <!-- ============================================================== -->
+        </div>
+    </main>
+    <script>
+    function convertHMS(value) {
+      var sec_num = parseInt(value, 10);
+      var hours   = Math.floor(sec_num / 3600); // giờ
+      var minutes = Math.floor((sec_num - (hours * 3600)) / 60); //  phút
+      var seconds = sec_num - (hours * 3600) - (minutes * 60); //  giây
+      if (hours   < 10) {hours   = "0"+hours;}
+      if (minutes < 10) {minutes = "0"+minutes;}
+      if (seconds < 10) {seconds = "0"+seconds;}
+      return hours+':'+minutes+':'+seconds;
+    }
+    </script>
+    <script>
+      $(document).ready(function() {
+        // get data json
+        $.getJSON('<%= data.json_data%>', function(data) {
+          var test_data = '';
+          var count = 1;
+          $.each(data, function(key, value) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td>' + value.hoten + '</td>';
+            test_data += '<td>' + value.tenpb + '</td>';
+            test_data += '<td>' + convertHMS(value.tght) + '</td>';
+            test_data += '<td><span class="colordelete">' + value.scd+'</span> /  '+  value.tsc + '</td>';
+            // test_data += '<td class="colordelete">' + value.diem + '</td>';
+            if (value.diem != 'NaN') {
+              if (parseFloat(value.diem) >= 8) {
+                test_data += '<td><span class="text-info">' + value.diem + '</span></td>';
+              } else if (parseFloat(value.diem) >= 5) {
+                test_data += '<td><span class="text-success">' + value.diem + '</span></td>';
+              } else if (parseFloat(value.diem) == 0) {
+                test_data += '<td><span class="text-danger">0</span></td>';
+              } else {
+                test_data += '<td><span class="text-warning">' + value.diem + '</span></td>';
+              }
+            } else {
+              test_data += '<td><span class="text-danger">0</span></td>';
+            }
+            test_data += '</tr>';
+          });
+          $('#table').append(test_data);
+
+          // pagination
+          $('#myTable').paginathing({
+            pagerSelector: '#myPager',
+            activeColor: 'Blue',
+            prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            insertAfter: '#table',
+            showPrevNext: true,
+            limitPagination: 3,
+            hidePageNumbers: false,
+            perPage: 10
+          });
+        });
+      });
+    </script>
+
+
+    <script>
+      $(document).ready(function() {
+        var json_data_khongthi = decodeURIComponent('<%= data.json_data_khongthi%>');
+        // get data json
+        $.getJSON(json_data_khongthi, function(data) {
+          var test_data = '';
+          var count = 1;
+
+          $.each(data, function(key, value) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td>' + value.hoten + '</td>';
+            test_data += '<td>' + value.tenpb + '</td>';
+            test_data += '</tr>';
+          });
+          $('#table1').append(test_data);
+
+          // pagination
+          $('#myTable1').paginathing({
+            pagerSelector: '#myPager1',
+            activeColor: 'Blue',
+            prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+            nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+            insertAfter: '#table1',
+            showPrevNext: true,
+            limitPagination: 3,
+            hidePageNumbers: false,
+            perPage: 10
+          });
+        });
+      });
+    </script>
+
+
+
+
+
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+
+</body>
+</html>

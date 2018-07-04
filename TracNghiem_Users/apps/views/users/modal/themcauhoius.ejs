@@ -1,0 +1,76 @@
+<div class="modal fade bd-example-modal-lg" id="themcauhoi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+            </div>
+            <form class="form-horizontal form-material" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 ml-auto">
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="8" name="cauhoi" placeholder="Nhập câu hỏi..." autocomplete="off" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">A &nbsp;&nbsp;
+                                        <input type="radio" name="dapandung" value="1" required>
+                                        <span class="label-text"></span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="A" name="dapana" placeholder="Nhập đáp án câu A..." class="form-control form-control-line" autocomplete="off" required> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">B &nbsp;&nbsp;
+                                        <input type="radio" name="dapandung" value="2" required>
+                                        <span class="label-text"></span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="B" name="dapanb" placeholder="Nhập đáp án câu B..." class="form-control form-control-line" autocomplete="off" required> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">C &nbsp;&nbsp;
+                                        <input type="radio" name="dapandung" value="3" required>
+                                        <span class="label-text"></span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="C" name="dapanc" placeholder="Nhập đáp án câu C..." class="form-control form-control-line" autocomplete="off" required> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="col-md-12">D &nbsp;&nbsp;
+                                        <input type="radio" name="dapandung" value="4" required>
+                                        <span class="label-text"></span>
+                                    </label>
+                                    <div class="col-md-12">
+                                        <input type="text" id="D" name="dapand" placeholder="Nhập đáp án câu D..." class="form-control form-control-line" autocomplete="off" required> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger text-right" data-dismiss="modal">Thoát</button>
+                    <button type="submit" id="update" class="btn btn-info">Lưu câu hỏi </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

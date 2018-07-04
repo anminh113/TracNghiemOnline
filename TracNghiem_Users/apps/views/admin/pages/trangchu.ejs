@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+</header>
+
+<body class="fix-header">
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Trang Chủ</h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="#">Trang Chủ</a></li>
+            </ol>
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <!-- ============================================================== -->
+        <!-- Different data widgets -->
+        <!-- ============================================================== -->
+        <!-- .row -->
+        <div class="row">
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+            <a href="../../admin/ketquakythi/2">
+              <div class="white-box analytics-info">
+                <h3 class="box-title">Tổng kỳ thi</h3>
+                <ul class="list-inline two-part">
+                  <li>
+                    <div id="sparklinedash"></div>
+                  </li>
+                  <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span id="count_total" class="text-purple"></span></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+            <a href="../../admin/ketquakythi/0">
+              <div class="white-box analytics-info">
+                <h3 class="box-title">Số kỳ thi đã hoàn thành</h3>
+                <ul class="list-inline two-part">
+                  <li>
+                    <div id="sparklinedash2"></div>
+                  </li>
+                  <li class="text-right"><i class="ti-arrow-up text-warning"></i> <span id="count_kt" class="text-warning"></span></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-lg-4 col-sm-6 col-xs-12">
+            <a href="../../admin/ketquakythi/1">
+              <div class="white-box analytics-info">
+                <h3 class="box-title">Số kỳ thi trên trung bình</h3>
+                <ul class="list-inline two-part">
+                  <li>
+                    <div id="sparklinedash3"></div>
+                  </li>
+                  <li class="text-right"><i class="ti-arrow-up text-success"></i> <span id="count_bt" class="text-success"></span></li>
+                </ul>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- table -->
+        <!-- ============================================================== -->
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+              <h3 class="box-title">Chất lượng các kỳ thi gần đây</h3>
+              <div class=" table-responsive">
+                <table class="table" id="table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Kỳ thi</th>
+                      <th>Chủ đề</th>
+                      <th>Số câu</th>
+                      <th>Thời gian thi</th>
+                      <th>Điểm trung bình</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+                    <!-- <tr>
+                      <td>1</td>
+                      <td class="txt-oflo">Elite admin</td>
+                      <td>SALE</td>
+                      <td class="txt-oflo">April 18, 2017</td>
+                      <td><span class="text-success">24%</span></td>
+                    </tr> -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- chat-listing & recent comments -->
+        <!-- ============================================================== -->
+
+      </div>
+      <!-- /.container-fluid -->
+
+    </div>
+  </main>
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      // url+LSThi?idkt=idkt
+      // get data json
+      $.getJSON('<%= data.json_data_kythi%>', function(data) {
+        var test_data = '';
+        var count = 1;
+        var count_kt = 0;
+        var count_total
+        var count_bt = 0;
+        $.each(data, function(key, value) {
+
+          if (value.stat == 0) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td class="txt-oflo">' + value.tenkt + '</td>';
+            test_data += '<td class="txt-oflo">' + value.tencd + '</td>';
+            test_data += '<td>' + value.socauhoi + '</td>';
+            test_data += '<td>' + value.tg + ' phút</td>';
+            if (value.diemtb != 'NaN') {
+              if (parseFloat(value.diemtb) >= 8) {
+                test_data += '<td><span class="text-info">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) >= 5) {
+                count_bt = ++count_bt;
+                test_data += '<td><span class="text-success">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) == 0) {
+                test_data += '<td><span class="text-danger">0</span></td>';
+              } else {
+                test_data += '<td><span class="text-warning">' + value.diemtb + '</span></td>';
+              }
+            } else {
+              test_data += '<td><span class="text-danger">0</span></td>';
+            }
+
+            test_data += '</tr>';
+            count_kt = ++count_kt;
+          }
+          count_total = data.length;
+        });
+        // $('#table').append(test_data);
+        $('#count_kt').append(count_kt);
+        $('#count_bt').append(count_bt);
+        $('#count_total').append(count_total);
+
+
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // get data json
+      $.getJSON('<%= data.json_data_kythi_LS%>', function(data) {
+        var test_data = '';
+        var count = 1;
+
+        $.each(data, function(key, value) {
+          if (value.stat == 0) {
+            test_data += '<tr>';
+            test_data += '<td>' + count++ + '</td>';
+            test_data += '<td class="txt-oflo">' + value.tenkt + '</td>';
+            test_data += '<td class="txt-oflo">' + value.tencd + '</td>';
+            test_data += '<td>' + value.socauhoi + '</td>';
+            test_data += '<td>' + value.tg + ' phút</td>';
+            if (value.diemtb != 'NaN') {
+              if (parseFloat(value.diemtb) >= 8) {
+                test_data += '<td><span class="text-info">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) >= 5) {
+                test_data += '<td><span class="text-success">' + value.diemtb + '</span></td>';
+              } else if (parseFloat(value.diemtb) == 0) {
+                test_data += '<td><span class="text-danger">0</span></td>';
+              } else {
+                test_data += '<td><span class="text-warning">' + value.diemtb + '</span></td>';
+              }
+            } else {
+              test_data += '<td><span class="text-danger">0</span></td>';
+            }
+
+            test_data += '</tr>';
+          }
+        });
+        $('#table').append(test_data);
+
+      });
+    });
+  </script>
+
+
+</body>
+
+
+
+</html>

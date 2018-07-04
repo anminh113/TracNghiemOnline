@@ -1,0 +1,25 @@
+.about{
+    font-family: 'Open Sans', sans-serif;
+}
+.noidungab{
+    font-size: 1.1em;
+    text-align: -webkit-match-parent;
+    font-weight: 500;
+    line-height: 2;
+}
+
+.noidungab p{
+    line-height: 2;
+    text-align: justify;
+}
+
+@media screen and (min-width: 320px){
+    .img-info{
+        height: 100px;
+        width: 200px;
+    }
+}
+.style_hr{
+    border: 0.5px solid #b2b2b2; 
+    box-shadow: 0.5px 0.5px #c2c2c2
+}

@@ -1,0 +1,67 @@
+<div class="modal fade bd-example-modal-lg" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Câu Hỏi:</h4>
+            </div>
+            <form class="form-horizontal form-material" action="../user/nganhangcauhoius/capnhat" method="post" enctype="application/x-www-form-urlencoded">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12 ml-auto">
+                                <div class="form-group" id="cauhoi">
+                                    <textarea class="form-control" name="cauhoi" id="textarea" rows="8"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group" id="a">
+                                    <label class="col-md-12" id="daa">A</label>
+                                    <div class="col-md-12" id="nda">
+                                        <input type="text" name="nda" id="A" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group" id="b">
+                                    <label class="col-md-12" id="dab">B</label>
+                                    <div class="col-md-12" id="ndb">
+                                        <input type="text" name="ndb" id="B" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group" id="c">
+                                    <label class="col-md-12" id="dac">C</label>
+                                    <div class="col-md-12" id="ndc">
+                                        <input type="text" name="ndc" id="C" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group" id="d">
+                                    <label class="col-md-12" id="dad">D</label>
+                                    <div class="col-md-12" id="ndd">
+                                        <input type="text" name="ndd" id="D" placeholder="123 456 7890" class="form-control form-control-line"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="idch">
+                    </div>
+                    <button type="submit" name="update" value="delete" id="detele" class="btn btn-warning">Xóa Câu Hỏi</button>
+                    <button type="submit" name="update" value="update" id="update" class="btn btn-info">Cập nhật </button>
+                    <button type="button" class="btn btn-danger text-right" data-dismiss="modal">Thoát</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

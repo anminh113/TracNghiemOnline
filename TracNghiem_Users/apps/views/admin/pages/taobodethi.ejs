@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include ../partials/head %>
+</head>
+<header>
+  <% include ../partials/header %>
+
+
+</header>
+
+<body class="fix-header">
+
+  <main>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="row bg-title">
+          <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Chủ đề thi</h4> </div>
+          <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="../../admin/trangchu">Trang Chủ</a></li>
+              <li class="active">Chủ đề thi</li>
+            </ol>
+          </div>
+          <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="white-box">
+              <form class="form-horizontal form-material" method="post" enctype="application/x-www-form-urlencoded" onSubmit="return confirmAction()">
+                <div class="form-group">
+                  <label class="col-md-12">Thêm Chủ Đề Thi</label>
+                  <div class="col-md-10">
+                    <input type="text" name="chude" required autofocus placeholder="Nhập tên chủ đề thi" class="form-control form-control-line">
+                  </div>
+                  <div class="col-sm-2">
+                    <button class="btn btn-info">&nbsp;&nbsp;Thêm&nbsp;&nbsp;</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="white-box">
+              <div class="table-responsive">
+                <table class="search table table-hover" id="table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Tên chủ đề thi</th>
+                      <th>Số câu hỏi</th>
+                      <th>Thêm câu hỏi</th>
+                      <th>Xem chi tiết</th>
+                      <th>Xóa</th>
+                    </tr>
+                  </thead>
+                  <tbody id="myTable">
+
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- /.container-fluid -->
+      </div>
+      <!-- ============================================================== -->
+      <!-- End Page Content -->
+      <!-- ============================================================== -->
+    </div>
+
+  </main>
+
+  <script>
+    $(document).ready(function() {
+      // get data json
+      var json_data = decodeURIComponent('<%= data.json_data%>');
+      $.getJSON(json_data, function(data) {
+        var test_data = '';
+        var len = data.length;
+        var count = 1;
+        $.each(data, function(key, value) {
+          test_data += '<tr>';
+          test_data += '<td>' + count++ + '</td>';
+          test_data += '<td>' + value.tencd + '</td>';
+          test_data += '<td>' + value.socauhoi + '</td>';
+          test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/taobodethi/taobodethi_themcauhoi"><input name="idcd" value="' + value.idcd +
+            '" hidden><button type="submit" class="buttonA">Xem câu hỏi</button></form></td>';
+          test_data += '<td><form method="post" enctype="application/x-www-form-urlencoded" action="/admin/taobodethi/taobodethi_xemchitiet"><input name="idcd" value="' + value.idcd +
+            '" hidden><input name="tencd" value="' + value.tencd +
+            '" hidden><button type="submit" class="buttonA">Xem chi tiết</button></form></td>';
+          test_data += '<td><a href="../admin/taobodethi/xoa/' + value.idcd + '" onclick="return confirmAction()" class="colordelete">Xóa</a></td>';
+          test_data += '</tr>';
+        });
+        $('#table').append(test_data);
+
+        // pagination
+        $('#myTable').paginathing({
+          pagerSelector: '#myPager',
+          activeColor: 'Blue',
+          prevText: '<i class="fa fa-angle-left" aria-hidden="true"></i>',
+          nextText: '<i class="fa fa-angle-right" aria-hidden="true"></i>',
+          insertAfter: '#table',
+          showPrevNext: true,
+          limitPagination: 3,
+          hidePageNumbers: false,
+          perPage: 10
+        });
+      });
+    });
+  </script>
+
+
+
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+        <script type="text/javascript">
+            function Redirect() {
+                window.location = "../../user/taochudethius";
+            }
+        </script>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Bắt đầu luyện tập</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang Chủ</a>
+                            </li>
+                            <li>
+                                <a href="../../user/chudethius">Chủ đề</a>
+                            </li>
+                            <li class="active">Bắt đầu luyện tập</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="panel panel-info">
+                                <div class="panel-heading thi-heading" style="font-size: 1.5em; font-weight: 500;">Bắt đầu luyện tập</div>
+                                <div class="panel-body thi-content">
+                                    <div class="thi-content-start">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form method="POST" action="/user/start-tuluyentap/tuluyentap" target="result" onsubmit="window.open('','result','width=1366,height=676');"
+                                                    class="form-horizontal form-material" enctype="application/x-www-form-urlencoded">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12" style="font-weight: 550">Tên chủ đề:&nbsp;&nbsp;&nbsp;
+                                                            <Label style="color: blue">
+                                                                <%= data.tencd%>
+                                                            </Label>
+                                                        </label>
+                                                        <p></p>
+                                                        <label class="col-md-12" style="font-weight: 550">Số câu hỏi:&nbsp;
+                                                            <Label style="color: blue">
+                                                                <%= data.socauhoi%>&nbsp;câu</Label>
+                                                        </Label>
+                                                        <p></p>
+                                                        <div class="col-md-12">
+                                                            <label style="font-weight: 550">Thời gian (
+                                                                < 300 phút)&nbsp;&nbsp; <input type="number" min="1"
+                                                                    max="3000" step="1" name="thoigianlt" placeholder=" Nhập số phút ..."
+                                                                    class="form-control form-control-line" style="border-radius: 10px; width: 200px;"
+                                                                    required>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <input hidden name="idcd" value="<%= data.idcd%>">
+                                                        <input hidden name="tencd" value="<%= data.tencd%>">
+                                                        <input hidden name="socauhoi" value="<%= data.socauhoi%>">
+                                                        <button type="submit" onclick="Redirect()" class="btn btn-info batdauthibtn">
+                                                            <i class="fa fa-clock-o"> Bắt đầu</i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <footer>
+        <% include ../layout/footer %>
+    </footer>
+    <!-- Load Json Thông báo -->
+    <script>
+        $(document).ready(function () {
+            var json_data_tb = '<%= data.json_datatb%>';
+            $.getJSON(json_data_tb, function (data) {
+                var tone_data = '';
+                var s = 0;
+                $.each(data, function (key, value) {
+                    if (value.stat != 0) {
+                        if ((value.sta == 1 && value.stat == 1)) {
+                            tone_data += `
+                            <div>
+                                <a href="../../user/kythius">
+                                    <div class="user-img">
+                                        <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                        <span class="profile-status online pull-right"></span>
+                                    </div>
+                                    <div class="mail-contnet">
+                                        <h5 style="color:#7ace4c">Đang mở</h5>
+                                        <span class="mail-desc">`+ value.tenkt + `</span>
+                                        <span class="time">Hết hạn `+ value.edate + `</span>
+                                    </div>
+                                </a>
+                            <div>
+                            `;
+                            ++s;
+                        } else if (value.stat == 2) {
+                            tone_data += `
+                            <a href="../../user/kythius">
+                                <div class="user-img">
+                                    <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 style="color:#fb4">Sắp mở</h5>
+                                    <span class="mail-desc">`+ value.tenkt + `</span>
+                                    <span class="time">Bắt đầu `+ value.sdate + `</span>
+                                </div>
+                            </a>
+                            `;
+                            ++s;
+                        }
+                    }
+                });
+                $('#tone_data').append(tone_data);
+                $('#sltb').append(s);
+            });
+        }); 
+    </script>
+    <!-- End load Json -->
+</body>
+
+</html>

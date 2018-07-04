@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../layout/head %>
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header>
+            <% include ../layout/header %>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">
+                            <%= data.tencd%>
+                        </h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="../../user/home">Trang Chủ</a>
+                            </li>
+                            <li>
+                                <a href="../../user/taochudethius">Tạo chủ đề thi</a>
+                            </li>
+                            <li class="active">Chi tiết chủ đề</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material" action="/user/taochudethius-chitiet" method="post" enctype="application/x-www-form-urlencoded">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="table-responsive">
+                                            <table id="table" class="search table table-striped table-hover table-bordered display">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align: center; padding:16px; font-weight: 700">STT</th>
+                                                        <th style="text-align: center; padding:16px; font-weight: 700"> Câu Hỏi</th>
+                                                        <th style="text-align: center; padding:16px; font-weight: 700">
+                                                            <div class="text-center hover-select">
+                                                                <input type="checkbox" name="checkall" id="checkAll" hidden>
+                                                                <label for="checkAll">Chọn Tất Cả</label>
+                                                            </div>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="font-weight: 500" id="myTable">
+
+                                                </tbody>
+                                            </table>
+                                            <div class="col-md-12 center text-center">
+                                                <ul class="pagination" id="myPager">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 ml-auto">
+                                        <input hidden name="idcd" value="<%= data.idcd%>">
+                                        <button type="submit" class=" btn btn-danger" style="float: right">Xoá</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> © Copyright 2018 The Awesome People
+            </footer>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page Content -->
+        <!-- ============================================================== -->
+    </div>
+    <!--    modal-->
+    <% include ../modal/taochudethius-chitiet %>
+        <!--   end modal-->
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <footer>
+            <% include ../layout/footer %>
+        </footer>
+        <script>
+            $("#checkAll").click(function () {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                // get data json
+                var json_data = decodeURIComponent('<%= data.json_data%>');
+                $.getJSON(json_data, function (data) {
+                    var chudechitiet_data = '';
+                    var len = data.length;
+                    var count = 1;
+                    $.each(data, function (key, value) {
+                        chudechitiet_data += '<tr>';
+                        chudechitiet_data += '<td style="text-align: center; padding:16px; font-weight: 700">' + count++ + '</td>';
+                        chudechitiet_data += '<td data-toggle="modal" data-modal-name="' + value.idch + '" data-target="#modal1">' + value.ndch + '</td>';
+                        chudechitiet_data += '<td class=" text-right"><div class="checkbox checkbox-info text-center"><input type="checkbox" id="checkItem' + count + '" name="idch" value="' + value.idch + '"><label for="checkItem' + count + '"> </label></div></td>';
+                        chudechitiet_data += '</tr>';
+                    });
+                    $('#table').append(chudechitiet_data);
+                    $('#myTable').pagination({
+                        pagerSelector: '#myPager',
+                        activeColor: 'red',
+                        prevText: 'Prev',
+                        nextText: 'Next',
+                        showPrevNext: true,
+                        hidePageNumbers: false,
+                        perPage: 15
+                    });
+                });
+            });
+        </script>
+        <!-- Data Modal -->
+        <script>
+            // get data in modal
+            $(document).ready(function () {
+                var json_data = decodeURIComponent('<%= data.json_data_modal%>');
+                $('#modal1').on('show.bs.modal', function (e) {
+                    var personName = $(e.relatedTarget).data('modal-name');
+                    $.post(json_data, { idch: personName },
+                        function (data, status) {
+                            $('#modal1 .modal-content .modal-body .row #cauhoi').html('<textarea class="form-control" id="textarea" rows="8" readonly>' + data.ndch + '</textarea>');
+                            $('#modal1 .modal-content .modal-body .row #nda').html('<input type="text" id="A" placeholder="' + data.nda + '" class="form-control form-control-line"> </div>');
+                            $('#modal1 .modal-content .modal-body .row #ndb').html('<input type="text" id="B" placeholder="' + data.ndb + '" class="form-control form-control-line" > </div>');
+                            $('#modal1 .modal-content .modal-body .row #ndc').html('<input type="text" id="C" placeholder="' + data.ndc + '" class="form-control form-control-line" > </div>');
+                            $('#modal1 .modal-content .modal-body .row #ndd').html('<input type="text" id="D" placeholder="' + data.ndd + '" class="form-control form-control-line" > </div>');
+                            if (data.da == '1') {
+                                $('#modal1 .modal-content .modal-body .row #daa').html('A&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+                                $('#modal1 .modal-content .modal-body .row #dab').html('B');
+                                $('#modal1 .modal-content .modal-body .row #dac').html('C');
+                                $('#modal1 .modal-content .modal-body .row #dad').html('D');
+                            } else if (data.da == '2') {
+                                $('#modal1 .modal-content .modal-body .row #dab').html('B&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+                                $('#modal1 .modal-content .modal-body .row #daa').html('A');
+                                $('#modal1 .modal-content .modal-body .row #dac').html('C');
+                                $('#modal1 .modal-content .modal-body .row #dad').html('D');
+                            } else if (data.da == '3') {
+                                $('#modal1 .modal-content .modal-body .row #dac').html('C&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+                                $('#modal1 .modal-content .modal-body .row #dab').html('B');
+                                $('#modal1 .modal-content .modal-body .row #daa').html('A');
+                                $('#modal1 .modal-content .modal-body .row #dad').html('D');
+                            } else if (data.da == '4') {
+                                $('#modal1 .modal-content .modal-body .row #dad').html('D&nbsp;&nbsp;<i class="fa  fa-check fa-fw" aria-hidden="true"></i>');
+                                $('#modal1 .modal-content .modal-body .row #dab').html('B');
+                                $('#modal1 .modal-content .modal-body .row #dac').html('C');
+                                $('#modal1 .modal-content .modal-body .row #daa').html('A');
+                            }
+                        });
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('table.search').tableSearch({
+                    searchText: '',
+                    searchPlaceHolder: 'Tìm Kiếm ....'
+                });
+            });
+        </script>
+        <!-- Load Json Thông báo -->
+        <script>
+            $(document).ready(function () {
+                var json_data_tb = '<%= data.json_datatb%>';
+                $.getJSON(json_data_tb, function (data) {
+                    var tone_data = '';
+                    var s = 0;
+                    $.each(data, function (key, value) {
+                        if (value.stat != 0) {
+                            if ((value.sta == 1 && value.stat == 1)) {
+                                tone_data += `
+                        <div>
+                            <a href="../../user/kythius">
+                                <div class="user-img">
+                                    <img src="../../plugins/images/exam.png" alt="user" class="img-circle">
+                                    <span class="profile-status online pull-right"></span>
+                                </div>
+                                <div class="mail-contnet">
+                                    <h5 style="color:#7ace4c">Đang mở</h5>
+                                    <span class="mail-desc">`+ value.tenkt + `</span>
+                                    <span class="time">Hết hạn `+ value.edate + `</span>
+                                </div>
+                            </a>
+                        <div>
+                        `;
+                                ++s;
+                            } else if (value.stat == 2) {
+                                tone_data += `
+                        <a href="../../user/kythius">
+                            <div class="user-img">
+                                <img src="../../plugins/images/clock.png" alt="user" class="img-circle">
+                            </div>
+                            <div class="mail-contnet">
+                                <h5 style="color:#fb4">Sắp mở</h5>
+                                <span class="mail-desc">`+ value.tenkt + `</span>
+                                <span class="time">Bắt đầu `+ value.sdate + `</span>
+                            </div>
+                        </a>
+                        `;
+                                ++s;
+                            }
+                        }
+                    });
+                    $('#tone_data').append(tone_data);
+                    $('#sltb').append(s);
+                });
+            }); 
+        </script>
+        <!-- End load Json -->
+</body>
+
+</html>
